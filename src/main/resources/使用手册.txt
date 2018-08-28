@@ -1,0 +1,29 @@
+一、对 maven中加入对 jsp的依赖
+		<!--springboot tomcat jsp 支持开启-->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<scope>compile</scope>
+		</dependency>
+二、配置jsp
+a.如果用的是yml配置，如下配置：
+
+spring:
+    mvc:
+      view:
+        prefix: /WEB-INF/jsp/
+        suffix: .jsp
+
+b.如果用的是properties配置，如下配置：
+
+#spring 视图
+spring.mvc.view.prefix=/WEB-INF/jsp/
+spring.mvc.view.suffix=.jsp
+#关闭thymeleaf缓存
+spring.thymeleaf.cache=false
+#关闭thymeleaf模板
+spring.thymeleaf.enabled = false
