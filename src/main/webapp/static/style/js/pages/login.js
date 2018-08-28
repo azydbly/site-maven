@@ -34,7 +34,7 @@ function login(){
             if(req.retcode == 0){
                 $.Modalalert(req.retmsg,1000);
             }else{
-                window.location.href = baselocation + "/admin/success"
+                window.location.href = baselocation + "/admin/welcome"
             }
         },
         error: function(req){

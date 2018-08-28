@@ -1,6 +1,5 @@
 package com.xst.mapper;
 
-import com.xst.common.dao.MyMapper;
 import com.xst.model.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,7 +10,7 @@ import org.apache.ibatis.annotations.Param;
  * @Email: 15324399524@163.com
  * @CreateDate： 2018/8/23 15:34
  */
-public interface UserMapper extends MyMapper<User> {
+public interface UserMapper {
 
     //根据身份证号查询信息
     User queryByUsername(@Param("idnumber") String idnumber);

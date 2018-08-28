@@ -10,7 +10,9 @@ import com.xst.common.util.IPUtil;
 import com.xst.common.util.PasswordUtil;
 import com.xst.mapper.UserMapper;
 import com.xst.model.User;
+import com.xst.server.MenuService;
 import com.xst.server.UserService;
+import com.xst.server.impl.MenuServiceImpl;
 import com.xst.server.impl.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.chrono.IsoEra;
+import java.util.List;
 
 /**
  * @ClassName: LoginController
@@ -41,10 +44,12 @@ public class LoginController extends BaseController {
     private UserService userService = new UserServiceImpl();
 
     @Autowired
-    private UserMapper userMapper;
+    private MenuService menuService = new MenuServiceImpl();
 
     @Autowired
-    private DataCache dataCache;
+    private UserMapper userMapper;
+
+
 
     @ControllerLog("登录系统")
     @RequestMapping("login")
@@ -52,6 +57,14 @@ public class LoginController extends BaseController {
     public AjaxResult login(HttpServletRequest request, HttpServletResponse response) {
         return userService.selectUserByIdnumber(request,response);
     }
+
+    @ControllerLog("登录成功欢迎页")
+    @RequestMapping("welcome")
+    public String welcome(HttpServletRequest request, HttpServletResponse response) {
+        request.setAttribute("menuList", menuService.selectLoginMenus());
+        return "index";
+    }
+
 
 
     @ControllerLog("退出")
@@ -81,8 +94,4 @@ public class LoginController extends BaseController {
         return AppUtil.returnObj(result);
     }
 
-    @RequestMapping("success")
-    public String p(HttpServletRequest request, HttpServletResponse response) {
-        return "index";
-    }
 }

@@ -4,7 +4,6 @@
 <head>
     <title>管理系统-登录</title>
     <link rel="stylesheet" type="text/css" href="${ctxstc}/style/css/login.css" />
-    <script src="${ctxstc}/style/js/jquery-1.12.4.min.js"></script>
     <script src="${ctxstc}/style/js/util/md5.js"></script>
     <script src="${ctxstc}/style/js/pages/login.js"></script>
 </head>

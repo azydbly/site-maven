@@ -70,7 +70,8 @@ public class LoginRequestInterceptor extends HandlerInterceptorAdapter {
             CookieUtil.delete(Constant.SESSION_IDENTITY_KEY, request, response);
             return "您的账号已经在其他地方登陆，请重新登陆";
         }
-        // 设置登录名和权限
+
+        // 设置登录用户
         request.setAttribute("loginUser", identity.getLoginUser());
         return null;
     }

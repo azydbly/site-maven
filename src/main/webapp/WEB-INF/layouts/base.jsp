@@ -7,3 +7,5 @@
 <c:set var="ctxstc" value="${pageContext.request.contextPath}/static"/>
 <script>baselocation='${ctx}';</script>
 
+<script src="${ctxstc}/style/js/jquery-1.12.4.min.js"></script>
+

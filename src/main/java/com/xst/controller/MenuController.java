@@ -1,8 +1,19 @@
 package com.xst.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.xst.common.annotation.ControllerLog;
+import com.xst.common.util.DataTables;
+import com.xst.server.MenuService;
+import com.xst.server.impl.MenuServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @ClassName: MenuController
@@ -16,9 +27,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/menu/")
 public class MenuController extends BaseController {
 
-    @ControllerLog("登录之后跳转主页")
-    @RequestMapping("index")
-    public void index(){
+    @Autowired
+    private MenuService menuService = new MenuServiceImpl();
 
+
+    @RequestMapping("list")
+    @ControllerLog("进入菜单 list 页面")
+    public String index(){
+        return "system/menu/index";
+    }
+
+    @ResponseBody
+    @ControllerLog("菜单 list 页面，分页显示菜单")
+    @RequestMapping(value = "showPageMenu", produces = "application/json; charset=utf-8")
+    public String showPageMenu(@RequestParam(value="state",required=false)String state,HttpServletRequest request, HttpServletResponse response){
+        state = StringUtils.isEmpty(state) ? "" : ("state=" + state);
+        return JSON.toJSONString(menuService.getPageMenuList(DataTables.getInstance(request,state)));
     }
 }
