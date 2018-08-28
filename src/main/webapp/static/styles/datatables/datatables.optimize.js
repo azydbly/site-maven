@@ -4,9 +4,9 @@
 $.extend($.fn.dataTable.defaults, {
 	dom: 't<"dataTables_info"il>p',
 	language: {
-		"url": "s/datatables_language.json"
+		"url": baselocation + "/static/styles/datatables/datatables_language.json"
 	},
-	//pageLength:20, //定义初始的长度
+	pageLength:20, //定义初始的长度
 	processing: true, //当datatable获取数据时候是否显示正在处理提示信息。
 	showRowNumber:true,
 	serverSide: true, //服务器处理分页
