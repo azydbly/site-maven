@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xst.mapper.MenuMapper">
+
+    <!-- 公众部分 -->
+    <sql id="selectColumn">
+        id,menuname,pid,url,iconfont,DATE_FORMAT(insertdatetime, '%Y-%m-%d %H:%i:%s'), DATE_FORMAT(operatordatetime, '%Y-%m-%d %H:%i:%s'),state,flag
+    </sql>
+
+
+    <select id="selectLoginMenus" resultType="com.xst.model.Menu">
+        select
+        <include refid="selectColumn"/>
+        from sys_menu
+        where flag = 1
+    </select>
+
+    <!-- DataTabables 分页，搜索  -->
+    <select id="getPageMenuList" resultType="com.xst.model.Menu">
+        select
+          <include refid="selectColumn"/>
+        from sys_menu
+        <where>
+            <if test="subSQL != null and subSQL != '' ">
+                ${subSQL}
+            </if>
+            <if test="search != null and search != ''">
+                and INSTR(ifnull(menuname,''),'${search}') > 0
+            </if>
+        </where>
+    </select>
+
+</mapper>
