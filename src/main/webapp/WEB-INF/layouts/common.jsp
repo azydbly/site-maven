@@ -8,4 +8,10 @@
 
 <script src="${ctxstc}/styles/h-ui/js/H-ui.js"></script>
 <script src="${ctxstc}/styles/h-ui.admin/js/H-ui.admin.js"></script>
+
+
 <script src="${ctxstc}/styles/layer/layer.js"></script>
+
+<script src="${ctxstc}/styles/icheck/icheck.min.js"></script>
+
+

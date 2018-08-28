@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/WEB-INF/layouts/common.jsp" %>
+<%@ include file="/WEB-INF/layouts/commonList.jsp" %>
 <html>
 <head>
     <title>系统管理</title>
@@ -9,18 +10,12 @@
 <div class="page-container">
     <div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
-			<c:forEach items="${roleMenuId }" var="roleMenuId">
-                <c:if test="${roleMenuId.operation.menuname eq 5 }">
-					<a href="javascript:;" onclick="delAll(getDTSelect(), 'delMenu.action', reloadTable)" class="btn btn-danger radius">
-						<i class="Hui-iconfont">&#xe6e2;</i> 批量删除
-					</a>
-                </c:if>
-                <c:if test="${roleMenuId.operation.menuname eq 3 }">
-					<a href="javascript:;" onclick="add('添加菜单','selPid.action','893','400')" class="btn btn-primary radius">
-						<i class="Hui-iconfont">&#xe600;</i> 添加菜单
-					</a>
-                </c:if>
-            </c:forEach>
+            <a href="javascript:;" onclick="delAll(getDTSelect(), 'delMenu.action', reloadTable)" class="btn btn-danger radius">
+                <i class="Hui-iconfont">&#xe6e2;</i> 批量删除
+            </a>
+            <a href="javascript:;" onclick="add('添加菜单','selPid.action','893','400')" class="btn btn-primary radius">
+                <i class="Hui-iconfont">&#xe600;</i> 添加菜单
+            </a>
 		</span>
         <div class="r">
             状态:
@@ -59,7 +54,7 @@
                 {"bVisible": false, "aTargets": [0]} //控制列的隐藏显示
             ],
             ajax: {
-                url: baselocation + "/admin/showPageMenu",
+                url: baselocation + "/menu/showPageMenu",
                 type: 'post',
                 data: function(d) {
                     d.search = $('#search').val();
@@ -101,7 +96,7 @@
                 orderable:false,
                 responsivePriority: 1,
                 render: function(data, type, row, meta) {
-                    var a;
+                    var a = "";
                     a += '<a title="' + state[data] + '" style="text-decoration:none" onClick="changeStatus(' + "'" +  state[data] + "'" + ',[' + "'" + row.menuname + "'" + '],\'updMenuState.action\',' + row.id + ', '+ flag[data] + ')" href="javascript:;"><i class="Hui-iconfont">' + icon[data] + '</i></a>';
                     a += '<a title="编辑" href="javascript:;" onclick="edit_show([' + "'" + row.menuname + "'" + '],\'selMenuById.action\',' + row.id + ',\'893\',\'400\')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>';
                     a += '<a title="删除" href="javascript:;" onclick="del([' + row.id + '],\'delMenu.action\',[' + "'" + row.menuname + "'" + '],reloadTable)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>';
