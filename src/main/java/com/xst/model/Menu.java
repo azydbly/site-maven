@@ -48,6 +48,9 @@ public class Menu {
     //是否删除 1正常 0 删除
     private int flag;
 
+    //虚拟字段
+    private String pname;
+
 
     public int getId() {
         return id;
@@ -127,5 +130,13 @@ public class Menu {
 
     public void setFlag(int flag) {
         this.flag = flag;
+    }
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
     }
 }

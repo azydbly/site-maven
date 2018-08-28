@@ -79,7 +79,7 @@
                 data: "menuname",
                 defaultContent: "",
             }, {
-                data: "url",
+                data: "pname",
                 defaultContent: "",
             }, {
                 data: "url",
