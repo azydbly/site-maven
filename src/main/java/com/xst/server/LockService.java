@@ -15,7 +15,6 @@ public interface LockService {
     //锁定账户
     int insertByMal(Lock lock);
 
-
     //根据用户id  查询锁
     Lock queryByUserId(String idnumber);
 
