@@ -5,7 +5,8 @@
     <!-- 公众部分 -->
     <sql id="selectColumn">
         id,fullname,idtype,idnumber,password,salt,birthday,email,sex,nation,tel,unitid,province,city,county,birthplace,imagefile,
-        roleid,address,political,suniversity,seducation,smajor, DATE_FORMAT(insertdatetime, '%Y-%m-%d %H:%i:%s'), DATE_FORMAT(operatordatetime, '%Y-%m-%d %H:%i:%s'), DATE_FORMAT(loginTime, '%Y-%m-%d %H:%i:%s'),loginIp,state,flag
+        roleid,address,political,suniversity,seducation,smajor, DATE_FORMAT(insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime,
+        DATE_FORMAT(operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime, DATE_FORMAT(loginTime, '%Y-%m-%d %H:%i:%s') loginTime,loginIp,state,flag
     </sql>
 
 
@@ -18,6 +19,10 @@
 
     <update id="updateLastByIdnumber" parameterType="com.xst.model.User">
         update edu_user set loginTime = #{loginTime},loginIp = #{loginIp} where id = #{id} and flag = 1
+    </update>
+
+    <update id="updateStateById" parameterType="com.xst.model.User">
+         update edu_user set state = #{state} where id = #{id} and flag = 1
     </update>
 
 </mapper>

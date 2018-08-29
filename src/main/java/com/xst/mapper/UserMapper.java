@@ -17,4 +17,6 @@ public interface UserMapper {
 
     //登录成功之后更新最后登录时间和最后登录Ip
     int updateLastByIdnumber(User user);
+
+    int updateStateById(@Param("id")int id,@Param("state")int state);
 }

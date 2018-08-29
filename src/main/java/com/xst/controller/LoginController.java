@@ -65,6 +65,13 @@ public class LoginController extends BaseController {
         return "index";
     }
 
+    @ControllerLog("强刷页面进行账号锁定")
+    @RequestMapping("lock")
+    @ResponseBody
+    public AjaxResult lock(HttpServletRequest request, HttpServletResponse response) {
+        return userService.lockingUserByIdnumber(request,response);
+    }
+
 
 
     @ControllerLog("退出")

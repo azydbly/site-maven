@@ -9,5 +9,6 @@
         <span class="va-m"> 拦截</span>
     </p>
     <input type="hidden" id="loginUser" value="${loginUser.idnumber }" />
+    <input type="hidden" id="userId" value="${loginUser.id }" />
     <p class="error-description"></p>
 </article>

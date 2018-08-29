@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xst.mapper.LockMapper">
+
+    <!-- 公众部分 -->
+    <sql id="selectColumn">
+        id,userid,locking,DATE_FORMAT(insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime, DATE_FORMAT(operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime,flag
+    </sql>
+
+
+    <insert id="insertByMal" parameterType="com.xst.model.Lock">
+        insert into edu_lock (userid,locking,insertdatetime,operatordatetime)
+        values(#{userid}, #{locking},#{insertdatetime},#{operatordatetime})
+    </insert>
+
+    <select id="queryByUserId" resultType="com.xst.model.Lock">
+        select
+        <include refid="selectColumn" />
+        from edu_lock
+        where userid = (select id from edu_user where idnumber = #{idnumber} and flag = 1) and flag = 1
+    </select>
+
+    <update id="updateFlagById" parameterType="com.xst.model.Lock">
+        update edu_lock set flag = 0 where id = #{id} and flag = 1
+    </update>
+
+</mapper>

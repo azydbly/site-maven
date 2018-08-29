@@ -25,4 +25,6 @@ public interface UserService {
     AjaxResult selectUserByIdnumber(HttpServletRequest request, HttpServletResponse response);
 
     AjaxResult logout(HttpServletRequest request, HttpServletResponse response);
+
+    AjaxResult lockingUserByIdnumber(HttpServletRequest request, HttpServletResponse response);
 }

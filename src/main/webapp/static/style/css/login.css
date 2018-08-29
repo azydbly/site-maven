@@ -343,8 +343,8 @@ input::-moz-placeholder {
     position: fixed;
     right: auto;
     bottom: auto;
-    width: 300px;
-    left: 50%;
+    width: 320px;
+    left: 49.5%;
     margin-left: -150px;
     top: 37.5%;
     margin-top: -30px;

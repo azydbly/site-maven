@@ -23,16 +23,13 @@
                         <a href="javascript:;" class="dropDown_A">工具 <i class="Hui-iconfont">&#xe6d5;</i></a>
                         <ul class="dropDown-menu menu radius box-shadow">
                             <li>
-                                <a href="http://www.h-ui.net/bug.shtml" target="_blank">Bug兼容性汇总</a>
+                                <a href="http://www.h-ui.net/bug.shtml" target="_blank"><i class="Hui-iconfont">&#xe64a;</i> Bug兼容性汇总</a>
                             </li>
                             <li>
-                                <a href="http://www.h-ui.net/websafecolors.shtml" target="_blank">web安全色</a>
+                                <a href="http://www.h-ui.net/websafecolors.shtml" target="_blank"><i class="Hui-iconfont">&#xe62a;</i> web安全色</a>
                             </li>
                             <li>
-                                <a href="http://www.h-ui.net/Hui-3.7-Hui-iconfont.shtml" target="_blank">Hui-iconfont</a>
-                            </li>
-                            <li>
-                                <a href="javascript:;">web工具箱<i class="arrow Hui-iconfont">&#xe6d7;</i></a>
+                                <a href="javascript:;"><i class="Hui-iconfont">&#xe681;</i> web工具箱<i class="arrow Hui-iconfont">&#xe6d7;</i></a>
                                 <ul class="menu">
                                     <li>
                                         <a href="http://www.h-ui.net/tools/jsformat.shtml" target="_blank">JS/HTML格式化工具</a>
@@ -52,12 +49,6 @@
                                     <li>
                                         <a href="javascript:;">三级菜单<i class="arrow Hui-iconfont">&#xe6d7;</i></a>
                                         <ul class="menu">
-                                            <li>
-                                                <a href="javascript:;">四级菜单</a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">四级菜单</a>
-                                            </li>
                                             <li>
                                                 <a href="javascript:;">四级菜单</a>
                                             </li>

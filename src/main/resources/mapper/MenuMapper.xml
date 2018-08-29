@@ -4,7 +4,7 @@
 
     <!-- 公众部分 -->
     <sql id="selectColumn">
-        id,menuname,pid,url,iconfont,DATE_FORMAT(insertdatetime, '%Y-%m-%d %H:%i:%s'), DATE_FORMAT(operatordatetime, '%Y-%m-%d %H:%i:%s'),state,flag
+        id,menuname,pid,url,iconfont,DATE_FORMAT(insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime, DATE_FORMAT(operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime,state,flag
     </sql>
 
 
