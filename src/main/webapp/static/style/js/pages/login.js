@@ -5,6 +5,40 @@ $(window).load(function(){
     }
 });
 
+//获取cookie值设置到文本框
+function setValue(){
+    var namevalue = $("#idnumber").val();
+    if("" != namevalue){
+        var cookieName = namevalue + "userinfo";
+        var userinfo = $.cookie(cookieName);
+        if(undefined != userinfo && "" != userinfo){
+            var infos = userinfo.split("&");
+            for(var i in infos){
+                if(0 == i){
+                    $("#idnumber").val(infos[i]);
+                }else if(1 == i){
+                    $("#password").val(infos[i]);
+                }
+            }
+        }
+    }else{
+        var idnumber = $.cookie("idnumber");
+        if(undefined != idnumber && "" != idnumber){
+            $("#idnumber").val(idnumber);
+        }
+        var password = $.cookie("password");
+        if(undefined != password && "" != password){
+            $("#password").val(password);
+        }
+    }
+}
+setValue();
+
+$("#idnumber").blur(function(){
+    setValue();
+});
+
+
 // 用户登录
 function login(){
     var idnumber = $("input[name='idnumber']").val();
@@ -34,6 +68,19 @@ function login(){
             if(req.retcode == 0){
                 $.Modalalert(req.retmsg,1000);
             }else{
+                var remenber = $("#setcheck").is(":checked");
+                var cookieName = idnumber + ":userinfo";
+                if(remenber){
+                    var cookieValue = username + "&" + password;
+                    //设置cookie值有效期30天
+                    $.cookie(cookieName, cookieValue, {expires:30});
+                    $.cookie("idnumber", idnumber, {expires:30});
+                    $.cookie("password", password, {expires:30});
+                }else{
+                    $.cookie(cookieName, "");
+                    $.cookie("idnumber", "");
+                    $.cookie("password", "");
+                }
                 window.location.href = baselocation + "/admin/welcome"
             }
         },

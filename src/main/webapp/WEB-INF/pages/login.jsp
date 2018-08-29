@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="${ctxstc}/style/css/login.css" />
     <script src="${ctxstc}/style/js/util/md5.js"></script>
     <script src="${ctxstc}/style/js/pages/login.js"></script>
+    <script src="${ctxstc}/style/js/jquery.cookie.js"></script>
 </head>
 <body>
 <div class="z-login-wrap">
