@@ -53,6 +53,25 @@
             "aoColumnDefs": [
                 {"bVisible": false, "aTargets": [0]} //控制列的隐藏显示
             ],
+            "buttons": [
+                {
+                    'extend': 'excel',
+                    'text': '导出excel',//定义导出excel按钮的文字
+                    'exportOptions': {
+                        'modifier': {
+                            'page': 'all'
+                        }
+                    },
+                    customize: function( xlsx ) {
+                        var sheet = xlsx.xl.worksheets['sheet1.xml'];
+
+                        //  $('row c[r*="1"]', sheet).attr( 's', '51' );
+                        //  $('row c[r*="2"]', sheet).attr( 's', '51' );
+                        //  $('row c[r*="3"]', sheet).attr( 's', '51' );
+
+                    }
+                }
+            ],
             ajax: {
                 url: baselocation + "/menu/showPageMenu",
                 type: 'post',

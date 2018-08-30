@@ -145,11 +145,11 @@ public class UserServiceImpl implements UserService {
         ParamData params = new ParamData();
         String userId = params.getString("userId");
         Date now = new Date();
-        userMapper.updateStateById(Integer.valueOf(userId),3);
+        userMapper.updateStateById(StrUtil.getInteger(userId),3);
         Lock lock = new Lock();
         Date afterDate = new Date(now.getTime() + 600000);
 
-        lock.setUserid(Integer.valueOf(userId));
+        lock.setUserid(StrUtil.getInteger(userId));
         lock.setLocking("访问页面过于频繁");
         lock.setInsertdatetime(sdf.format(now));
         lock.setOperatordatetime(sdf.format(afterDate));
