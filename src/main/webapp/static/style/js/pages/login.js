@@ -85,7 +85,8 @@ function login(){
         success: function(req){
             if(req.retcode == 0){
                 $(".z-loading-wrap").hide();
-                $.Modalalert(req.retmsg,1000);
+                //$.Modalalert(req.retmsg,1000);
+                layer.msg(req.retmsg, {time: 2000, icon:5});
             }else{
                 var remenber = $("#setcheck").is(":checked");
                 var cookieName = idnumber + ":userinfo";
@@ -107,7 +108,8 @@ function login(){
             $(".z-loading-wrap").hide();
            /* $("#vcode").select();
             $("#vimg").attr("src", baselocation + "/getVcode?random=" + Math.random());*/
-            $.Modalalert('系统异常！',1000);
+            //$.Modalalert('系统异常！',1000);
+            layer.msg('系统异常！', {time: 2000, icon:5});
         }
     });
 }

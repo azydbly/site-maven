@@ -10,11 +10,11 @@
 
 <link rel="stylesheet" type="text/css" href="${ctxstc}/styles/icheck/skins/all.css" />
 
+<link rel="stylesheet" type="text/css" href="${ctxstc}/style/css/style.css" />
+
 <script src="${ctxstc}/styles/h-ui/js/H-ui.js"></script>
 <script src="${ctxstc}/styles/h-ui/js/H-ui.min.js"></script>
 <script src="${ctxstc}/styles/h-ui.admin/js/H-ui.admin.js"></script>
-
-<script src="${ctxstc}/styles/layer/layer.js"></script>
 
 <script src="${ctxstc}/styles/icheck/icheck.min.js"></script>
 

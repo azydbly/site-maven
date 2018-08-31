@@ -7,8 +7,6 @@
     <meta name="renderer" content="webkit">
     <title>权限管理系统</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-
-    <script src="${ctxstc}/style/js/pages/index.js"></script>
 </head>
 <body>
 <header class="navbar-wrapper">
@@ -158,5 +156,7 @@
         <li id="closeall">关闭全部 </li>
     </ul>
 </div>
+<script src="${ctxstc}/styles/jquery.contextmenu/jquery.contextmenu.r2.js"></script>
+<script src="${ctxstc}/style/js/pages/index.js"></script>
 </body>
 </html>

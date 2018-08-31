@@ -21,3 +21,20 @@ function logout() {
 function druid(){
     window.open(baselocation + "/druid/login.html");
 }
+
+$(function(){
+    $("#min_title_list li").contextMenu('Huiadminmenu', {
+        bindings: {
+            'closethis': function(t) {
+                console.log(t);
+                if(t.find("i")){
+                    t.find("i").trigger("click");
+                }
+            },
+            'closeall': function(t) {
+                layer.msg('没有更多的标签了！', {time: 2000, icon:5});
+
+            },
+        }
+    });
+});
