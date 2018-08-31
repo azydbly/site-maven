@@ -61,7 +61,7 @@ public class AppUtil {
     }
 
     /**
-     * 封装接口返回数据
+     * 封装接口返回数据，数据为成功状态带有 data 值
      *
      * @param result
      * @return
