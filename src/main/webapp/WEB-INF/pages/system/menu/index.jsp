@@ -6,7 +6,12 @@
     <title>系统管理</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont"></i> 首页 <span class="c-gray en">&gt;</span>系统管理 <span class="c-gray en">&gt;</span>菜单管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb">
+    <i class="Hui-iconfont"></i> 首页 <span class="c-gray en">&gt;</span>系统管理 <span class="c-gray en">&gt;</span>菜单管理
+    <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >
+        <i class="Hui-iconfont">&#xe68f;</i>
+    </a>
+</nav>
 <div class="page-container">
     <div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
@@ -19,12 +24,14 @@
 		</span>
         <div class="r">
             状态:
-            <select id="state" style="width:80px; height:30px;">
+            <select id="state" class="select_list">
                 <option value="">--请选择--</option>
+                <option value="0">禁用</option>
                 <option value="1">启用</option>
-                <option value="2">禁用</option>
-            </select>&nbsp;&nbsp;
-            菜单名称:<input type="text" class="input-text" style="width:200px" placeholder="菜单名称" id="search">&nbsp;&nbsp;
+                <option value="2">锁定</option>
+            </select>
+            <span>菜单名称：</span>
+            <input type="text" class="input-text input_span" placeholder="菜单名称" id="search">&nbsp;&nbsp;
             <button type="submit" id="doSearch" class="btn btn-success radius"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
         </div>
     </div>

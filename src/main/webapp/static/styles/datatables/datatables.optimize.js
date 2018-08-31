@@ -10,10 +10,10 @@ $.extend($.fn.dataTable.defaults, {
 	processing: true, //当datatable获取数据时候是否显示正在处理提示信息。
 	showRowNumber:true,
 	serverSide: true, //服务器处理分页
-   /* orderMulti: true,  //启用多列排序
+   	orderMulti: true,  //启用多列排序
     ordering:true,//使用排序
-    bStateSave:true,//记录cookie*/
-//	scrollY:690,
+    bStateSave:true,//记录cookie
+	scrollY:690,
 	responsive: {
 		details: false
 	},
