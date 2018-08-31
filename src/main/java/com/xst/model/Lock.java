@@ -32,7 +32,7 @@ public class Lock {
     //解锁时间
     private String operatordatetime;
 
-    //标识
+    //标识 0 删除 1 正常
     private int flag;
 
 

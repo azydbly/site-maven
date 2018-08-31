@@ -74,11 +74,11 @@ public class UserServiceImpl implements UserService {
             }
             if(flag){
                 boolean userResult = false;
-                if(user.getState() == 1){
+                if(user.getState() == 0){
+                    result = "账户已停用，禁止登陆！";
+                }else if(user.getState() == 1){
                     userResult = true;
                 }else if(user.getState() == 2){
-                    result = "账户已停用，禁止登陆！";
-                }else if(user.getState() == 3){
                     Lock lock = lockService.queryByUserId(idnumber);
                     if(lock != null){
                         Date now = new Date();
@@ -161,7 +161,7 @@ public class UserServiceImpl implements UserService {
         ParamData params = new ParamData();
         String userId = params.getString("userId");
         Date now = new Date();
-        userMapper.updateStateById(StrUtil.getInteger(userId),3);
+        userMapper.updateStateById(StrUtil.getInteger(userId),2);
         Lock lock = new Lock();
         Date afterDate = new Date(now.getTime() + 600000);
 

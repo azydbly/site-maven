@@ -99,10 +99,10 @@ public class User {
     //最后登录IP
     private String loginIp;
 
-    //是否停用标识  1启用（默认）  2停用
+    //是否停用标识   0 停用 1启用（默认） 2 锁定
     private int state;
 
-    //是否删除 1正常 0 删除
+    //是否删除 0 删除  1 正常
     private int flag;
 
 

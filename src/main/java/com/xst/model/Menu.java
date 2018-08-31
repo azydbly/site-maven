@@ -42,10 +42,10 @@ public class Menu {
     //修改时间
     private Date operatordatetime;
 
-    //是否停用标识  1启用（默认）  2停用
+    //是否停用标识  0 停用 1启用（默认）
     private int state;
 
-    //是否删除 1正常 0 删除
+    //是否删除 0 删除 1正常
     private int flag;
 
     //虚拟字段
