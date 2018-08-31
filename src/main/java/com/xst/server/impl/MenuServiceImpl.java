@@ -35,7 +35,7 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public DataTables getPageMenuList(DataTables dataTables) {
         PageHelper.startPage(dataTables.getPageNum(), dataTables.getLength()); // 核心分页代码
-        PageHelper.orderBy("convert(a.menuname using gbk) asc");
+        PageHelper.orderBy("convert(b.menuname using gbk) COLLATE gbk_chinese_ci asc,convert(a.menuname using gbk) COLLATE gbk_chinese_ci asc");
 
         if(!StringUtils.isEmpty(dataTables.getColumn())){
             PageHelper.orderBy(dataTables.getColumn() + " " + dataTables.getOrder());
