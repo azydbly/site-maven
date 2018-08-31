@@ -8,7 +8,7 @@ $(window).load(function(){
 //获取cookie值设置到文本框
 function setValue(){
     var namevalue = $("#idnumber").val();
-    if("" != namevalue){
+    if(undefined != namevalue && "" != namevalue){
         var cookieName = namevalue + "userinfo";
         var userinfo = $.cookie(cookieName);
         if(undefined != userinfo && "" != userinfo){
@@ -51,10 +51,28 @@ function login(){
         $("input[name='password']").attr("placeholder", "请输入密码");
         return false;
     }
-    /* if(password.length <= 20){
-         password = hex_md5(password);
-     }*/
-    var data = "idnumber=" + idnumber + "&password=" + password;
+    var cookiePassword = $.cookie("password");
+    var data;
+    var type;
+    /**
+     *  判断cookie中 password 是否有值
+     *  true 判断password input中的值是否跟cookie中password相同，相同密码直接进行比较， type = 0; 不相同使用盐值进行加密验证。type = 1
+     *  false cookie中的password 不存在直接使用盐值进行验证
+     *  type = 0 表示cookie中有值，并且password input的值与之相同，直接和数据库中的密码值进行计较即可
+     *  type = 1 表示cookie中没有值或者password input的值与cookie的值不相同，需要使用盐值进行加密判断
+     */
+    if(undefined != cookiePassword && "" != cookiePassword){
+        if(cookiePassword == password){
+            type = 0;
+        }else{
+            type = 1;
+        }
+    }
+    if(undefined == cookiePassword || "" == cookiePassword){
+        type = 1;
+    }
+    data = "idnumber=" + idnumber + "&password=" + password + "&type=" + type;
+    $(".z-loading-wrap").show();
     $.ajax({
         url: baselocation + "/admin/login",
         data: data,
@@ -66,16 +84,17 @@ function login(){
 
         success: function(req){
             if(req.retcode == 0){
+                $(".z-loading-wrap").hide();
                 $.Modalalert(req.retmsg,1000);
             }else{
                 var remenber = $("#setcheck").is(":checked");
                 var cookieName = idnumber + ":userinfo";
                 if(remenber){
-                    var cookieValue = username + "&" + password;
+                    var cookieValue = idnumber + "&" + req.data;
                     //设置cookie值有效期30天
                     $.cookie(cookieName, cookieValue, {expires:30});
                     $.cookie("idnumber", idnumber, {expires:30});
-                    $.cookie("password", password, {expires:30});
+                    $.cookie("password", req.data, {expires:30});
                 }else{
                     $.cookie(cookieName, "");
                     $.cookie("idnumber", "");
@@ -93,10 +112,13 @@ function login(){
     });
 }
 // 回车登录实现
-$(document).keyup(function (event) {
-    if (event.keyCode == 13) {
-        $(".z-login-btn").trigger("click");
-    }
+$(function (){
+    $("#loginForm").keydown(function(e){
+        var e = e || event, keycode = e.which || e.keyCode;
+        if (keycode == 13) {
+            login();
+        }
+    })
 });
 
 

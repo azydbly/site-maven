@@ -61,6 +61,19 @@ public class AppUtil {
     }
 
     /**
+     * 封装接口返回数据
+     *
+     * @param result
+     * @return
+     */
+    public static AjaxResult returnObj(String result,String data) {
+        if (StringUtils.isEmpty(result)) {
+            return new AjaxResult(result,data);
+        }
+        return new AjaxResult(result);
+    }
+
+    /**
      * 封装带数据的返回
      *
      * @param result

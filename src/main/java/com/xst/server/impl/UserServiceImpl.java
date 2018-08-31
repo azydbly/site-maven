@@ -52,13 +52,26 @@ public class UserServiceImpl implements UserService {
         ParamData params = new ParamData();
         String idnumber = params.getString("idnumber");
         String password = params.getString("password");
+        String type = params.getString("type");
         String result = null;
+        String data = null;
         User user = userMapper.queryByUsername(idnumber);
         if(user == null){
             result = "用户名不存在！";
         }else{
-            PasswordUtil passwordUtil = new PasswordUtil();
-            Boolean flag = passwordUtil.LoginPassword(user.getPassword(),password,user.getSalt());
+            Boolean flag = false;
+            // 1 cookie 没有值或者cookie 中的password 用户自己更改过，0 是cookie 有值
+            if("1".equals(type)){
+                PasswordUtil passwordUtil = new PasswordUtil();
+                flag = passwordUtil.LoginPassword(user.getPassword(),password,user.getSalt());
+            }
+            if ("0".equals(type)){
+                if(user.getPassword().equals(password)){
+                    flag = true;
+                }else{
+                    flag = false;
+                }
+            }
             if(flag){
                 boolean userResult = false;
                 if(user.getState() == 1){
@@ -131,12 +144,15 @@ public class UserServiceImpl implements UserService {
                     dataCache.setValue(idnumber + loginIp, identity);
                     dataCache.setValue(sessionId, idnumber);
                     CookieUtil.set(Constant.SESSION_IDENTITY_KEY, sessionId, response);
+
+                    //登录成功，把用户密码传入前台，存入 cookie
+                    data = user.getPassword();
                 }
             }else{
                 result = "密码错误！";
             }
         }
-        return AppUtil.returnObj(result);
+        return AppUtil.returnObj(result,data);
     }
 
 

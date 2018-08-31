@@ -36,6 +36,12 @@ public class AjaxResult {
 		this.retcode = 0;
 		this.retmsg = retmsg;
 	}
+
+    public AjaxResult(String retmsg,String data){
+        this.retcode = 1;
+        this.retmsg = retmsg;
+        this.data = data;
+    }
 	
 	public AjaxResult(){
 		

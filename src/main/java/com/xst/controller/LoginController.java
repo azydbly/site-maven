@@ -55,6 +55,7 @@ public class LoginController extends BaseController {
     @RequestMapping("login")
     @ResponseBody
     public AjaxResult login(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("=====" + userService.selectUserByIdnumber(request,response));
         return userService.selectUserByIdnumber(request,response);
     }
 
