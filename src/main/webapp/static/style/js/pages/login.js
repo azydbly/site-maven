@@ -1,7 +1,8 @@
 $(window).load(function(){
     var message  = document.getElementById("message").value;
     if(message != ""){
-        $.Modalalert(message,1000);
+        //$.Modalalert(message,1000);
+        layer.msg(message, {time: 2000, icon:5});
     }
 });
 

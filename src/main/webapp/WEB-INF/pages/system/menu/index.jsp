@@ -33,95 +33,22 @@
             <thead>
                 <tr class="text-c">
                     <th>序号</th>
-                    <th>
+                    <th class="col-md-list-1">
                         <input id="input-0" type="checkbox" name="all"><label for="input-0"></label>
                     </th>
-                    <th>菜单名称</th>
-                    <th>上级菜单</th>
+                    <th class="col-md-list-5">菜单名称</th>
+                    <th class="col-md-list-5">上级菜单</th>
                     <th>网址</th>
-                    <th>状态</th>
-                    <th>操作</th>
+                    <th class="col-md-list-3">插入时间</th>
+                    <th class="col-md-list-3">更新时间</th>
+                    <th class="col-md-list-2">状态</th>
+                    <th class="col-md-list-2">操作</th>
                 </tr>
             </thead>
         </table>
     </div>
 </div>
-<script type="text/javascript">
-    var datatable = null,idList=[];
-    $(function() {
-        datatable = $('.table-sort').DataTable({
-            "aoColumnDefs": [
-                {"bVisible": false, "aTargets": [0]} //控制列的隐藏显示
-            ],
-            ajax: {
-                url: baselocation + "/menu/showPageMenu",
-                type: 'post',
-                data: function(d) {
-                    d.search = $('#search').val();
-                    d.state = $('#state').val();
-                }
-            },
-            columns: [{
-                data: null,
-                orderable:false,
-                render: function(data, type, row, meta) {
-                    var startIndex = meta.settings._iDisplayStart;
-                    return startIndex + meta.row + 1;
-                }
-            }, {
-                data: "id",
-                defaultContent: "",
-                orderable:false,
-                render: function(data, type, row, meta) {
-                    return '<input id="input-' + data + '" type="checkbox" name="single"><label for="input-' + data + '"></label>';
-                }
-            }, {
-                data: "menuname",
-                defaultContent: "",
-            }, {
-                data: "pname",
-                defaultContent: "",
-            }, {
-                data: "url",
-                defaultContent: "",
-            }, {
-                data: "state",
-                defaultContent: "",
-                render: function(data, type, row, meta) {
-                    return '<span class="label label-' + clazz[data] + ' radius">' + text[data] + '</span>';
-                }
-            }, {
-                data: "state",
-                defaultContent: "",
-                orderable:false,
-                responsivePriority: 1,
-                render: function(data, type, row, meta) {
-                    var a = "";
-                    a += '<a title="' + state[data] + '" style="text-decoration:none" onClick="changeStatus(' + "'" +  state[data] + "'" + ',[' + "'" + row.menuname + "'" + '],\'updMenuState.action\',' + row.id + ', '+ flag[data] + ')" href="javascript:;"><i class="Hui-iconfont">' + icon[data] + '</i></a>';
-                    a += '<a title="编辑" href="javascript:;" onclick="edit_show([' + "'" + row.menuname + "'" + '],\'selMenuById.action\',' + row.id + ',\'893\',\'400\')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>';
-                    a += '<a title="删除" href="javascript:;" onclick="del([' + row.id + '],\'delMenu.action\',[' + "'" + row.menuname + "'" + '],reloadTable)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>';
-                    return a;
-                }
-            }],
-        });
-
-
-        $('#state').on('change',function(){
-            datatable.ajax.reload();
-        });
-    });
-
-    function reloadTable() {
-        datatable.ajax.reload(null, false);
-    }
-
-    function getDTSelect() {
-        var lines = datatable.rows('.selected').data();
-        for (var i = 0; i < lines.length; i++) {
-            idList.push(lines[i].id);
-        }
-        return idList;
-    }
-</script>
+<script src="${ctxstc}/styles/jquery.contextmenu/jquery.contextmenu.r2.js"></script>
+<script src="${ctxstc}/style/js/pages/system/menu.js"></script>
 </body>
 </html>

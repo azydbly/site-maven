@@ -17,7 +17,7 @@
 
     <!-- DataTabables 分页，搜索  -->
     <select id="getPageMenuList" resultType="com.xst.model.Menu">
-        select a.id,a.menuname,a.pid,a.url,a.iconfont,DATE_FORMAT(a.insertdatetime, '%Y-%m-%d %H:%i:%s'), DATE_FORMAT(a.operatordatetime, '%Y-%m-%d %H:%i:%s'),a.state,a.flag,b.menuname pname
+        select a.id,a.menuname,a.pid,a.url,a.iconfont,DATE_FORMAT(a.insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime, DATE_FORMAT(a.operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime,a.state,a.flag,b.menuname pname
         from sys_menu a
         LEFT JOIN sys_menu b on a.pid = b.id and a.flag = 1 and b.flag = 1
         <where>

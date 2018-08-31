@@ -1,5 +1,4 @@
 @charset "utf-8";
-
 /* 菜单图标 */
 #iconContent li {
 	display: inline-block;
@@ -81,4 +80,48 @@
 
 ::-ms-scrollbar-thumb {
  background-color: #999;
+}
+
+.col-md-list-1 {
+    width: 2.333333333333332%;
+}
+
+.col-md-list-2 {
+    width: 6.333333333333332%;
+}
+
+.col-md-list-3 {
+    width: 10.333333333333332%;
+}
+
+.col-md-list-4 {
+    width: 15.333333333333332%;
+}
+
+.col-md-list-5 {
+    width: 20.333333333333332%;
+}
+
+.col-md-list-6 {
+    width: 25.333333333333332%;
+}
+
+.col-md-list-7 {
+    width: 30.333333333333332%;
+}
+
+.col-md-list-8 {
+    width: 35.333333333333332%;
+}
+
+.col-md-list-9 {
+    width: 40.333333333333332%;
+}
+
+.col-md-list-10 {
+    width: 45.333333333333332%;
+}
+
+.col-md-list-11 {
+    width: 50.333333333333332%;
 }
