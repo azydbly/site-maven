@@ -2,8 +2,7 @@ var datatable = null,idList=[];
 $(function() {
     datatable = $('.table-sort').DataTable({
         "aoColumnDefs": [
-            {"bVisible": false, "aTargets": [0],
-                "orderMulti": true} //控制列的隐藏显示
+            {"bVisible": false, "aTargets": [0],} //控制列的隐藏显示
         ],
         ajax: {
             url: baselocation + "/menu/showPageMenu",
