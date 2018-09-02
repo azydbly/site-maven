@@ -4,15 +4,19 @@
 
     <!-- 公众部分 -->
     <sql id="selectColumn">
-        id,userid,locking,DATE_FORMAT(insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime, DATE_FORMAT(operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime,flag
+        id,userid,locking,DATE_FORMAT(insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime,
+        DATE_FORMAT(operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime,flag
     </sql>
 
 
+    <!-- 插入用户锁定信息 -->
     <insert id="insertByMal" parameterType="com.xst.model.Lock">
         insert into edu_lock (userid,locking,insertdatetime,operatordatetime)
         values(#{userid}, #{locking},#{insertdatetime},#{operatordatetime})
     </insert>
 
+
+    <!-- 查询用户的锁 -->
     <select id="queryByUserId" resultType="com.xst.model.Lock">
         select
         <include refid="selectColumn" />
@@ -20,6 +24,7 @@
         where userid = (select id from edu_user where idnumber = #{idnumber} and flag = 1) and flag = 1
     </select>
 
+    <!-- 锁定时间到后解锁 -->
     <update id="updateFlagById" parameterType="com.xst.model.Lock">
         update edu_lock set flag = 0 where id = #{id} and flag = 1
     </update>

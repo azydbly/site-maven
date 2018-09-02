@@ -15,10 +15,10 @@
 <div class="page-container">
     <div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
-            <a href="javascript:;" onclick="delAll(getDTSelect(), 'delMenu.action', reloadTable)" class="btn btn-danger radius">
+            <a href="javascript:;" onclick="delAll(getDTSelect(), '/menu/delete', reloadTable)" class="btn btn-danger radius">
                 <i class="Hui-iconfont">&#xe6e2;</i> 批量删除
             </a>
-            <a href="javascript:;" onclick="add('添加菜单','selPid.action','893','400')" class="btn btn-primary radius">
+            <a href="javascript:;" onclick="add('添加菜单','/menu/add','893','400')" class="btn btn-primary radius">
                 <i class="Hui-iconfont">&#xe600;</i> 添加菜单
             </a>
 		</span>
@@ -28,10 +28,11 @@
                 <option value="">--请选择--</option>
                 <option value="0">禁用</option>
                 <option value="1">启用</option>
-                <option value="2">锁定</option>
             </select>
             <span>菜单名称：</span>
-            <input type="text" class="input-text input_span" placeholder="菜单名称" id="search">&nbsp;&nbsp;
+            <input type="text" class="input-text input_span select_list" placeholder="菜单名称" id="search">
+            <span>上级菜单：</span>
+            <input type="text" class="input-text input_span select_list" placeholder="上级菜单名称" id="pname">
             <button type="submit" id="doSearch" class="btn btn-success radius"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
         </div>
     </div>
@@ -55,7 +56,7 @@
         </table>
     </div>
 </div>
-<script src="${ctxstc}/styles/jquery.contextmenu/jquery.contextmenu.r2.js"></script>
+<script src="${ctxstc}/styles/h-ui.admin/js/H-ui.admin.js"></script>
 <script src="${ctxstc}/style/js/pages/system/menu.js"></script>
 </body>
 </html>

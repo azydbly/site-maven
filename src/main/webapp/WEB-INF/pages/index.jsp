@@ -156,7 +156,7 @@
         <li id="closeall">关闭全部 </li>
     </ul>
 </div>
-<script src="${ctxstc}/styles/jquery.contextmenu/jquery.contextmenu.r2.js"></script>
+<script src="${ctxstc}/styles/h-ui.admin/js/H-ui.admin.js"></script>
 <script src="${ctxstc}/style/js/pages/index.js"></script>
 </body>
 </html>

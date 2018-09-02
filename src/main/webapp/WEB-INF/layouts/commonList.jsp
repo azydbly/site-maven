@@ -6,3 +6,5 @@
 <script src="${ctxstc}/styles/datatables/datatables.optimize.js"></script>
 
 <script src="${ctxstc}/style/js/util/datables_style.js"></script>
+
+<script src="${ctxstc}/style/js/util/datatables_layer.js"></script>

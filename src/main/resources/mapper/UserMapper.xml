@@ -10,6 +10,7 @@
     </sql>
 
 
+    <!-- 根据省份证号判断用户是否存在 -->
     <select id="queryByUsername" resultType="com.xst.model.User">
         select
           <include refid="selectColumn"/>
@@ -17,10 +18,12 @@
         where idnumber = #{idnumber} and flag = 1
     </select>
 
+    <!-- 更改用户的最后登录时间和IP -->
     <update id="updateLastByIdnumber" parameterType="com.xst.model.User">
         update edu_user set loginTime = #{loginTime},loginIp = #{loginIp} where id = #{id} and flag = 1
     </update>
 
+    <!-- 更改用户状态 -->
     <update id="updateStateById" parameterType="com.xst.model.User">
          update edu_user set state = #{state} where id = #{id} and flag = 1
     </update>

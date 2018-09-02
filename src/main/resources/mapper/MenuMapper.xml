@@ -4,10 +4,12 @@
 
     <!-- 公众部分 -->
     <sql id="selectColumn">
-        id,menuname,pid,url,iconfont,DATE_FORMAT(insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime, DATE_FORMAT(operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime,state,flag
+        id,menuname,pid,url,iconfont,DATE_FORMAT(insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime,
+        DATE_FORMAT(operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime,state,flag
     </sql>
 
 
+    <!-- 用户登录成功之后查询菜单 -->
     <select id="selectLoginMenus" resultType="com.xst.model.Menu">
         select
         <include refid="selectColumn"/>
@@ -17,7 +19,8 @@
 
     <!-- DataTabables 分页，搜索  -->
     <select id="getPageMenuList" resultType="com.xst.model.Menu">
-        select a.id,a.menuname,a.pid,a.url,a.iconfont,DATE_FORMAT(a.insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime, DATE_FORMAT(a.operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime,a.state,a.flag,b.menuname pname
+        select a.id,a.menuname,a.pid,a.url,a.iconfont,DATE_FORMAT(a.insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime,
+        DATE_FORMAT(a.operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime,a.state,a.flag,b.menuname pname
         from sys_menu a
         LEFT JOIN sys_menu b on a.pid = b.id and a.flag = 1 and b.flag = 1
         <where>
@@ -29,5 +32,57 @@
             </if>
         </where>
     </select>
+
+    <!-- 改变菜单状态 -->
+    <update id="changeMenuState" parameterType="com.xst.model.Menu">
+        update sys_menu set state = #{state} where id = #{id} and flag = 1
+    </update>
+
+    <!-- 删除菜单 -->
+    <update id="deleteMenu" parameterType="com.xst.model.Menu">
+        update sys_menu set flag = 0 where flag = 1 and id in
+        <foreach collection="idlist" item="id" index="index" open="(" close=")" separator=",">
+            #{id,jdbcType=INTEGER}
+        </foreach>
+    </update>
+
+    <!-- 查询菜单下的子菜单数量 -->
+    <select id="selectCountMenu" resultType="int">
+        select count(menuname) from sys_menu where flag = 1 and pid in
+        <foreach collection="idlist" item="pid" index ="index" open="(" close=")" separator=",">
+            #{pid,jdbcType=INTEGER}
+        </foreach>
+    </select>
+
+    <!-- 查询所有一级菜单 -->
+    <select id="selectOneMenu" resultType="com.xst.model.Menu">
+        select
+        <include refid="selectColumn"/>
+        from sys_menu
+        where flag = 1 and state = 1 and pid = 0
+    </select>
+
+    <!-- 插入菜单 -->
+    <insert id="insertMenu" parameterType="com.xst.model.Menu">
+          insert into sys_menu
+          (menuname,pid,url,state,remark,insertdatetime,operatordatetime)
+          values
+          (#{menuname},#{pid},#{url},#{state},#{remark},#{insertdatetime},#{operatordatetime})
+    </insert>
+
+    <!-- 根据菜单名或者地址查询 -->
+    <select id="selecetMenuByMenuNameOrUrl" resultType="com.xst.model.Menu">
+        select
+        <include refid="selectColumn"/>
+        from sys_menu
+        where flag = 1
+        <if test="menuname != null and menuname != '' ">
+            and menuname = #{menuname}
+        </if>
+        <if test="url != null and url != '' ">
+            and url = #{url}
+        </if>
+    </select>
+
 
 </mapper>

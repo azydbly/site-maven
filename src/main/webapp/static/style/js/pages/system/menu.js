@@ -10,6 +10,7 @@ $(function() {
             data: function(d) {
                 d.search = $('#search').val();
                 d.state = $('#state').val();
+                d.menuname = $('#pname').val();
             }
         },
         columns: [{
@@ -58,9 +59,9 @@ $(function() {
             responsivePriority: 1,
             render: function(data, type, row, meta) {
                 var a = "";
-                a += '<a title="' + state[data] + '" style="text-decoration:none" onClick="changeStatus(' + "'" +  state[data] + "'" + ',[' + "'" + row.menuname + "'" + '],\'updMenuState.action\',' + row.id + ', '+ flag[data] + ')" href="javascript:;"><i class="Hui-iconfont">' + icon[data] + '</i></a>';
-                a += '<a title="编辑" href="javascript:;" onclick="edit_show([' + "'" + row.menuname + "'" + '],\'selMenuById.action\',' + row.id + ',\'893\',\'400\')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>';
-                a += '<a title="删除" href="javascript:;" onclick="del([' + row.id + '],\'delMenu.action\',[' + "'" + row.menuname + "'" + '],reloadTable)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>';
+                a += '<a title="' + state[data] + '" style="text-decoration:none" onClick="changeStatus(' + "'" +  state[data] + "'" + ',[' + "'" + row.menuname + "'" + '],\'/menu/menuState\',' + row.id + ', '+ flag[data] + ')" href="javascript:;"><i class="Hui-iconfont">' + icon[data] + '</i></a>';
+                a += '<a title="编辑" href="javascript:;" onclick="edit_show([' + "'" + row.menuname + "'" + '],\'/menu/edit\',' + row.id + ',\'893\',\'400\')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>';
+                a += '<a title="删除" href="javascript:;" onclick="del([' + row.id + '],\'/menu/delete\',[' + "'" + row.menuname + "'" + '],reloadTable)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>';
                 return a;
             }
         }],
@@ -83,3 +84,11 @@ function getDTSelect() {
     }
     return idList;
 }
+
+
+$(document).keyup(function(event) {
+    alert(222);
+    if (event.keyCode == 13) {
+        $("#doSearch").trigger("click");
+    }
+});

@@ -1,16 +1,10 @@
 package com.xst.server;
 
 import com.xst.common.pojo.AjaxResult;
-import com.xst.common.pojo.ParamData;
-import com.xst.common.util.AppUtil;
-import com.xst.common.util.PasswordUtil;
-import com.xst.mapper.UserMapper;
-import com.xst.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * @ClassName: UserService
@@ -22,9 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface UserService {
 
+    //登录系统查询用户是否存在
     AjaxResult selectUserByIdnumber(HttpServletRequest request, HttpServletResponse response);
 
+    //退出系统
     AjaxResult logout(HttpServletRequest request, HttpServletResponse response);
 
+    //锁定账户信息
     AjaxResult lockingUserByIdnumber(HttpServletRequest request, HttpServletResponse response);
+
 }
