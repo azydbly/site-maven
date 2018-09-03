@@ -145,7 +145,6 @@ public class MenuServiceImpl implements MenuService {
         menu.setInsertdatetime(new Date());
         menu.setOperatordatetime(new Date());
         int returnResult = menuMapper.insertMenu(menu);
-        System.out.println("-==========[" + returnResult);
         if(returnResult < 1){
             result = "添加失败";
         }

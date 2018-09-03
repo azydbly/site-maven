@@ -75,4 +75,6 @@ $("#form-member-add").validate({
             }
         });
     }
+
+
 });

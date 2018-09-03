@@ -44,8 +44,7 @@ public class MenuController extends BaseController {
     @ResponseBody
     @ControllerLog("菜单 list 页面，分页显示菜单")
     @RequestMapping("showPageMenu")
-    public String showPageMenu(@RequestParam(value="state",required=false)String state,@RequestParam(value="menuname",required=false)String menuname,
-                               HttpServletRequest request, HttpServletResponse response){
+    public String showPageMenu(@RequestParam(value="state",required=false)String state,@RequestParam(value="menuname",required=false)String menuname, HttpServletRequest request, HttpServletResponse response){
         state = StringUtils.isEmpty(state) ? "" : ("a.state = " + state);
         menuname = StringUtils.isEmpty(menuname) ? "" : ("b.menuname = '" + menuname + "'");
         return JSON.toJSONString(menuService.getPageMenuList(DataTables.getInstance(request,state,menuname)));
