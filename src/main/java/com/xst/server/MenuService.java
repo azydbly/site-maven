@@ -44,6 +44,12 @@ public interface MenuService {
     List<Menu> selectOneMenu();
 
     //添加菜单
-    AjaxResult addUpdate(HttpServletRequest request, HttpServletResponse response);
+    AjaxResult addUpdate(Menu menu);
+
+    //根据 id 查询菜单
+    Menu getMenuById(HttpServletRequest request, HttpServletResponse response);
+
+    //更新菜单
+    AjaxResult editUpdate(Menu menu);
 
 }

@@ -15,17 +15,18 @@ function getQueryString(name) {
  * 添加
  */
 function add(title, url,w,h) {
-	var index = layer.open({
-		type: 2,
-		title: title,
-		anim : 1, //0-6的动画形式，-1不开启
-		shadeClose: false,
-		shade: false, // 允许进行下面的幢楼进行操作
-		maxmin: true, //开启最大化最小化按钮
-		area: [w, h],
-		content: [url,'no']
-	});
+    var index = layer.open({
+        type: 2,
+        title: title,
+        anim: 1, //0-6的动画形式，-1不开启
+        shadeClose: false,
+        shade: false, // 允许进行下面的幢楼进行操作
+        maxmin: true, //开启最大化最小化按钮
+        area: [w,h],
+        content: [url,'no']
+    });
 }
+
 
 /**
  * 编辑-查看 
@@ -43,31 +44,6 @@ function edit_show(title, url, id,w,h) {
 	});
 }
 
-/**
- * 添加-全屏 
- */
-function add_full(title, url) {
-	var index = layer.open({
-		type: 2,
-		title: title,
-		anim : 1, //0-6的动画形式，-1不开启
-		content: url
-	});
-	layer.full(index);
-}
-
-/**
- * 编辑-查看-全屏 
- */
-function edit_show_full(title, url, id) {
-	var index = layer.open({
-		type: 2,
-		title: title,
-		anim : 1, //0-6的动画形式，-1不开启
-		content: [url + '?id=' + id]
-	});
-	layer.full(index);
-}
 
 /**
  * 改变数据状态

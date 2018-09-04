@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.xst.common.annotation.ControllerLog;
 import com.xst.common.pojo.AjaxResult;
 import com.xst.common.util.DataTables;
+import com.xst.model.Menu;
 import com.xst.server.MenuService;
 import com.xst.server.impl.MenuServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,16 +65,26 @@ public class MenuController extends BaseController {
         return "system/menu/add";
     }
 
+    @ResponseBody
     @RequestMapping("addUpdate")
     @ControllerLog("添加菜单")
-    public AjaxResult addUpdate(HttpServletRequest request, HttpServletResponse response){
-        return menuService.addUpdate(request,response);
+    public AjaxResult addUpdate(Menu menu){
+        return menuService.addUpdate(menu);
     }
 
     @RequestMapping("edit")
     @ControllerLog("进入菜单 edit 页面")
-    public String editMeun(){
+    public String editMeun(HttpServletRequest request, HttpServletResponse response){
+        request.setAttribute("menuList",menuService.selectOneMenu());
+        request.setAttribute("menu",menuService.getMenuById(request,response));
         return "system/menu/edit";
+    }
+
+    @ResponseBody
+    @RequestMapping("editUpdate")
+    @ControllerLog("修改菜单")
+    public AjaxResult editUpdate(Menu menu){
+        return menuService.editUpdate(menu);
     }
 
     @ResponseBody

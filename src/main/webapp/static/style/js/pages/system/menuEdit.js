@@ -1,9 +1,10 @@
+var id = document.getElementById("menuId").value;
 $("#form-member-add").validate({
     rules:{
         menuname:{
             required:true,
             remote:{
-                url: baselocation + "/menu/menuname/validate",
+                url: baselocation + "/menu/menuname/validate?id=" + id,
                 type:"post",
                 data: {
                     menuname: function(){
@@ -22,7 +23,7 @@ $("#form-member-add").validate({
         },
         url:{
             remote:{
-                url: baselocation + "/menu/url/validate",
+                url: baselocation + "/menu/url/validate?id=" + id,
                 type:"post",
                 data: {
                     url: function(){
@@ -46,7 +47,7 @@ $("#form-member-add").validate({
     submitHandler:function(form){
         $(form).ajaxSubmit({
             type: "post",
-            url: baselocation + "/menu/addUpdate",
+            url: baselocation + "/menu/editUpdate",
             data: $(form).serialize(),
             dataType: "json",
             success: function(data) {
@@ -58,7 +59,7 @@ $("#form-member-add").validate({
                     parent.$('#layui-layer'+index).css({'display':'none'});
                     parent.$('#layui-layer-shade'+index).css({'display':'none'});
                     parent.reloadTable(); //再刷新DT
-                    parent.showSuccessMessage("添加成功", null, function() {
+                    parent.showSuccessMessage("更新成功", null, function() {
                         parent.layer.close(index); //然后执行关闭
                     });
                 }

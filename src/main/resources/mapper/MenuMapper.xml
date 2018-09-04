@@ -22,8 +22,9 @@
         select a.id,a.menuname,a.pid,a.url,a.iconfont,DATE_FORMAT(a.insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime,
         DATE_FORMAT(a.operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime,a.state,a.flag,b.menuname pname
         from sys_menu a
-        LEFT JOIN sys_menu b on a.pid = b.id and a.flag = 1 and b.flag = 1
+        LEFT JOIN sys_menu b on a.pid = b.id
         <where>
+            a.flag = 1
             <if test="subSQL != null and subSQL != '' ">
                 ${subSQL}
             </if>
@@ -82,7 +83,23 @@
         <if test="url != null and url != '' ">
             and url = #{url}
         </if>
+        <if test="id != null and id != '' ">
+            and id != #{id}
+        </if>
     </select>
+
+    <!-- 根据 id 查询菜单 -->
+    <select id="getMenuById" resultType="com.xst.model.Menu">
+        select
+        <include refid="selectColumn"/>
+        from sys_menu
+        where id = #{id} and flag = 1
+    </select>
+
+    <!-- 更新菜单 -->
+    <update id="updateMenu" parameterType="com.xst.model.Menu">
+        update sys_menu set menuname = #{menuname},pid = #{pid},url = #{url},iconfont = #{iconfont},remark = #{remark},operatordatetime = #{operatordatetime},state = #{state} where id = #{id}
+    </update>
 
 
 </mapper>

@@ -87,7 +87,6 @@ function getDTSelect() {
 
 
 $(document).keyup(function(event) {
-    alert(222);
     if (event.keyCode == 13) {
         $("#doSearch").trigger("click");
     }

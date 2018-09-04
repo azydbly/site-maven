@@ -100,9 +100,9 @@ public class MenuServiceImpl implements MenuService {
         String id = params.getString("id");
         Menu menu;
         if(id == null){
-            menu = menuMapper.selecetMenuByMenuNameOrUrl(menuname,null);
+            menu = menuMapper.selecetMenuByMenuNameOrUrl(menuname,null,null);
         }else{
-            menu = null;
+            menu = menuMapper.selecetMenuByMenuNameOrUrl(menuname,null,id);;
         }
         utilController.validateReturn(request,response,menu);
     }
@@ -114,9 +114,9 @@ public class MenuServiceImpl implements MenuService {
         String id = params.getString("id");
         Menu menu;
         if(id == null){
-            menu = menuMapper.selecetMenuByMenuNameOrUrl(null,url);
+            menu = menuMapper.selecetMenuByMenuNameOrUrl(null,url,null);
         }else{
-            menu = null;
+            menu = menuMapper.selecetMenuByMenuNameOrUrl(null,url,id);;
         }
         utilController.validateReturn(request,response,menu);
     }
@@ -127,26 +127,33 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public AjaxResult addUpdate(HttpServletRequest request, HttpServletResponse response) {
-        ParamData params = new ParamData();
+    public AjaxResult addUpdate(Menu menu) {
         String result = null;
-        String menuname = params.getString("menuname");
-        String pid = params.getString("pid");
-        String url = params.getString("url");
-        String state = params.getString("state");
-        String remark = params.getString("remark");
-
-        Menu menu = new Menu();
-        menu.setMenuname(menuname);
-        menu.setPid(StrUtil.getInteger(pid));
-        menu.setUrl(url);
-        menu.setState(StrUtil.getInteger(state));
-        menu.setRemark(remark);
         menu.setInsertdatetime(new Date());
         menu.setOperatordatetime(new Date());
         int returnResult = menuMapper.insertMenu(menu);
         if(returnResult < 1){
             result = "添加失败";
+        }
+        return AppUtil.returnObj(result);
+    }
+
+
+    @Override
+    public Menu getMenuById(HttpServletRequest request, HttpServletResponse response) {
+        ParamData params = new ParamData();
+        String id = params.getString("id");
+        return menuMapper.getMenuById(StrUtil.getInteger(id));
+    }
+
+    @Override
+    public AjaxResult editUpdate(Menu menu) {
+        String result = null;
+        menu.setOperatordatetime(new Date());
+        System.out.println("--------------------------------");
+        int returnResult = menuMapper.updateMenu(menu);
+        if(returnResult < 1){
+            result = "更新失败";
         }
         return AppUtil.returnObj(result);
     }
