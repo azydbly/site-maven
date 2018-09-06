@@ -65,6 +65,16 @@ $(function() {
                 return a;
             }
         }],
+
+        aaData:[
+            {"name":"张三","sex":"男","age":"19","grade":"100"},
+            {"name":"张三","sex":"男","age":"19","grade":"100"},
+            {"name":"张三","sex":"男","age":"19","grade":"100"},
+            {"name":"张三","sex":"男","age":"19","grade":"100"},
+            {"name":"张三","sex":"男","age":"19","grade":"100"},
+            {"name":"李四","sex":"男","age":"21","grade":"99"},
+            {"name":"王丽","sex":"1","age":"22","grade":"45"},
+        ],
     });
 
 
@@ -91,3 +101,15 @@ $(document).keyup(function(event) {
         $("#doSearch").trigger("click");
     }
 });
+
+
+
+var $exportLink = document.getElementById('export');
+$exportLink.addEventListener('click', function(e){//点击事件
+    alert(2232);
+//在此处可以重新定义datatable数据，让datatable不显示分页
+    e.preventDefault();
+    if(e.target.nodeName === "A"){
+        tableExport('table1', 'table', e.target.getAttribute('data-type'));
+    }
+}, false);

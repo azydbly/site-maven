@@ -14,14 +14,28 @@
 </nav>
 <div class="page-container">
     <div class="cl pd-5 bg-1 bk-gray mt-20">
-		<span class="l">
+        <span class="l">
             <a href="javascript:;" onclick="delAll(getDTSelect(), '/menu/delete', reloadTable)" class="btn btn-danger radius">
                 <i class="Hui-iconfont">&#xe6e2;</i> 批量删除
             </a>
             <a href="javascript:;" onclick="add('添加菜单','/menu/add','893','380')" class="btn btn-primary radius">
                 <i class="Hui-iconfont">&#xe600;</i> 添加菜单
             </a>
-		</span>
+        </span>
+        <span  class="l" id="export">
+            <a data-type="json" class="btn btn-primary radius" href="javascript:;">导出json</a>
+            <button>
+               <a data-type="txt" class="btn btn-primary radius" href="javascript:;">导出txt</a>
+            </button>
+            <a data-type="csv" class="btn btn-primary radius" href="javascript:;">导出csv</a>
+            <a data-type="xml" class="btn btn-primary radius" href="javascript:;">导出xml</a>
+            <a data-type="xls" class="btn btn-primary radius" href="javascript:;">导出excel</a>
+            <a data-type="doc" class="btn btn-primary radius" href="javascript:;">导出word</a>
+            <a data-type="image" class="btn btn-primary radius" href="javascript:;">导出图片</a>
+            <a data-type="pdf" class="btn btn-primary radius" href="javascript:;">导出pdf</a>
+        </span>
+    </div>
+    <div class="cl pd-5 bg-1 bk-gray mt-20">
         <div class="r">
             状态:
             <select id="state" class="select_list">
@@ -37,7 +51,7 @@
         </div>
     </div>
     <div class="mt-20">
-        <table class="table table-border table-bordered table-hover table-bg table-sort" width="100%" >
+        <table class="table table-border table-bordered table-hover table-bg table-sort" id="table1" width="100%" >
             <thead>
                 <tr class="text-c">
                     <th>序号</th>
@@ -56,7 +70,9 @@
         </table>
     </div>
 </div>
+<link rel="stylesheet" type="text/css" href="${ctxstc}/style/css/buttons.dataTables.min.css" />
 <script src="${ctxstc}/styles/h-ui.admin/js/H-ui.admin.js"></script>
+<script src="${ctxstc}/style/js/TableExport-5.0.2-js-tableexport.js"></script>
 <script src="${ctxstc}/style/js/pages/system/menu.js"></script>
 </body>
 </html>
