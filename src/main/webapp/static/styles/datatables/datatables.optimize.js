@@ -3,6 +3,12 @@
  */
 $.extend($.fn.dataTable.defaults, {
 	dom: 't<"dataTables_info"il>p',
+    destroy: true, //这句话相当重要。
+    //dom: 'Bfrtip',  //是否开启下拉框选择数据
+    "bStateSave": false,
+    //是否打开客户端状态记录功能。这个数据是记录在cookies中的，
+    //打开了这个记录后，即使刷新一次页面，或重新打开浏览器，之前的状态都是保存下来的-  ------当值为true时aoColumnDefs不能隐藏列
+    "sPaginationType": "full_numbers",  //首页 末页 按钮
 	language: {
 		"url": baselocation + "/static/styles/datatables/datatables_language.json"
 	},
@@ -11,10 +17,10 @@ $.extend($.fn.dataTable.defaults, {
 	showRowNumber:true,
 	serverSide: true, //服务器处理分页
     ordering:true,
-   /*	orderMulti: true,  //启用多列排序
+   //	orderMulti: true,  //启用多列排序
    //使用排序
-    bStateSave:true,//记录cookie
-	scrollY:690,*/
+   // bStateSave:true,//记录cookie
+	//scrollY:670,
 	responsive: {
 		details: false
 	},

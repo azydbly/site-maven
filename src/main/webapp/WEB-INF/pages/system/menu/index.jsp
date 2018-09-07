@@ -22,7 +22,7 @@
                 <i class="Hui-iconfont">&#xe600;</i> 添加菜单
             </a>
         </span>
-        <span  class="l" id="export">
+       <%-- <span  class="l" id="export">
             <a data-type="json" class="btn btn-primary radius" href="javascript:;">导出json</a>
             <button>
                <a data-type="txt" class="btn btn-primary radius" href="javascript:;">导出txt</a>
@@ -33,7 +33,7 @@
             <a data-type="doc" class="btn btn-primary radius" href="javascript:;">导出word</a>
             <a data-type="image" class="btn btn-primary radius" href="javascript:;">导出图片</a>
             <a data-type="pdf" class="btn btn-primary radius" href="javascript:;">导出pdf</a>
-        </span>
+        </span>--%>
     </div>
     <div class="cl pd-5 bg-1 bk-gray mt-20">
         <div class="r">
@@ -70,9 +70,7 @@
         </table>
     </div>
 </div>
-<link rel="stylesheet" type="text/css" href="${ctxstc}/style/css/buttons.dataTables.min.css" />
 <script src="${ctxstc}/styles/h-ui.admin/js/H-ui.admin.js"></script>
-<script src="${ctxstc}/style/js/TableExport-5.0.2-js-tableexport.js"></script>
 <script src="${ctxstc}/style/js/pages/system/menu.js"></script>
 </body>
 </html>
