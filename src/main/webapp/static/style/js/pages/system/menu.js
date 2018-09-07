@@ -4,17 +4,6 @@ $(function() {
         "aoColumnDefs": [
             {"bVisible": false, "aTargets": [0],} //控制列的隐藏显示
         ],
-        "buttons": [
-            {  "bRetrieve": true,
-                'extend': 'excel',
-                'text': '导出',//定义导出excel按钮的文字
-                'exportOptions': {
-                    'modifier': {
-                        'page': 'current'
-                    }
-                }
-            }
-        ],
         ajax: {
             url: baselocation + "/menu/showPageMenu",
             type: 'post',
