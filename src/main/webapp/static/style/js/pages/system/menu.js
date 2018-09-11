@@ -4,11 +4,128 @@ $(function() {
         aoColumnDefs: [
             {"bVisible": false, "aTargets": [0],} //控制列的隐藏显示
         ],
-        buttons: [ 'copy', 'excel', 'pdf', 'print','colvis' ],
-        createdRow : function ( row, data, index ) {
-            $('td', row).css("text-align","center");
+        buttons: [
+           /* {
+                'extend':'copyHtml5',
+                'text':'复制',
+                'title': '系统', //导出的excel标题
+                'className':"btn btn-success radius",
+                'exportOptions':{
+                    'modifier':{
+                        'page':'current'
+                    },
+                    'columns':'0,2,3,4,5,6,7',
+                }
+            },
+            {
+                'extend':'excelHtml5',
+                'text':'下载Excel',
+                'className':"btn btn-success radius",
+                'exportOptions':{
+                    'modifier':{
+                        'page':'current'
+                    },
+                    'columns':'0,2,3,4,5,6,7',
+                }
+            },
+            {
+                'extend':'csvHtml5',
+                'text':'下载cvs',
+                'className':"btn btn-success radius",
+                'exportOptions':{
+                    'modifier':{
+                        'page':'current'
+                    },
+                    'columns':'0,2,3,4,5,6,7',
+                }
+            },
+            {
+                'extend':'pdfHtml5',
+                'text':'下载PDF',
+                'className':"btn btn-success radius",
+                'exportOptions':{
+                    'modifier':{
+                        'page':'current'
+                    },
+                    'columns':'0,2,3,4,5,6,7',
+                }
+            },
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5',*/
 
-        },
+            {
+                'extend':'copy',
+                'text':'复制',
+                'title': '系统', //导出的excel标题
+                'className':"btn btn-success radius",
+                'exportOptions':{
+                    'modifier':{
+                        'page':'current'
+                    },
+                    'columns':'0,2,3,4,5,6,7',
+                }
+            },
+            {
+                'extend':'excel',
+                'text':'下载Excel',
+                'className':"btn btn-success radius",
+                'exportOptions':{
+                    'modifier':{
+                        'page':'current'
+                    },
+                    'columns':'0,2,3,4,5,6,7',
+                }
+            },
+            {
+                'extend':'csv',
+                'text':'下载cvs',
+                'className':"btn btn-success radius",
+                'exportOptions':{
+                   /* 'modifier':{
+                        'page':'current'
+                    },*/
+                    'columns':'0,2,3,4,5,6,7',
+                }
+            },
+            {
+                'extend':'pdf',
+                'text':'下载PDF',
+                'className':"btn btn-success radius",
+                'exportOptions':{
+                    'modifier':{
+                        'page':'current'
+                    },
+                    'columns':'0,2,3,4,5,6,7',
+                }
+            },
+            {
+                'extend':'print',
+                'text':'打印',
+                'className':"btn btn-success radius",
+                'exportOptions':{
+                    'modifier':{
+                        'page':'current'
+                    },
+                    'columns':'0,2,3,4,5,6,7',
+                }
+            },
+            {
+                'extend':'colvis',
+                'text':'打印',
+                'className':"btn btn-success radius",
+                'exportOptions':{
+                    'modifier':{
+                        'page':'current'
+                    },
+                    'columns':'0,2,3,4,5,6,7',
+                }
+            },
+
+
+            //'copy', 'excel', 'pdf', 'print','colvis'
+        ],
         ajax: {
             url: baselocation + "/menu/showPageMenu",
             type: 'post',

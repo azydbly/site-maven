@@ -4,6 +4,12 @@
 <html>
 <head>
     <title>系统管理</title>
+    <style>
+        .aaa{
+            margin-top: -120px;
+            margin-left: 250px;
+        }
+    </style>
 </head>
 <body>
 <nav class="breadcrumb">
@@ -12,6 +18,14 @@
         <i class="Hui-iconfont">&#xe68f;</i>
     </a>
 </nav>
+<%--
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+--%>
+
 <div class="page-container">
     <div class="cl pd-5 bg-1 bk-gray mt-20">
         <span class="l">
@@ -21,6 +35,21 @@
             <a href="javascript:;" onclick="add('添加菜单','/menu/add','893','380')" class="btn btn-primary radius">
                 <i class="Hui-iconfont">&#xe600;</i> 添加菜单
             </a>
+            <a class="dt-button buttons-copy buttons-html5 btn btn-success radius" tabindex="0" aria-controls="table1" href="#">
+		<span>复制</span>
+	</a>
+	<a class="dt-button buttons-excel buttons-html5 btn btn-success radius" tabindex="0" aria-controls="table1" href="#">
+		<span>下载Excel</span>
+	</a>
+	<a class="dt-button buttons-csv buttons-html5 btn btn-success radius" tabindex="0" aria-controls="table1" href="#">
+		<span>下载cvs</span>
+	</a>
+	<a class="dt-button buttons-pdf buttons-html5 btn btn-success radius" tabindex="0" aria-controls="table1" href="#">
+		<span>下载PDF</span>
+	</a>
+	<a class="dt-button buttons-print btn btn-success radius" tabindex="0" aria-controls="table1" href="#">
+		<span>打印</span>
+	</a>
         </span>
        <%-- <span  class="l" id="export">
             <a data-type="json" class="btn btn-primary radius" href="javascript:;">导出json</a>
@@ -35,7 +64,7 @@
             <a data-type="pdf" class="btn btn-primary radius" href="javascript:;">导出pdf</a>
         </span>--%>
     </div>
-    <div class="cl pd-5 bg-1 bk-gray mt-20">
+    <div class="cl pd-5 bg-1 bk-gray mt-20" style="">
         <div class="r">
             状态:
             <select id="state" class="select_list">

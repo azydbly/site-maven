@@ -2,27 +2,34 @@
  * datatables优化
  */
 $.extend($.fn.dataTable.defaults, {
-	dom: 't<"dataTables_info"il>p',    //dom: 'Bfrtip', 不开启下拉框选择每页显示的个数，下面是开启
+	dom: 't<"dataTables_info"il>p,B<"l">',
+	//dom: 'Bfrtip', //不开启下拉框选择每页显示的个数，下面是开启
     destroy: true,
-    //bStateSave: false,
+    bStateSave: false,
     sPaginationType: "full_numbers",    //首页、末页，按钮
     //引入中文语言
 	language: {
 		"url": baselocation + "/static/styles/datatables/datatables_language.json"
 	},
 
-	//pageLength:20, //定义初始的长度
+    buttons: [ 'copy', 'excel', 'pdf', 'print','colvis' ],
+    createdRow : function ( row, data, index ) {
+        $('td', row).css("text-align","center");
+
+    },
+
+    //pageLength:20, //定义初始的长度
 	processing: true, //当datatable获取数据时候是否显示正在处理提示信息。
 	showRowNumber:true,
 	serverSide: true, //服务器处理分页
     ordering:true,
     //orderMulti: true,  //启用多列排序
-   //bStateSave:true,  //记录cookie
+    //bStateSave:true,  //记录cookie
     scrollY:580,     //控制 Y 轴的高度
 	responsive: {
 		details: false
 	},
-	initComplete: function(settings) {searching
+	initComplete: function(settings) {
 		var _$this = this;
 
 		 //模糊查询事件
@@ -42,12 +49,12 @@ $.extend($.fn.dataTable.defaults, {
 /**
  * DT绘制完成默认回调函数
  * 单独写出来是方便二次定制
- * 
+ *
  * 默认回调函数功能：
  * 1.DT第一列checkbox初始化成icheck
  * 2.iCheck全选、取消多选、多选与单选双向关联
  * 3.选中的tr加上selected class
- * 
+ *
  * @param {Object} settings
  */
 function drawCallbackDefault(settings, _$this) {
@@ -111,27 +118,27 @@ function drawCallbackDefault(settings, _$this) {
 	}
 }
 
-/** 
+/**
  * 对Date的扩展，将 Date 转化为指定格式的String
- * 月(M)、日(d)、12小时(h)、24小时(H)、分(m)、秒(s)、周(E)、季度(q)可以用 1-2 个占位符 
+ * 月(M)、日(d)、12小时(h)、24小时(H)、分(m)、秒(s)、周(E)、季度(q)可以用 1-2 个占位符
  * 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)
- *eg: 
+ *eg:
  * (new Date()).pattern("yyyy-MM-dd hh:mm:ss.S")==> 2006-07-02 08:09:04.423
- * (new Date()).pattern("yyyy-MM-dd E HH:mm:ss") ==> 2009-03-10 二 20:09:04      
- * (new Date()).pattern("yyyy-MM-dd EE hh:mm:ss") ==> 2009-03-10 周二 08:09:04      
- * (new Date()).pattern("yyyy-MM-dd EEE hh:mm:ss") ==> 2009-03-10 星期二 08:09:04      
- * (new Date()).pattern("yyyy-M-d h:m:s.S") ==> 2006-7-2 8:9:4.18      
+ * (new Date()).pattern("yyyy-MM-dd E HH:mm:ss") ==> 2009-03-10 二 20:09:04
+ * (new Date()).pattern("yyyy-MM-dd EE hh:mm:ss") ==> 2009-03-10 周二 08:09:04
+ * (new Date()).pattern("yyyy-MM-dd EEE hh:mm:ss") ==> 2009-03-10 星期二 08:09:04
+ * (new Date()).pattern("yyyy-M-d h:m:s.S") ==> 2006-7-2 8:9:4.18
  */
 Date.prototype.pattern = function(fmt) {
 	var o = {
-		"M+": this.getMonth() + 1, //月份         
-		"d+": this.getDate(), //日         
-		"h+": this.getHours() % 12 == 0 ? 12 : this.getHours() % 12, //小时         
-		"H+": this.getHours(), //小时         
-		"m+": this.getMinutes(), //分         
-		"s+": this.getSeconds(), //秒         
-		"q+": Math.floor((this.getMonth() + 3) / 3), //季度         
-		"S": this.getMilliseconds() //毫秒         
+		"M+": this.getMonth() + 1, //月份
+		"d+": this.getDate(), //日
+		"h+": this.getHours() % 12 == 0 ? 12 : this.getHours() % 12, //小时
+		"H+": this.getHours(), //小时
+		"m+": this.getMinutes(), //分
+		"s+": this.getSeconds(), //秒
+		"q+": Math.floor((this.getMonth() + 3) / 3), //季度
+		"S": this.getMilliseconds() //毫秒
 	};
 	var week = {
 		"0": "/u65e5",
@@ -245,7 +252,7 @@ function HashMap() {
 };
 
 /**
- * 
+ *
  * @param {Object} btns 操作按钮数组
  * @param {Object} id 实体ID
  * @param {Object} jsp jsp地址
