@@ -187,7 +187,6 @@ $(function() {
                 return a;
             }
         }],
-
     });
 
 
@@ -195,6 +194,18 @@ $(function() {
         datatable.ajax.reload();
     });
 });
+
+$(document).ready(function() {
+    var table = $('.table-sort').DataTable();
+
+    $('.table-sort tbody').on( 'click', 'tr', function () {
+        $(this).toggleClass('selected');
+    } );
+
+    $('#button').click( function () {
+        alert( table.rows('.selected').data().length +' row(s) selected' );
+    } );
+} );
 
 function reloadTable() {
     datatable.ajax.reload(null, false);
