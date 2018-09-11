@@ -193,6 +193,10 @@ $(function() {
     $('#state').on('change',function(){
         datatable.ajax.reload();
     });
+
+
+    //使用col插件实现表格头宽度拖拽
+    $(".table-sort").colResizable();
 });
 
 $(document).ready(function() {

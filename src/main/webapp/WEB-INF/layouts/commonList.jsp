@@ -25,3 +25,5 @@
 <script src="${ctxstc}/styles/datatables/js/buttons.colVis.js"></script>
 
 <script src="${ctxstc}/styles/datatables/js/shCore.js"></script>
+
+<script src="${ctxstc}/styles/datatables/js/colResizable-1.5.min.js"></script>
