@@ -1,9 +1,14 @@
 var datatable = null,idList=[];
 $(function() {
     datatable = $('.table-sort').DataTable({
-        "aoColumnDefs": [
+        aoColumnDefs: [
             {"bVisible": false, "aTargets": [0],} //控制列的隐藏显示
         ],
+        buttons: [ 'copy', 'excel', 'pdf', 'print','colvis' ],
+        createdRow : function ( row, data, index ) {
+            $('td', row).css("text-align","center");
+
+        },
         ajax: {
             url: baselocation + "/menu/showPageMenu",
             type: 'post',

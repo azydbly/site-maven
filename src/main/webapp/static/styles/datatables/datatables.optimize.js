@@ -4,18 +4,13 @@
 $.extend($.fn.dataTable.defaults, {
 	dom: 't<"dataTables_info"il>p',    //dom: 'Bfrtip', 不开启下拉框选择每页显示的个数，下面是开启
     destroy: true,
-    "bStateSave": false,
-    "sPaginationType": "full_numbers",    //首页、末页，按钮
+    //bStateSave: false,
+    sPaginationType: "full_numbers",    //首页、末页，按钮
     //引入中文语言
 	language: {
 		"url": baselocation + "/static/styles/datatables/datatables_language.json"
 	},
 
-    buttons: [ 'copy', 'excel', 'pdf', 'print','colvis' ],
-    createdRow : function ( row, data, index ) {
-        $('td', row).css('font-weight',"bold").css("text-align","center");
-
-    },
 	//pageLength:20, //定义初始的长度
 	processing: true, //当datatable获取数据时候是否显示正在处理提示信息。
 	showRowNumber:true,
@@ -27,7 +22,7 @@ $.extend($.fn.dataTable.defaults, {
 	responsive: {
 		details: false
 	},
-	initComplete: function(settings) {
+	initComplete: function(settings) {searching
 		var _$this = this;
 
 		 //模糊查询事件
