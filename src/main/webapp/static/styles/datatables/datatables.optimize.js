@@ -25,7 +25,7 @@ $.extend($.fn.dataTable.defaults, {
     ordering:true,
     //orderMulti: true,  //启用多列排序
     //bStateSave:true,  //记录cookie
-    scrollY:580,     //控制 Y 轴的高度
+    scrollY:550,     //控制 Y 轴的高度
     scrollCollapse: true,
     deferRender: true,  //当处理大数据时，延迟渲染数据，有效提高Datatables处理能力
 	responsive: {

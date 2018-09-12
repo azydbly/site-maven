@@ -199,7 +199,7 @@ $(function() {
     $(".table-sort").colResizable();
 });
 
-$(document).ready(function() {
+/*$(document).ready(function() {
     var table = $('.table-sort').DataTable();
 
     $('.table-sort tbody').on( 'click', 'tr', function () {
@@ -209,7 +209,23 @@ $(document).ready(function() {
     $('#button').click( function () {
         alert( table.rows('.selected').data().length +' row(s) selected' );
     } );
-} );
+} );*/
+
+//单机行，选中复选框
+$("#table1 tr").slice(1).each(function(g){
+    var p = this;
+    $(this).children().slice(1).click(function(){
+        $($(p).children()[0]).children().each(function(){
+            if(this.type=="checkbox"){
+                if(!this.checked){
+                    this.checked = true;
+                }else{
+                    this.checked = false;
+                }
+            }
+        });
+    });
+});
 
 function reloadTable() {
     datatable.ajax.reload(null, false);
