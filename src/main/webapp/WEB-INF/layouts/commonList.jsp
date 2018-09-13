@@ -8,8 +8,3 @@
 <script src="${ctxstc}/style/js/util/datables_style.js"></script>
 
 <script src="${ctxstc}/style/js/util/datatables_layer.js"></script>
-
-
-<script src="${ctxstc}/styles/datatables/js/jquery.dataTables.js"></script>
-
-<script src="${ctxstc}/styles/datatables/js/colResizable-1.5.min.js"></script>

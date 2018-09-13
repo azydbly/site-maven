@@ -12,12 +12,6 @@ $.extend($.fn.dataTable.defaults, {
 		"url": baselocation + "/static/styles/datatables/datatables_language.json"
 	},
 
-    buttons: [ 'copy', 'excel', 'pdf', 'print','colvis' ],
-    createdRow : function ( row, data, index ) {
-        $('td', row).css("text-align","center");
-
-    },
-
     //pageLength:20, //定义初始的长度
 	processing: true, //当datatable获取数据时候是否显示正在处理提示信息。
 	showRowNumber:true,
@@ -25,7 +19,7 @@ $.extend($.fn.dataTable.defaults, {
     ordering:true,
     //orderMulti: true,  //启用多列排序
     //bStateSave:true,  //记录cookie
-    scrollY:550,     //控制 Y 轴的高度
+	scrollY:550,     //控制 Y 轴的高度
     scrollCollapse: true,
     deferRender: true,  //当处理大数据时，延迟渲染数据，有效提高Datatables处理能力
 	responsive: {
