@@ -2,7 +2,7 @@
  * datatables优化
  */
 $.extend($.fn.dataTable.defaults, {
-	dom: 't<"dataTables_info"il>p,B<"l">',
+	dom: 't<"dataTables_info"il>p',
 	//dom: 'Bfrtip', //不开启下拉框选择每页显示的个数，下面是开启
     destroy: true,
     bStateSave: false,
