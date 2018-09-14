@@ -59,6 +59,6 @@
 	</form>
 </article>
 <script src="${ctxstc}/styles/h-ui.admin/js/H-ui.admin.js"></script>
-<script src="${ctxstc}/style/js/pages/system/menuEdit.js"></script>
+<script src="${ctxstc}/style/js/pages/system/menu/menuEdit.js"></script>
 </body>
 </html>

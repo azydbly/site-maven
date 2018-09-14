@@ -58,6 +58,6 @@
 	</form>
 </article>
 <script src="${ctxstc}/styles/h-ui.admin/js/H-ui.admin.js"></script>
-<script src="${ctxstc}/style/js/pages/system/menuAdd.js"></script>
+<script src="${ctxstc}/style/js/pages/system/menu/menuAdd.js"></script>
 </body>
 </html>

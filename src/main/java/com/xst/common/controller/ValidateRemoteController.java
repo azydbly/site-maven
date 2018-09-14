@@ -1,4 +1,4 @@
-package com.xst.controller;
+package com.xst.common.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,7 +16,7 @@ import java.io.IOException;
  */
 
 @Controller
-public class UtilController {
+public class ValidateRemoteController {
 
     @ResponseBody
     public void validateReturn(HttpServletRequest request, HttpServletResponse response,Object o) throws IOException {

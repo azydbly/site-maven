@@ -98,12 +98,7 @@ public class MenuServiceImpl implements MenuService {
         ParamData params = new ParamData();
         String menuname = params.getString("menuname");
         String id = params.getString("id");
-        Menu menu;
-        if(id == null){
-            menu = menuMapper.selecetMenuByMenuNameOrUrl(menuname,null,null);
-        }else{
-            menu = menuMapper.selecetMenuByMenuNameOrUrl(menuname,null,id);;
-        }
+        Menu menu = menuMapper.selecetMenuByMenuNameOrUrl(menuname,null,id);;
         utilController.validateReturn(request,response,menu);
     }
 
@@ -112,12 +107,7 @@ public class MenuServiceImpl implements MenuService {
         ParamData params = new ParamData();
         String url = params.getString("url");
         String id = params.getString("id");
-        Menu menu;
-        if(id == null){
-            menu = menuMapper.selecetMenuByMenuNameOrUrl(null,url,null);
-        }else{
-            menu = menuMapper.selecetMenuByMenuNameOrUrl(null,url,id);;
-        }
+        Menu menu = menuMapper.selecetMenuByMenuNameOrUrl(null,url,id);;
         utilController.validateReturn(request,response,menu);
     }
 
@@ -150,7 +140,6 @@ public class MenuServiceImpl implements MenuService {
     public AjaxResult editUpdate(Menu menu) {
         String result = null;
         menu.setOperatordatetime(new Date());
-        System.out.println("--------------------------------");
         int returnResult = menuMapper.updateMenu(menu);
         if(returnResult < 1){
             result = "更新失败";

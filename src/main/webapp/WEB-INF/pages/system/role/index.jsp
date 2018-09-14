@@ -7,7 +7,7 @@
 </head>
 <body>
 <nav class="breadcrumb">
-    <i class="Hui-iconfont"></i> 首页 <span class="c-gray en">&gt;</span>系统管理 <span class="c-gray en">&gt;</span>菜单管理
+    <i class="Hui-iconfont"></i> 首页 <span class="c-gray en">&gt;</span>系统管理 <span class="c-gray en">&gt;</span>角色管理
     <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >
         <i class="Hui-iconfont">&#xe68f;</i>
     </a>
@@ -18,8 +18,8 @@
             <a href="javascript:;" onclick="delAll(getDTSelect(), '/menu/delete', reloadTable)" class="btn btn-danger radius">
                 <i class="Hui-iconfont">&#xe6e2;</i> 批量删除
             </a>
-            <a href="javascript:;" onclick="add('添加菜单','/menu/add','893','380')" class="btn btn-primary radius">
-                <i class="Hui-iconfont">&#xe600;</i> 添加菜单
+            <a href="javascript:;" onclick="add('添加角色','/menu/add','893','380')" class="btn btn-primary radius">
+                <i class="Hui-iconfont">&#xe600;</i> 添加角色
             </a>
         </span>
     </div>
@@ -46,9 +46,8 @@
                     <th class="col-md-list-1">
                         <input id="input-0" type="checkbox" name="all"><label for="input-0"></label>
                     </th>
-                    <th class="col-md-list-5">菜单名称</th>
-                    <th class="col-md-list-5">上级菜单</th>
-                    <th>网址</th>
+                    <th class="col-md-list-5">角色名称</th>
+                    <th class="col-md-list-5">角色描述</th>
                     <th class="col-md-list-3">插入时间</th>
                     <th class="col-md-list-3">更新时间</th>
                     <th class="col-md-list-2">状态</th>
@@ -61,9 +60,8 @@
                     <th class="col-md-list-1">
                         <input id="input-0" type="checkbox" name="all"><label for="input-0"></label>
                     </th>
-                    <th class="col-md-list-5">菜单名称</th>
-                    <th class="col-md-list-5">上级菜单</th>
-                    <th>网址</th>
+                    <th class="col-md-list-5">角色名称</th>
+                    <th class="col-md-list-5">角色描述</th>
                     <th class="col-md-list-3">插入时间</th>
                     <th class="col-md-list-3">更新时间</th>
                     <th class="col-md-list-2">状态</th>
@@ -74,6 +72,5 @@
     </div>
 </div>
 <script src="${ctxstc}/styles/h-ui.admin/js/H-ui.admin.js"></script>
-<script src="${ctxstc}/style/js/pages/system/menu/menu.js"></script>
 </body>
 </html>
