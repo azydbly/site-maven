@@ -2,12 +2,12 @@ package com.xst.server.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.xst.common.controller.ValidateRemoteController;
 import com.xst.common.pojo.AjaxResult;
 import com.xst.common.pojo.ParamData;
 import com.xst.common.util.AppUtil;
 import com.xst.common.util.DataTables;
 import com.xst.common.util.StrUtil;
-import com.xst.controller.UtilController;
 import com.xst.mapper.MenuMapper;
 import com.xst.model.Menu;
 import com.xst.server.MenuService;
@@ -18,7 +18,6 @@ import org.springframework.util.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Struct;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -39,7 +38,7 @@ public class MenuServiceImpl implements MenuService {
 
 
     @Autowired
-    private UtilController utilController;
+    private ValidateRemoteController validateRemoteController;
 
     @Override
     public List<Menu> selectLoginMenus() {
@@ -99,7 +98,7 @@ public class MenuServiceImpl implements MenuService {
         String menuname = params.getString("menuname");
         String id = params.getString("id");
         Menu menu = menuMapper.selecetMenuByMenuNameOrUrl(menuname,null,id);;
-        utilController.validateReturn(request,response,menu);
+        validateRemoteController.validateReturn(request,response,menu);
     }
 
     @Override
@@ -108,7 +107,7 @@ public class MenuServiceImpl implements MenuService {
         String url = params.getString("url");
         String id = params.getString("id");
         Menu menu = menuMapper.selecetMenuByMenuNameOrUrl(null,url,id);;
-        utilController.validateReturn(request,response,menu);
+        validateRemoteController.validateReturn(request,response,menu);
     }
 
     @Override
