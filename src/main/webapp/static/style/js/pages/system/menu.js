@@ -74,21 +74,6 @@ $(function() {
 
 });
 
-//单机行，选中复选框
-$("#table1 tr").slice(1).each(function(g){
-    var p = this;
-    $(this).children().slice(1).click(function(){
-        $($(p).children()[0]).children().each(function(){
-            if(this.type=="checkbox"){
-                if(!this.checked){
-                    this.checked = true;
-                }else{
-                    this.checked = false;
-                }
-            }
-        });
-    });
-});
 
 function reloadTable() {
     datatable.ajax.reload(null, false);
@@ -96,10 +81,14 @@ function reloadTable() {
 
 function getDTSelect() {
     var lines = datatable.rows('.selected').data();
-    for (var i = 0; i < lines.length; i++) {
-        idList.push(lines[i].id);
+    if(lines.length > 0){
+        for (var i = 0; i < lines.length; i++) {
+            idList.push(lines[i].id);
+        }
+        return idList;
+    }else{
+        return 0;
     }
-    return idList;
 }
 
 

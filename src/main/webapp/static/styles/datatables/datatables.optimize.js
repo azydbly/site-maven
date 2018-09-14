@@ -57,7 +57,7 @@ function drawCallbackDefault(settings, _$this) {
 	_$this = (isExitsVariable('_$this') && _$this) ? _$this : this;
 	selector = _$this.selector;
 	$(selector + ' input').iCheck({
-		checkboxClass: 'icheckbox_minimal-blue',
+		checkboxClass: 'icheckbox_flat-green',
 		increaseArea: '20%'
 	});
 
@@ -65,7 +65,9 @@ function drawCallbackDefault(settings, _$this) {
 	 * DT thead iCheck 点击事件
 	 */
 	$(selector + ' input[name=all]').on('ifChecked ifUnchecked', function(e) {
-		$(this).closest('table').find('input[name=single]').each(function() {
+	    //不使用  scrollY:550,  使用这个实现全选
+        //$(this).closest('table').find('input[name=single]').each(function() {
+		$('table').find('input[name=single]').each(function() {
 			if(e.type == 'ifChecked') {
 				$(this).iCheck('check');
 				$(this).closest('tr').addClass('selected');

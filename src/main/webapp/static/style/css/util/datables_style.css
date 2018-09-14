@@ -23,7 +23,7 @@ table> tbody> tr> td:last-child> a {
 /* 下拉框字体 */
 select option {font-size:13px;}
 
-#table1_length{
+#table_id_example_length{
 	margin-left: 20px;
 	margin-top: 10px;
 }
