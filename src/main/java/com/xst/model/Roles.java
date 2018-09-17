@@ -30,6 +30,9 @@ public class Roles {
     //修改时间
     private Date operatordatetime;
 
+    //角色等级  0超级管理员  1 管理员  2 地区管理员  3 特殊管理员
+    private int level;
+
     //是否停用标识  0停用  1启用（默认）
     private int state;
 
@@ -74,6 +77,14 @@ public class Roles {
 
     public void setOperatordatetime(Date operatordatetime) {
         this.operatordatetime = operatordatetime;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public int getState() {

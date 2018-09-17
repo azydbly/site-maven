@@ -36,8 +36,8 @@ public class MenuController extends BaseController {
     private MenuService menuService = new MenuServiceImpl();
 
 
-    @RequestMapping("list")
     @ControllerLog("进入菜单 list 页面")
+    @RequestMapping("list")
     public String menuList(){
         return "system/menu/index";
     }
@@ -58,22 +58,22 @@ public class MenuController extends BaseController {
         return menuService.changeMenuState(request,response);
     }
 
-    @RequestMapping("add")
     @ControllerLog("进入菜单 add 页面")
+    @RequestMapping("add")
     public String addMeun(HttpServletRequest request, HttpServletResponse response){
         request.setAttribute("menuList",menuService.selectOneMenu());
         return "system/menu/add";
     }
 
     @ResponseBody
-    @RequestMapping("addUpdate")
     @ControllerLog("添加菜单")
+    @RequestMapping("addUpdate")
     public AjaxResult addUpdate(Menu menu){
         return menuService.addUpdate(menu);
     }
 
-    @RequestMapping("edit")
     @ControllerLog("进入菜单 edit 页面")
+    @RequestMapping("edit")
     public String editMeun(HttpServletRequest request, HttpServletResponse response){
         request.setAttribute("menuList",menuService.selectOneMenu());
         request.setAttribute("menu",menuService.getMenuById(request,response));
@@ -81,8 +81,8 @@ public class MenuController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping("editUpdate")
     @ControllerLog("修改菜单")
+    @RequestMapping("editUpdate")
     public AjaxResult editUpdate(Menu menu){
         return menuService.editUpdate(menu);
     }

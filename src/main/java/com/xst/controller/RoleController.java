@@ -2,9 +2,13 @@ package com.xst.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.xst.common.annotation.ControllerLog;
+import com.xst.common.pojo.AjaxResult;
 import com.xst.common.util.DataTables;
+import com.xst.model.Menu;
+import com.xst.model.Roles;
 import com.xst.server.RoleService;
 import com.xst.server.impl.RoleServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+import static java.awt.SystemColor.menu;
 
 /**
  * @ClassName: RoleController
@@ -23,15 +30,16 @@ import javax.servlet.http.HttpServletResponse;
  */
 
 @Controller
-@RequestMapping("/role/")
+@RequestMapping("/roles/")
 public class RoleController  extends BaseController{
 
+    @Autowired
     private RoleService roleService = new RoleServiceImpl();
 
 
-    @RequestMapping("list")
     @ControllerLog("进入角色 list 页面")
-    public String menuList(){
+    @RequestMapping("list")
+    public String roleList(){
         return "system/role/index";
     }
 
@@ -42,5 +50,40 @@ public class RoleController  extends BaseController{
         state = StringUtils.isEmpty(state) ? "" : ("state = " + state);
         return JSON.toJSONString(roleService.getPageRoleList(DataTables.getInstance(request,state)));
     }
+
+    @ControllerLog("进入添加角色页面")
+    @RequestMapping("add")
+    public String add(){
+        return "system/role/add";
+    }
+
+    @ControllerLog("角色名重复验证")
+    @RequestMapping("rolename/validate")
+    public void roleNameValidate(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        roleService.roleNameValidate(request,response);
+    }
+
+    @ResponseBody
+    @ControllerLog("添加菜单")
+    @RequestMapping("addUpdate")
+    public AjaxResult addUpdate(Roles role){
+        return roleService.addUpdate(role);
+    }
+
+    @ControllerLog("进入修改角色页面")
+    @RequestMapping("edit")
+    public String edit(HttpServletRequest request, HttpServletResponse response){
+        request.setAttribute("role",roleService.getRolesById(request,response));
+        return "system/role/edit";
+    }
+
+    @ResponseBody
+    @ControllerLog("修改角色")
+    @RequestMapping("editUpdate")
+    public AjaxResult editUpdate(Roles role){
+        return roleService.editUpdate(role);
+    }
+
+
 
 }

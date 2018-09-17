@@ -26,19 +26,6 @@
 	background-color: white;
 }
 
-.view{
-	color: #0e90d2;
-	cursor: pointer;
-	border-color: transparent;
-	background-color: transparent;
-}
-.view:hover{
-	color: rgb(9,95,138);
-	background-color: transparent;
-	text-decoration: underline;
-}
-
-
 /* 设置滚动条样式  */
 /* chrome、safari私有属性样式  */
 ::-webkit-scrollbar-track {

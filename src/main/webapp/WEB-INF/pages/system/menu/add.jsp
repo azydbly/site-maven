@@ -10,7 +10,7 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>菜单名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" id="menuname" name="menuname">
+				<input type="text" class="input-text" id="menuname" name="menuname" maxlength="10" />
 			</div>
 		</div>
         <div class="row cl">
@@ -29,7 +29,7 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3">地址：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" id="url" name="url">
+				<input type="text" class="input-text" id="url" name="url" maxlength="50" />
 			</div>
 		</div>
 		<div class="row cl">
@@ -46,7 +46,7 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3">备注：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" name="remark" />
+				<input type="text" class="input-text" name="remark" maxlength="50" />
 			</div>
 		</div>
 		<div class="row cl">
@@ -58,6 +58,6 @@
 	</form>
 </article>
 <script src="${ctxstc}/styles/h-ui.admin/js/H-ui.admin.js"></script>
-<script src="${ctxstc}/style/js/pages/system/menu/menuAdd.js"></script>
+<script src="${ctxstc}/style/js/pages/system/menu/add.js"></script>
 </body>
 </html>

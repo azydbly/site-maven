@@ -51,9 +51,9 @@ public class LoginController extends BaseController {
 
 
 
+    @ResponseBody
     @ControllerLog("登录系统")
     @RequestMapping("login")
-    @ResponseBody
     public AjaxResult login(HttpServletRequest request, HttpServletResponse response) {
         return userService.selectUserByIdnumber(request,response);
     }
@@ -65,25 +65,25 @@ public class LoginController extends BaseController {
         return "index";
     }
 
+    @ResponseBody
     @ControllerLog("强刷页面进行账号锁定")
     @RequestMapping("lock")
-    @ResponseBody
     public AjaxResult lock(HttpServletRequest request, HttpServletResponse response) {
         return userService.lockingUserByIdnumber(request,response);
     }
 
 
 
+    @ResponseBody
     @ControllerLog("退出")
     @RequestMapping("logout")
-    @ResponseBody
     public AjaxResult logout(HttpServletRequest request,HttpServletResponse response) {
         return userService.logout(request,response);
     }
 
+    @ResponseBody
     @ControllerLog("获取用户登录盐值加密密码")
     @RequestMapping("loginPassword")
-    @ResponseBody
     public AjaxResult loginPassword(HttpServletRequest request, HttpServletResponse response) {
         String result = null;
         try{

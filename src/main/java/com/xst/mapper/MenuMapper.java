@@ -36,7 +36,7 @@ public interface MenuMapper {
     int insertMenu(Menu menu);
 
     //根据菜单名和地址查询
-    Menu selecetMenuByMenuNameOrUrl(@Param("menuname") String menuname,@Param("url") String url,@Param("id") String id);
+    Menu selectMenuByMenuNameOrUrl(@Param("menuname") String menuname,@Param("url") String url,@Param("id") String id);
 
     //根据 id 查询菜单
     Menu getMenuById(@Param("id") int id);

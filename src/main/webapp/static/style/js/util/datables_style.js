@@ -1,14 +1,20 @@
-/* List 页面通过部分 */
+
+/* 数据状态 图标 颜色 提示语 */
 clazz = new Array('danger','success','warning');
 text = new Array('已禁用','已启用','已锁定');
 icon = new Array('&#xe615;','&#xe631;','&#xe615;');
 state = new Array('启用','停用','启用');
-flag = new Array('1','0');
+flag = new Array('1','0','1');
+
+/* 角色管理页面，角色等级  */
+Type = new Array('primary','secondary','success','warning');
+roleType = new Array('超级管理员','管理员','地区管理员','特殊管理员');
+
+
+
+
 sex = new Array('男','女');
 
-/* 角色管理 List 页面  */
-Type = new Array('default','warning','secondary','primary');
-roletype = new Array('未定义','管理','技术','实施');
 
 /* 薪资管理 List */
 checkstate = new Array('default','primary','warning','success','danger','warning','warning');

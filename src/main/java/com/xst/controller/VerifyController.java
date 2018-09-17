@@ -1,5 +1,6 @@
 package com.xst.controller;
 
+import com.xst.common.annotation.ControllerLog;
 import com.xst.common.util.Constant;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,7 @@ import java.util.Random;
 @Controller
 public class VerifyController {
 
+    @ControllerLog("验证码")
 	@RequestMapping("/getVcode")
 	public void generate(HttpServletRequest request, HttpServletResponse response) {
 		ByteArrayOutputStream output = new ByteArrayOutputStream();

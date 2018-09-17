@@ -5,7 +5,7 @@ $(function() {
             {"bVisible": false, "aTargets": [0],} //控制列的隐藏显示
         ],
         ajax: {
-            url: baselocation + "/role/showPageRole",
+            url: baselocation + "/roles/showPageRole",
             type: 'post',
             data: function(d) {
                 d.search = $('#search').val();
@@ -28,10 +28,14 @@ $(function() {
             }
         }, {
             data: "rolename",
-            defaultContent: "",
         }, {
             data: "description",
             defaultContent: "",
+        }, {
+            data: "level",
+            render: function(data, type, row, meta) {
+                return '<span class="label label-' + Type[data] + ' radius">' + roleType[data] + '</span>';
+            }
         }, {
             data: "insertdatetime",
             render: function(data, type, row, meta) {
@@ -42,6 +46,17 @@ $(function() {
             render: function(data, type, row, meta) {
                 return data ? new Date(data).pattern("yyyy-MM-dd HH:mm:ss") : '';
             }
+        }, {
+            data: "level",
+            render: function(data, type, row, meta) {
+                var a = "";
+                if(data == 0){
+                    a =  '<a class="btn disabled radius">无需配置</a>';
+                }else{
+                    a =  '<a class="btn btn-link" onclick="distribute_action_Fun(' + row.number + ')">配置</a>';
+                }
+                return a;
+            },
         }, {
             data: "state",
             defaultContent: "",
@@ -55,9 +70,13 @@ $(function() {
             responsivePriority: 1,
             render: function(data, type, row, meta) {
                 var a = "";
-                a += '<a title="' + state[data] + '" style="text-decoration:none" onClick="changeStatus(' + "'" +  state[data] + "'" + ',[' + "'" + row.rolename + "'" + '],\'/menu/menuState\',' + row.id + ', '+ flag[data] + ')" href="javascript:;"><i class="Hui-iconfont">' + icon[data] + '</i></a>';
-                a += '<a title="编辑" href="javascript:;" onclick="edit_show([' + "'" + row.rolename + "'" + '],\'/menu/edit\',' + row.id + ',\'893\',\'400\')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>';
-                a += '<a title="删除" href="javascript:;" onclick="del([' + row.id + '],\'/menu/delete\',[' + "'" + row.rolename + "'" + '],reloadTable)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>';
+                if(row.level == 0) {
+                    a =  '<a class="btn disabled radius">暂无操作功能</a>';
+                }else{
+                    a += '<a title="' + state[data] + '" style="text-decoration:none" onClick="changeStatus(' + "'" + state[data] + "'" + ',[' + "'" + row.rolename + "'" + '],\'/roles/roleState\',' + row.id + ', ' + flag[data] + ')" href="javascript:;"><i class="Hui-iconfont">' + icon[data] + '</i></a>';
+                    a += '<a title="编辑" href="javascript:;" onclick="edit_show([' + "'" + row.rolename + "'" + '],\'/roles/edit\',' + row.id + ',\'893\',\'320\')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>';
+                    a += '<a title="删除" href="javascript:;" onclick="del([' + row.id + '],\'/roles/delete\',[' + "'" + row.rolename + "'" + '],reloadTable)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>';
+                }
                 return a;
             }
         }],

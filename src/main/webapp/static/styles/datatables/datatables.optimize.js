@@ -58,6 +58,7 @@ function drawCallbackDefault(settings, _$this) {
 	selector = _$this.selector;
 	$(selector + ' input').iCheck({
 		checkboxClass: 'icheckbox_flat-green',
+        radioClass: 'iradio_flat-green',
 		increaseArea: '20%'
 	});
 

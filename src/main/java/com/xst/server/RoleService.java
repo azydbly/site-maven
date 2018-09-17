@@ -1,6 +1,12 @@
 package com.xst.server;
 
+import com.xst.common.pojo.AjaxResult;
 import com.xst.common.util.DataTables;
+import com.xst.model.Roles;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * @ClassName: RoleService
@@ -14,4 +20,16 @@ public interface RoleService {
 
     //角色分页显示
     DataTables getPageRoleList(DataTables dataTables);
+
+    //角色名重复验证
+    void roleNameValidate(HttpServletRequest request, HttpServletResponse response) throws IOException;
+
+    //添加角色
+    AjaxResult addUpdate(Roles role);
+
+    //根据 id 查询角色
+    Roles getRolesById(HttpServletRequest request, HttpServletResponse response);
+
+    //更新角色
+    AjaxResult editUpdate(Roles role);
 }

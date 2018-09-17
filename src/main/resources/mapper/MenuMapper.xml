@@ -28,7 +28,7 @@
             <if test="subSQL != null and subSQL != '' ">
                 ${subSQL}
             </if>
-            <if test="search != null and search != ''">
+            <if test="search != null and search != '' ">
                 and INSTR(ifnull(a.menuname,''),'${search}') > 0
             </if>
         </where>
@@ -72,7 +72,7 @@
     </insert>
 
     <!-- 根据菜单名或者地址查询 -->
-    <select id="selecetMenuByMenuNameOrUrl" resultType="com.xst.model.Menu">
+    <select id="selectMenuByMenuNameOrUrl" resultType="com.xst.model.Menu">
         select
         <include refid="selectColumn"/>
         from sys_menu

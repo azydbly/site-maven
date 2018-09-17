@@ -4,7 +4,7 @@
 
     <!-- 公众部分 -->
     <sql id="selectColumn">
-        id,rolename,description,DATE_FORMAT(insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime,DATE_FORMAT(operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime,state,flag
+        id,rolename,description,DATE_FORMAT(insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime,DATE_FORMAT(operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime,level,state,flag
     </sql>
 
 
@@ -14,6 +14,7 @@
         <include refid="selectColumn" />
         from sys_roles
         <where>
+            flag = 1
             <if test="subSQL != null and subSQL != '' ">
                 ${subSQL}
             </if>
@@ -22,6 +23,41 @@
             </if>
         </where>
     </select>
+
+    <!-- 根据角色名查询 -->
+    <select id="selectRoleByRoleName" resultType="com.xst.model.Roles">
+        select
+        <include refid="selectColumn"/>
+        from sys_roles
+        where flag = 1
+        <if test="rolename != null and rolename != '' ">
+            and rolename = #{rolename}
+        </if>
+        <if test="id != null and id != '' ">
+            and id != #{id}
+        </if>
+    </select>
+
+    <!-- 插入菜单 -->
+    <insert id="insertRoles" parameterType="com.xst.model.Roles">
+        insert into sys_roles
+        (rolename,description,insertdatetime,operatordatetime,level,state)
+        values
+        (#{rolename},#{description},#{insertdatetime},#{operatordatetime},#{level},${state})
+    </insert>
+
+    <!-- 根据 id 查询角色 -->
+    <select id="getRolesById" resultType="com.xst.model.Roles">
+        select
+        <include refid="selectColumn"/>
+        from sys_roles
+        where id = #{id} and flag = 1
+    </select>
+
+    <!-- 更新菜单 -->
+    <update id="updateRole" parameterType="com.xst.model.Roles">
+        update sys_roles set rolename = #{rolename},description = #{description},operatordatetime = #{operatordatetime},level = #{level},state = #{state} where id = #{id}
+    </update>
 
 
 </mapper>

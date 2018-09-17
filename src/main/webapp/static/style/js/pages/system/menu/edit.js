@@ -1,5 +1,5 @@
 var id = document.getElementById("menuId").value;
-$("#form-member-add").validate({
+$("#form-member-edit").validate({
     rules:{
         menuname:{
             required:true,
@@ -75,6 +75,4 @@ $("#form-member-add").validate({
             }
         });
     }
-
-
 });

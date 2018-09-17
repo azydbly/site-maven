@@ -18,7 +18,7 @@
             <a href="javascript:;" onclick="delAll(getDTSelect(), '/menu/delete', reloadTable)" class="btn btn-danger radius">
                 <i class="Hui-iconfont">&#xe6e2;</i> 批量删除
             </a>
-            <a href="javascript:;" onclick="add('添加角色','/menu/add','893','380')" class="btn btn-primary radius">
+            <a href="javascript:;" onclick="add('添加角色','/roles/add','893','320')" class="btn btn-primary radius">
                 <i class="Hui-iconfont">&#xe600;</i> 添加角色
             </a>
         </span>
@@ -45,9 +45,11 @@
                         <input id="input-0" type="checkbox" name="all"><label for="input-0"></label>
                     </th>
                     <th class="col-md-list-5">角色名称</th>
-                    <th class="col-md-list-5">角色描述</th>
+                    <th>角色描述</th>
+                    <th class="col-md-list-2">角色等级</th>
                     <th class="col-md-list-3">插入时间</th>
                     <th class="col-md-list-3">更新时间</th>
+                    <th class="col-md-list-2">配置权限</th>
                     <th class="col-md-list-2">状态</th>
                     <th class="col-md-list-2">操作</th>
                 </tr>
@@ -59,9 +61,11 @@
                         <input id="input-0" type="checkbox" name="all"><label for="input-0"></label>
                     </th>
                     <th class="col-md-list-5">角色名称</th>
-                    <th class="col-md-list-5">角色描述</th>
+                    <th>角色描述</th>
+                    <th class="col-md-list-2">角色等级</th>
                     <th class="col-md-list-3">插入时间</th>
                     <th class="col-md-list-3">更新时间</th>
+                    <th class="col-md-list-2">配置权限</th>
                     <th class="col-md-list-2">状态</th>
                     <th class="col-md-list-2">操作</th>
                 </tr>
