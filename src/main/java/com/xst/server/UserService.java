@@ -1,6 +1,7 @@
 package com.xst.server;
 
 import com.xst.common.pojo.AjaxResult;
+import com.xst.common.util.DataTables;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,5 +25,8 @@ public interface UserService {
 
     //锁定账户信息
     AjaxResult lockingUserByIdnumber(HttpServletRequest request, HttpServletResponse response);
+
+    //用户分页显示
+    DataTables getPageUserList(DataTables dataTables);
 
 }

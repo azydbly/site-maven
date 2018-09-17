@@ -46,8 +46,8 @@ public class MenuController extends BaseController {
     @ControllerLog("菜单 list 页面，分页显示菜单")
     @RequestMapping("showPageMenu")
     public String showPageMenu(@RequestParam(value="state",required=false)String state,@RequestParam(value="menuname",required=false)String menuname, HttpServletRequest request, HttpServletResponse response){
-        state = StringUtils.isEmpty(state) ? "" : ("a.state = " + state);
-        menuname = StringUtils.isEmpty(menuname) ? "" : ("b.menuname = '" + menuname + "'");
+        state = StringUtils.isEmpty(state) ? "" : (" and a.state = " + state);
+        menuname = StringUtils.isEmpty(menuname) ? "" : (" and b.menuname = '" + menuname + "'");
         return JSON.toJSONString(menuService.getPageMenuList(DataTables.getInstance(request,state,menuname)));
     }
 
@@ -72,8 +72,8 @@ public class MenuController extends BaseController {
         return menuService.addUpdate(menu);
     }
 
-    @ControllerLog("进入菜单 edit 页面")
     @RequestMapping("edit")
+    @ControllerLog("进入菜单 edit 页面")
     public String editMeun(HttpServletRequest request, HttpServletResponse response){
         request.setAttribute("menuList",menuService.selectOneMenu());
         request.setAttribute("menu",menuService.getMenuById(request,response));
@@ -81,8 +81,8 @@ public class MenuController extends BaseController {
     }
 
     @ResponseBody
-    @ControllerLog("修改菜单")
     @RequestMapping("editUpdate")
+    @ControllerLog("修改菜单")
     public AjaxResult editUpdate(Menu menu){
         return menuService.editUpdate(menu);
     }

@@ -49,7 +49,7 @@ public class User {
     private int nation;
 
     //手机号
-    private int tel;
+    private String tel;
 
     //单位id
     private int unitid;
@@ -186,11 +186,11 @@ public class User {
         this.nation = nation;
     }
 
-    public int getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(int tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 

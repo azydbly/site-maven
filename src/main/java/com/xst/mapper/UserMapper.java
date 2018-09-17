@@ -1,7 +1,10 @@
 package com.xst.mapper;
 
+import com.xst.model.Menu;
 import com.xst.model.User;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @ClassName: UserMapper
@@ -20,4 +23,7 @@ public interface UserMapper {
 
     //更改用户状态
     int updateStateById(@Param("id")int id,@Param("state")int state);
+
+    //菜单分页显示
+    List<User> getPageUserList(@Param("search") String search, @Param("subSQL") String subSQL);
 }

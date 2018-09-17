@@ -3,7 +3,7 @@
 <%@ include file="/WEB-INF/layouts/commonList.jsp" %>
 <html>
 <head>
-    <title>系统管理</title>
+    <title>菜单管理</title>
 </head>
 <body>
 <nav class="breadcrumb">

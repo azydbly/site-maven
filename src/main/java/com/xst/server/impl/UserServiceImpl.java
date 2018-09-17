@@ -1,6 +1,8 @@
 package com.xst.server.impl;
 
 import ch.qos.logback.core.rolling.helper.IntegerTokenConverter;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.xst.common.pojo.AjaxResult;
 import com.xst.common.pojo.Identity;
 import com.xst.common.pojo.ParamData;
@@ -8,6 +10,7 @@ import com.xst.common.util.*;
 import com.xst.controller.BaseController;
 import com.xst.mapper.UserMapper;
 import com.xst.model.Lock;
+import com.xst.model.Menu;
 import com.xst.model.User;
 import com.xst.server.LockService;
 import com.xst.server.UserService;
@@ -20,6 +23,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -174,6 +178,7 @@ public class UserServiceImpl implements UserService {
         return AppUtil.returnObj(null);
     }
 
+
     @Override
     public AjaxResult logout(HttpServletRequest request, HttpServletResponse response) {
         String sessionId = CookieUtil.get(Constant.SESSION_IDENTITY_KEY, request);
@@ -186,6 +191,23 @@ public class UserServiceImpl implements UserService {
             CookieUtil.delete(Constant.SESSION_IDENTITY_KEY, request, response);
         }
         return AppUtil.returnObj(null);
+    }
+
+
+    @Override
+    public DataTables getPageUserList(DataTables dataTables) {
+        PageHelper.startPage(dataTables.getPageNum(), dataTables.getLength()); // 核心分页代码
+        PageHelper.orderBy("convert(fullname using gbk) COLLATE gbk_chinese_ci asc");
+
+        if(!org.springframework.util.StringUtils.isEmpty(dataTables.getColumn())){
+            PageHelper.orderBy(dataTables.getColumn() + " " + dataTables.getOrder());
+        }
+
+        PageInfo<User> pageInfo = new PageInfo<User>(userMapper.getPageUserList(dataTables.getSearch(), dataTables.getSubSQL()));
+        dataTables.setRecordsTotal(pageInfo.getTotal());
+        dataTables.setRecordsFiltered(pageInfo.getTotal());
+        dataTables.setData(pageInfo.getList() != null ? pageInfo.getList() : new ArrayList<Object>());
+        return dataTables;
     }
 
     private String getSessionId(String userName, String ip) {

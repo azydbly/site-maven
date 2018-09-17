@@ -48,7 +48,7 @@ public class RoleController  extends BaseController{
     @ControllerLog("角色 list 页面，分页显示角色")
     @RequestMapping("showPageRole")
     public String showPageRole(@RequestParam(value="state",required=false)String state,HttpServletRequest request, HttpServletResponse response){
-        state = StringUtils.isEmpty(state) ? "" : ("state = " + state);
+        state = StringUtils.isEmpty(state) ? "" : (" and state = " + state);
         return JSON.toJSONString(roleService.getPageRoleList(DataTables.getInstance(request,state)));
     }
 

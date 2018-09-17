@@ -3,11 +3,11 @@
 <%@ include file="/WEB-INF/layouts/commonList.jsp" %>
 <html>
 <head>
-    <title>角色管理</title>
+    <title>用户管理</title>
 </head>
 <body>
 <nav class="breadcrumb">
-    <i class="Hui-iconfont"></i> 首页 <span class="c-gray en">&gt;</span>系统管理 <span class="c-gray en">&gt;</span>角色管理
+    <i class="Hui-iconfont"></i> 首页 <span class="c-gray en">&gt;</span>系统管理 <span class="c-gray en">&gt;</span>用户管理
     <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >
         <i class="Hui-iconfont">&#xe68f;</i>
     </a>
@@ -15,11 +15,11 @@
 <div class="page-container wrapper wrapper-content animated fadeInUp">
     <div class="cl pd-5 bg-1 bk-gray mt-20">
         <span class="l">
-            <a href="javascript:;" onclick="delAll(getDTSelect(), '/roles/delete', reloadTable)" class="btn btn-danger radius">
+            <a href="javascript:;" onclick="delAll(getDTSelect(), '/user/delete', reloadTable)" class="btn btn-danger radius">
                 <i class="Hui-iconfont">&#xe6e2;</i> 批量删除
             </a>
-            <a href="javascript:;" onclick="add('添加角色','/roles/add','893','320')" class="btn btn-primary radius">
-                <i class="Hui-iconfont">&#xe600;</i> 添加角色
+            <a href="javascript:;" onclick="add('添加用户','/user/add','893','320')" class="btn btn-primary radius">
+                <i class="Hui-iconfont">&#xe600;</i> 添加用户
             </a>
         </span>
     </div>
@@ -31,8 +31,8 @@
                 <option value="0">禁用</option>
                 <option value="1">启用</option>
             </select>
-            <span>角色名称：</span>
-            <input type="text" class="input-text input_span select_list" placeholder="角色名称" id="search">
+            <span>用户姓名：</span>
+            <input type="text" class="input-text input_span select_list" placeholder="用户姓名" id="search">
             <button type="submit" id="doSearch" class="btn btn-success radius"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
         </div>
     </div>
@@ -44,12 +44,13 @@
                     <th class="col-md-list-1">
                         <input id="input-0" type="checkbox" name="all"><label for="input-0"></label>
                     </th>
-                    <th class="col-md-list-5">角色名称</th>
-                    <th>角色描述</th>
-                    <th class="col-md-list-2">角色等级</th>
-                    <th class="col-md-list-3">插入时间</th>
-                    <th class="col-md-list-3">更新时间</th>
-                    <th class="col-md-list-2">配置权限</th>
+                    <th>用户姓名</th>
+                    <th class="col-md-list-3">身份证号</th>
+                    <th class="col-md-list-2">出生日期</th>
+                    <th class="col-md-list-2">性别</th>
+                    <th class="col-md-list-3">邮箱</th>
+                    <th class="col-md-list-2">电话</th>
+                    <th class="col-md-list-2">角色</th>
                     <th class="col-md-list-2">状态</th>
                     <th class="col-md-list-2">操作</th>
                 </tr>
@@ -60,12 +61,13 @@
                     <th class="col-md-list-1">
                         <input id="input-0" type="checkbox" name="all"><label for="input-0"></label>
                     </th>
-                    <th class="col-md-list-5">角色名称</th>
-                    <th>角色描述</th>
-                    <th class="col-md-list-2">角色等级</th>
-                    <th class="col-md-list-3">插入时间</th>
-                    <th class="col-md-list-3">更新时间</th>
-                    <th class="col-md-list-2">配置权限</th>
+                    <th>用户姓名</th>
+                    <th class="col-md-list-3">身份证号</th>
+                    <th class="col-md-list-2">出生日期</th>
+                    <th class="col-md-list-2">性别</th>
+                    <th class="col-md-list-3">邮箱</th>
+                    <th class="col-md-list-2">电话</th>
+                    <th class="col-md-list-2">角色</th>
                     <th class="col-md-list-2">状态</th>
                     <th class="col-md-list-2">操作</th>
                 </tr>
@@ -74,6 +76,6 @@
     </div>
 </div>
 <script src="${ctxstc}/styles/h-ui.admin/js/H-ui.admin.js"></script>
-<script src="${ctxstc}/style/js/pages/system/role/role.js"></script>
+<script src="${ctxstc}/style/js/pages/system/user/user.js"></script>
 </body>
 </html>
