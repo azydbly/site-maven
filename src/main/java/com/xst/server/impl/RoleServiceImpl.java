@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @ClassName: RoleServiceImpl
@@ -89,6 +90,28 @@ public class RoleServiceImpl implements RoleService {
         int returnResult = roleMapper.updateRole(role);
         if(returnResult < 1){
             result = "更新失败";
+        }
+        return AppUtil.returnObj(result);
+    }
+
+    @Override
+    public AjaxResult changeRoleState(HttpServletRequest request, HttpServletResponse response) {
+        ParamData params = new ParamData();
+        String id = params.getString("id");
+        String state = params.getString("state");
+        String result = null;
+        int returnResult = roleMapper.changeRoleState(StrUtil.getInteger(id),StrUtil.getInteger(state));
+        if(returnResult < 1){
+            result = "操作失败";
+        }
+        return AppUtil.returnObj(result);
+    }
+
+    @Override
+    public AjaxResult deleteRole(List<Integer> idlist) {
+        String result = null;
+        if(roleMapper.deleteRole(idlist) < 1){
+            result = "操作失败";
         }
         return AppUtil.returnObj(result);
     }

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 import static java.awt.SystemColor.menu;
 
@@ -84,6 +85,18 @@ public class RoleController  extends BaseController{
         return roleService.editUpdate(role);
     }
 
+    @ResponseBody
+    @ControllerLog("改变角色状态")
+    @RequestMapping("roleState")
+    public AjaxResult changeRoleState(HttpServletRequest request, HttpServletResponse response){
+        return roleService.changeRoleState(request,response);
+    }
 
+    @ResponseBody
+    @ControllerLog("删除角色")
+    @RequestMapping("/delete")
+    public AjaxResult deleteRoles(@RequestParam("idlist[]") List<Integer> idlist){
+        return roleService.deleteRole(idlist);
+    }
 
 }

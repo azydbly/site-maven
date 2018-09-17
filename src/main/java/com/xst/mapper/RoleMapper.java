@@ -29,5 +29,11 @@ public interface RoleMapper {
 
     //更新角色
     int updateRole(Roles role);
+
+    //改变角色状态
+    int changeRoleState(@Param("id") int id,@Param("state") int state);
+
+    //删除角色
+    int deleteRole(@Param("idlist")List<Integer> idlist);
 }
 

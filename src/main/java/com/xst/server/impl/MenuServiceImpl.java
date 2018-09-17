@@ -97,7 +97,6 @@ public class MenuServiceImpl implements MenuService {
         ParamData params = new ParamData();
         String menuname = params.getString("menuname");
         String id = params.getString("id");
-        System.out.println("================");
         Menu menu = menuMapper.selectMenuByMenuNameOrUrl(menuname,null,id);;
         validateRemoteController.validateReturn(request,response,menu);
     }

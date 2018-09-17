@@ -59,5 +59,18 @@
         update sys_roles set rolename = #{rolename},description = #{description},operatordatetime = #{operatordatetime},level = #{level},state = #{state} where id = #{id}
     </update>
 
+    <!-- 改变角色状态 -->
+    <update id="changeRoleState" parameterType="com.xst.model.Roles">
+        update sys_roles set state = #{state} where id = #{id} and flag = 1
+    </update>
+
+    <!-- 删除角色 -->
+    <update id="deleteRole" parameterType="com.xst.model.Roles">
+        update sys_roles set flag = 0 where flag = 1 and id in
+        <foreach collection="idlist" item="id" index="index" open="(" close=")" separator=",">
+            #{id,jdbcType=INTEGER}
+        </foreach>
+    </update>
+
 
 </mapper>

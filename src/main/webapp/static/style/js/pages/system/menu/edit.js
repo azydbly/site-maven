@@ -1,5 +1,4 @@
 var id = document.getElementById("menuId").value;
-alert(id);
 $("#form-member-edit").validate({
     rules:{
         menuname:{

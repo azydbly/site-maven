@@ -7,6 +7,7 @@ import com.xst.model.Roles;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @ClassName: RoleService
@@ -32,4 +33,10 @@ public interface RoleService {
 
     //更新角色
     AjaxResult editUpdate(Roles role);
+
+    //改变角色状态
+    AjaxResult changeRoleState(HttpServletRequest request, HttpServletResponse response);
+
+    //删除角色
+    AjaxResult deleteRole(List<Integer> idlist);
 }
