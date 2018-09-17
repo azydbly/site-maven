@@ -31,10 +31,8 @@
                 <option value="0">禁用</option>
                 <option value="1">启用</option>
             </select>
-            <span>菜单名称：</span>
-            <input type="text" class="input-text input_span select_list" placeholder="菜单名称" id="search">
-            <span>上级菜单：</span>
-            <input type="text" class="input-text input_span select_list" placeholder="上级菜单名称" id="pname">
+            <span>角色名称：</span>
+            <input type="text" class="input-text input_span select_list" placeholder="角色名称" id="search">
             <button type="submit" id="doSearch" class="btn btn-success radius"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
         </div>
     </div>
@@ -72,5 +70,6 @@
     </div>
 </div>
 <script src="${ctxstc}/styles/h-ui.admin/js/H-ui.admin.js"></script>
+<script src="${ctxstc}/style/js/pages/system/role/role.js"></script>
 </body>
 </html>

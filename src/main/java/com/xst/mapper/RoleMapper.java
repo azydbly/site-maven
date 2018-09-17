@@ -14,6 +14,6 @@ import java.util.List;
  */
 public interface RoleMapper {
 
-    //菜单分页显示
+    //角色分页显示
     List<Roles> getPageRoleList(@Param("search") String search, @Param("subSQL") String subSQL);
 }
