@@ -88,4 +88,19 @@
         </where>
     </select>
 
+    <!-- 改变用户状态 -->
+    <update id="changeUserState" parameterType="com.xst.model.User">
+        update edu_user set state = #{state} where id = #{id} and flag = 1
+    </update>
+
+    <!-- 插入用户 -->
+    <insert id="insertUser" parameterType="com.xst.model.User">
+        insert into edu_user
+        (fullname,idtype,idnumber,password,salt,birthday,email,sex,nation,tel,unitid,province,city,county,birthplace,imagefile,
+        roleid,address,political,suniversity,smajor,insertdatetime,operatordatetime,state)
+        values
+        (#{fullname},#{idtype},#{idnumber},#{password},#{salt},${birthday},#{email,#{email},#{sex},#{tel},#{unitid},#{province},#{city},#{county},#{birthplace},#{imagefile},
+        #{roleid},#{address},#{political},#{suniversity},#{smajor},#{insertdatetime},#{operatordatetime},#{state})
+    </insert>
+
 </mapper>

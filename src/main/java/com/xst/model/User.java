@@ -88,10 +88,10 @@ public class User {
     private String smajor;
 
     //插入时间
-    private String insertdatetime;
+    private Date insertdatetime;
 
     //修改时间
-    private String operatordatetime;
+    private Date operatordatetime;
 
     //最后登录时间
     private String loginTime;
@@ -293,19 +293,19 @@ public class User {
         this.smajor = smajor;
     }
 
-    public String getInsertdatetime() {
+    public Date getInsertdatetime() {
         return insertdatetime;
     }
 
-    public void setInsertdatetime(String insertdatetime) {
+    public void setInsertdatetime(Date insertdatetime) {
         this.insertdatetime = insertdatetime;
     }
 
-    public String getOperatordatetime() {
+    public Date getOperatordatetime() {
         return operatordatetime;
     }
 
-    public void setOperatordatetime(String operatordatetime) {
+    public void setOperatordatetime(Date operatordatetime) {
         this.operatordatetime = operatordatetime;
     }
 

@@ -2,6 +2,7 @@ package com.xst.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.xst.common.annotation.ControllerLog;
+import com.xst.common.pojo.AjaxResult;
 import com.xst.common.util.DataTables;
 import com.xst.server.UserService;
 import com.xst.server.impl.UserServiceImpl;
@@ -44,4 +45,18 @@ public class UserContrller extends BaseController {
         state = StringUtils.isEmpty(state) ? "" : (" and u.state = " + state);
         return JSON.toJSONString(userService.getPageUserList(DataTables.getInstance(request,state,fullname)));
     }
+
+    @ResponseBody
+    @ControllerLog("改变用户状态")
+    @RequestMapping("userState")
+    public AjaxResult changeUserState(HttpServletRequest request, HttpServletResponse response){
+        return userService.changeUserState(request,response);
+    }
+
+    @ControllerLog("进入用户 add 页面")
+    @RequestMapping("add")
+    public String addUser(){
+        return "system/user/add";
+    }
+
 }

@@ -54,7 +54,7 @@
         where id = #{id} and flag = 1
     </select>
 
-    <!-- 更新菜单 -->
+    <!-- 更新角色 -->
     <update id="updateRole" parameterType="com.xst.model.Roles">
         update sys_roles set rolename = #{rolename},description = #{description},operatordatetime = #{operatordatetime},level = #{level},state = #{state} where id = #{id}
     </update>

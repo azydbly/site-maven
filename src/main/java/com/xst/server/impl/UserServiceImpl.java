@@ -1,6 +1,5 @@
 package com.xst.server.impl;
 
-import ch.qos.logback.core.rolling.helper.IntegerTokenConverter;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xst.common.pojo.AjaxResult;
@@ -10,7 +9,6 @@ import com.xst.common.util.*;
 import com.xst.controller.BaseController;
 import com.xst.mapper.UserMapper;
 import com.xst.model.Lock;
-import com.xst.model.Menu;
 import com.xst.model.User;
 import com.xst.server.LockService;
 import com.xst.server.UserService;
@@ -208,6 +206,31 @@ public class UserServiceImpl implements UserService {
         dataTables.setRecordsFiltered(pageInfo.getTotal());
         dataTables.setData(pageInfo.getList() != null ? pageInfo.getList() : new ArrayList<Object>());
         return dataTables;
+    }
+
+    @Override
+    public AjaxResult changeUserState(HttpServletRequest request, HttpServletResponse response) {
+        ParamData params = new ParamData();
+        String id = params.getString("id");
+        String state = params.getString("state");
+        String result = null;
+        int returnResult = userMapper.changeUserState(StrUtil.getInteger(id),StrUtil.getInteger(state));
+        if(returnResult < 1){
+            result = "操作失败";
+        }
+        return AppUtil.returnObj(result);
+    }
+
+    @Override
+    public AjaxResult addUpdate(User user) {
+        String result = null;
+        user.setInsertdatetime(new Date());
+        user.setOperatordatetime(new Date());
+        int returnResult = userMapper.insertUser(user);
+        if(returnResult < 1){
+            result = "添加失败";
+        }
+        return AppUtil.returnObj(result);
     }
 
     private String getSessionId(String userName, String ip) {

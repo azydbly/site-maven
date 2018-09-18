@@ -2,6 +2,8 @@ package com.xst.server;
 
 import com.xst.common.pojo.AjaxResult;
 import com.xst.common.util.DataTables;
+import com.xst.model.Roles;
+import com.xst.model.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,5 +30,11 @@ public interface UserService {
 
     //用户分页显示
     DataTables getPageUserList(DataTables dataTables);
+
+    //改变用户状态
+    AjaxResult changeUserState(HttpServletRequest request, HttpServletResponse response);
+
+    //添加用户
+    AjaxResult addUpdate(User user);
 
 }
