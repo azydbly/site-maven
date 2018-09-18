@@ -197,7 +197,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public DataTables getPageUserList(DataTables dataTables) {
         PageHelper.startPage(dataTables.getPageNum(), dataTables.getLength()); // 核心分页代码
-        PageHelper.orderBy("convert(fullname using gbk) COLLATE gbk_chinese_ci asc");
+        PageHelper.orderBy("convert(u.fullname using gbk) COLLATE gbk_chinese_ci asc");
 
         if(!org.springframework.util.StringUtils.isEmpty(dataTables.getColumn())){
             PageHelper.orderBy(dataTables.getColumn() + " " + dataTables.getOrder());

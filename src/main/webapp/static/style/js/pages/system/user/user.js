@@ -48,7 +48,26 @@ $(function() {
             defaultContent: "",
         }, {
             data: "roleid",
-            defaultContent: "",
+            render: function(data, type, row, meta) {
+                var a = "";
+                if(data > 0){
+                    a = row.role.rolename;
+                }else{
+                    a = "暂未分配角色";
+                }
+                return a;
+            }
+        }, {
+            data: "roleid",
+            render: function(data, type, row, meta) {
+                var a = "";
+                if(data > 0){
+                    a =  '<a class="btn btn-link" onclick="distribute_action_Fun(' + row.number + ')">配置</a>';
+                }else{
+                    a =  '<a class="btn disabled radius">无需配置</a>';
+                }
+                return a;
+            },
         }, {
             data: "state",
             defaultContent: "",

@@ -2,6 +2,47 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xst.mapper.UserMapper">
 
+    <resultMap type="com.xst.model.User" id="userAll">
+        <id property="id" column="id"/>
+        <result property="fullname" column="fullname"/>
+        <result property="idtype" column="idtype"/>
+        <result property="idnumber" column="idnumber"/>
+        <result property="password" column="password"/>
+        <result property="salt" column="salt"/>
+        <result property="birthday" column="birthday"/>
+        <result property="email" column="email"/>
+        <result property="sex" column="sex"/>
+        <result property="nation" column="nation"/>
+        <result property="tel" column="tel"/>
+        <result property="unitid" column="unitid"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="county" column="county"/>
+        <result property="birthplace" column="birthplace"/>
+        <result property="imagefile" column="imagefile"/>
+        <result property="roleid" column="roleid"/>
+        <result property="address" column="address"/>
+        <result property="political" column="political"/>
+        <result property="suniversity" column="suniversity"/>
+        <result property="seducation" column="seducation"/>
+        <result property="smajor" column="smajor"/>
+        <result property="insertdatetime" column="insertdatetime"/>
+        <result property="operatordatetime" column="operatordatetime"/>
+        <result property="loginTime" column="loginTime"/>
+        <result property="loginIp" column="loginIp"/>
+        <result property="state" column="state" />
+        <result property="flag" column="flag" />
+
+        <association property="role" javaType="com.xst.model.Roles">
+            <result property="rolename" column="rolename" />
+            <result property="description" column="description" />
+            <result property="level" column="level" />
+            <result property="state" column="state" />
+            <result property="flag" column="flag" />
+        </association>
+    </resultMap>
+
+
     <!-- 公众部分 -->
     <sql id="selectColumn">
         id,fullname,idtype,idnumber,password,salt, DATE_FORMAT(birthday, '%Y-%m-%d') birthday,email,sex,nation,tel,unitid,province,city,county,birthplace,imagefile,
@@ -29,12 +70,15 @@
     </update>
 
     <!-- DataTabables 分页，搜索  -->
-    <select id="getPageUserList" resultType="com.xst.model.User">
+    <select id="getPageUserList" resultMap="userAll">
         select
-        <include refid="selectColumn"/>
-        from edu_user
+        u.id,fullname,u.idtype,u.idnumber,u.password,u.salt, DATE_FORMAT(u.birthday, '%Y-%m-%d') birthday,u.email,u.sex,u.nation,u.tel,u.unitid,u.province,u.city,u.county,u.birthplace,u.imagefile,
+        u.roleid,u.address,u.political,u.suniversity,u.seducation,u.smajor, DATE_FORMAT(u.insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime,
+        DATE_FORMAT(u.operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime, DATE_FORMAT(u.loginTime, '%Y-%m-%d %H:%i:%s') loginTime,u.loginIp,u.state,u.flag,r.rolename,r.level
+        from edu_user u
+        left join sys_roles r on u.roleid = r.id and r.flag = 1
         <where>
-            flag = 1
+            u.flag = 1
             <if test="subSQL != null and subSQL != '' ">
                 ${subSQL}
             </if>

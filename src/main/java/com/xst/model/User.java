@@ -105,6 +105,9 @@ public class User {
     //是否删除 0 删除  1 正常
     private int flag;
 
+    //角色实体类
+    private Roles role;
+
 
     public int getId() {
         return id;
@@ -336,5 +339,13 @@ public class User {
 
     public void setFlag(int flag) {
         this.flag = flag;
+    }
+
+    public Roles getRole() {
+        return role;
+    }
+
+    public void setRole(Roles role) {
+        this.role = role;
     }
 }

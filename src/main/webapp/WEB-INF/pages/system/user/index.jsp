@@ -51,6 +51,7 @@
                     <th class="col-md-list-3">邮箱</th>
                     <th class="col-md-list-2">电话</th>
                     <th class="col-md-list-2">角色</th>
+                    <th class="col-md-list-2">配置数据</th>
                     <th class="col-md-list-2">状态</th>
                     <th class="col-md-list-2">操作</th>
                 </tr>
@@ -68,6 +69,7 @@
                     <th class="col-md-list-3">邮箱</th>
                     <th class="col-md-list-2">电话</th>
                     <th class="col-md-list-2">角色</th>
+                    <th class="col-md-list-2">配置数据</th>
                     <th class="col-md-list-2">状态</th>
                     <th class="col-md-list-2">操作</th>
                 </tr>

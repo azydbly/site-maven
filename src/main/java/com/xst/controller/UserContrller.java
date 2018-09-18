@@ -41,7 +41,7 @@ public class UserContrller extends BaseController {
     @ControllerLog("用户 list 页面，分页显示用户")
     @RequestMapping("showPageUser")
     public String showPageUser(@RequestParam(value="state",required=false)String state, @RequestParam(value="fullname",required=false)String fullname, HttpServletRequest request, HttpServletResponse response){
-        state = StringUtils.isEmpty(state) ? "" : (" and state = " + state);
+        state = StringUtils.isEmpty(state) ? "" : (" and u.state = " + state);
         return JSON.toJSONString(userService.getPageUserList(DataTables.getInstance(request,state,fullname)));
     }
 }
