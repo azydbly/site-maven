@@ -24,9 +24,6 @@ public class User {
     //姓名
     private String fullname;
 
-    //证件类型
-    private int idtype;
-
     //身份证号
     private String idnumber;
 
@@ -51,9 +48,6 @@ public class User {
     //手机号
     private String tel;
 
-    //单位id
-    private int unitid;
-
     //籍贯省 id
     private int province;
 
@@ -71,9 +65,6 @@ public class User {
 
     //角色 id
     private int roleid;
-
-    //地址
-    private String address;
 
     //政治面貌 id
     private int political;
@@ -123,14 +114,6 @@ public class User {
 
     public void setFullname(String fullname) {
         this.fullname = fullname;
-    }
-
-    public int getIdtype() {
-        return idtype;
-    }
-
-    public void setIdtype(int idtype) {
-        this.idtype = idtype;
     }
 
     public String getIdnumber() {
@@ -197,14 +180,6 @@ public class User {
         this.tel = tel;
     }
 
-    public int getUnitid() {
-        return unitid;
-    }
-
-    public void setUnitid(int unitid) {
-        this.unitid = unitid;
-    }
-
     public int getProvince() {
         return province;
     }
@@ -251,14 +226,6 @@ public class User {
 
     public void setRoleid(int roleid) {
         this.roleid = roleid;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public int getPolitical() {

@@ -14,8 +14,8 @@ function getQueryString(name) {
 /**
  * 添加
  */
-function add(title, url,w,h) {
-    var index = layer.open({
+function add(title, url,w,h,type) {
+   var index = layer.open({
         type: 2,
         title: title,
         anim: 1, //0-6的动画形式，-1不开启
@@ -23,7 +23,13 @@ function add(title, url,w,h) {
         shade: false, // 允许进行下面的幢楼进行操作
         maxmin: true, //开启最大化最小化按钮
         area: [w,h],
-        content: [url,'no']
+        btn: ['提交', '取消'],
+        content: [url,type],
+        yes: function(index, layero){
+            //点击确认触发 iframe 内容中的按钮提交
+            var submit = layero.find('iframe').contents().find("input[type='submit']");
+            submit.click();
+        }
     });
 }
 
@@ -31,7 +37,7 @@ function add(title, url,w,h) {
 /**
  * 编辑-查看 
  */
-function edit_show(title, url, id,w,h) {
+function edit_show(title, url, id,w,h,type) {
 	var index = layer.open({
 		type: 2,
 		title: title,
@@ -40,7 +46,13 @@ function edit_show(title, url, id,w,h) {
 		maxmin: true, //开启最大化最小化按钮
 		shade: false, // 允许进行下面的幢楼进行操作
 		area: [w, h],
-		content: [url + '?id=' + id,'no']
+        btn: ['提交', '取消'],
+		content: [url + '?id=' + id,type],
+        yes: function(index, layero){
+            //点击确认触发 iframe 内容中的按钮提交
+            var submit = layero.find('iframe').contents().find("input[type='submit']");
+            submit.click();
+        }
 	});
 }
 

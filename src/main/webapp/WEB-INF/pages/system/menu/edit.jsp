@@ -50,7 +50,7 @@
 				<input type="text" class="input-text" name="remark" value="${menu.remark }" maxlength="50" />
 			</div>
 		</div>
-		<div class="row cl">
+		<div class="row cl hide">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
 				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
 				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>

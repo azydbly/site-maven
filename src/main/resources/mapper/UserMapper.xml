@@ -5,7 +5,6 @@
     <resultMap type="com.xst.model.User" id="userAll">
         <id property="id" column="id"/>
         <result property="fullname" column="fullname"/>
-        <result property="idtype" column="idtype"/>
         <result property="idnumber" column="idnumber"/>
         <result property="password" column="password"/>
         <result property="salt" column="salt"/>
@@ -14,14 +13,12 @@
         <result property="sex" column="sex"/>
         <result property="nation" column="nation"/>
         <result property="tel" column="tel"/>
-        <result property="unitid" column="unitid"/>
         <result property="province" column="province"/>
         <result property="city" column="city"/>
         <result property="county" column="county"/>
         <result property="birthplace" column="birthplace"/>
         <result property="imagefile" column="imagefile"/>
         <result property="roleid" column="roleid"/>
-        <result property="address" column="address"/>
         <result property="political" column="political"/>
         <result property="suniversity" column="suniversity"/>
         <result property="seducation" column="seducation"/>
@@ -45,8 +42,8 @@
 
     <!-- 公众部分 -->
     <sql id="selectColumn">
-        id,fullname,idtype,idnumber,password,salt, DATE_FORMAT(birthday, '%Y-%m-%d') birthday,email,sex,nation,tel,unitid,province,city,county,birthplace,imagefile,
-        roleid,address,political,suniversity,seducation,smajor, DATE_FORMAT(insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime,
+        id,fullname,idnumber,password,salt, DATE_FORMAT(birthday, '%Y-%m-%d') birthday,email,sex,nation,tel,province,city,county,birthplace,imagefile,
+        roleid,political,suniversity,seducation,smajor, DATE_FORMAT(insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime,
         DATE_FORMAT(operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime, DATE_FORMAT(loginTime, '%Y-%m-%d %H:%i:%s') loginTime,loginIp,state,flag
     </sql>
 
@@ -72,8 +69,8 @@
     <!-- DataTabables 分页，搜索  -->
     <select id="getPageUserList" resultMap="userAll">
         select
-        u.id,fullname,u.idtype,u.idnumber,u.password,u.salt, DATE_FORMAT(u.birthday, '%Y-%m-%d') birthday,u.email,u.sex,u.nation,u.tel,u.unitid,u.province,u.city,u.county,u.birthplace,u.imagefile,
-        u.roleid,u.address,u.political,u.suniversity,u.seducation,u.smajor, DATE_FORMAT(u.insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime,
+        u.id,fullname,u.idnumber,u.password,u.salt, DATE_FORMAT(u.birthday, '%Y-%m-%d') birthday,u.email,u.sex,u.nation,u.tel,u.province,u.city,u.county,u.birthplace,u.imagefile,
+        u.roleid,u.political,u.suniversity,u.seducation,u.smajor, DATE_FORMAT(u.insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime,
         DATE_FORMAT(u.operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime, DATE_FORMAT(u.loginTime, '%Y-%m-%d %H:%i:%s') loginTime,u.loginIp,u.state,u.flag,r.rolename,r.level
         from edu_user u
         left join sys_roles r on u.roleid = r.id and r.flag = 1
@@ -96,11 +93,11 @@
     <!-- 插入用户 -->
     <insert id="insertUser" parameterType="com.xst.model.User">
         insert into edu_user
-        (fullname,idtype,idnumber,password,salt,birthday,email,sex,nation,tel,unitid,province,city,county,birthplace,imagefile,
-        roleid,address,political,suniversity,smajor,insertdatetime,operatordatetime,state)
+        (fullname,idnumber,password,salt,birthday,email,sex,nation,tel,province,city,county,birthplace,imagefile,
+        roleid,political,suniversity,smajor,insertdatetime,operatordatetime,state)
         values
-        (#{fullname},#{idtype},#{idnumber},#{password},#{salt},${birthday},#{email,#{email},#{sex},#{tel},#{unitid},#{province},#{city},#{county},#{birthplace},#{imagefile},
-        #{roleid},#{address},#{political},#{suniversity},#{smajor},#{insertdatetime},#{operatordatetime},#{state})
+        (#{fullname},#{idnumber},#{password},#{salt},${birthday},#{email,#{email},#{sex},#{tel},#{province},#{city},#{county},#{birthplace},#{imagefile},
+        #{roleid},#{political},#{suniversity},#{smajor},#{insertdatetime},#{operatordatetime},#{state})
     </insert>
 
 </mapper>
