@@ -33,4 +33,7 @@ public interface UserMapper {
 
     //添加用户
     int insertUser(User user);
+
+    //根据角色id 查询用户数量
+    int countUserByRoleId(@Param("roleid") int roleid);
 }

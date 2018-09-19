@@ -58,10 +58,10 @@ $(function() {
                 return a;
             }
         }, {
-            data: "roleid",
+            data: null,
             render: function(data, type, row, meta) {
                 var a = "";
-                if(data > 0){
+                if(row.role.level == 3){
                     a =  '<a class="btn btn-link" onclick="distribute_action_Fun(' + row.number + ')">配置</a>';
                 }else{
                     a =  '<a class="btn disabled radius">无需配置</a>';

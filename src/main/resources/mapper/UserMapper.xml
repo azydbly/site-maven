@@ -100,4 +100,8 @@
         #{roleid},#{political},#{suniversity},#{smajor},#{insertdatetime},#{operatordatetime},#{state})
     </insert>
 
+
+    <select id="countUserByRoleId" resultType="int">
+          select count(1) count from edu_user where roleid = #{roleid}
+    </select>
 </mapper>

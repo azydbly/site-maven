@@ -12,6 +12,7 @@ import com.xst.mapper.RoleMapper;
 import com.xst.model.Menu;
 import com.xst.model.Roles;
 import com.xst.server.RoleService;
+import com.xst.server.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -36,6 +37,9 @@ public class RoleServiceImpl implements RoleService {
 
     @Autowired
     private RoleMapper roleMapper;
+
+    @Autowired
+    private UserService userService = new UserServiceImpl();
 
     @Autowired
     private ValidateRemoteController validateRemoteController;
@@ -100,9 +104,13 @@ public class RoleServiceImpl implements RoleService {
         String id = params.getString("id");
         String state = params.getString("state");
         String result = null;
-        int returnResult = roleMapper.changeRoleState(StrUtil.getInteger(id),StrUtil.getInteger(state));
-        if(returnResult < 1){
-            result = "操作失败";
+        if(userService.countUserByRoleId(StrUtil.getInteger(id)) > 0){
+            result = "角色下面存在用户禁止停用";
+        }else{
+            int returnResult = roleMapper.changeRoleState(StrUtil.getInteger(id),StrUtil.getInteger(state));
+            if(returnResult < 1){
+                result = "操作失败";
+            }
         }
         return AppUtil.returnObj(result);
     }

@@ -4,6 +4,7 @@ import com.xst.common.pojo.AjaxResult;
 import com.xst.common.util.DataTables;
 import com.xst.model.Roles;
 import com.xst.model.User;
+import org.apache.ibatis.annotations.Param;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,5 +37,8 @@ public interface UserService {
 
     //添加用户
     AjaxResult addUpdate(User user);
+
+    //根据角色id 查询用户数量
+    int countUserByRoleId(int roleid);
 
 }

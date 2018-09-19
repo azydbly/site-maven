@@ -233,6 +233,11 @@ public class UserServiceImpl implements UserService {
         return AppUtil.returnObj(result);
     }
 
+    @Override
+    public int countUserByRoleId(int roleid) {
+        return userMapper.countUserByRoleId(roleid);
+    }
+
     private String getSessionId(String userName, String ip) {
         String str = userName + "_" + System.currentTimeMillis() + "_" + ip;
         try {
