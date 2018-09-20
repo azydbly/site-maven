@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @ClassName: UserServiceImpl
@@ -236,6 +237,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public int countUserByRoleId(int roleid) {
         return userMapper.countUserByRoleId(roleid);
+    }
+
+    @Override
+    public int countUserByRoleIds(List<Integer> idlist) {
+        return userMapper.countUserByRoleIds(idlist);
     }
 
     private String getSessionId(String userName, String ip) {

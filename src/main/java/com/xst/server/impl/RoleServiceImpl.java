@@ -118,8 +118,12 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public AjaxResult deleteRole(List<Integer> idlist) {
         String result = null;
-        if(roleMapper.deleteRole(idlist) < 1){
-            result = "操作失败";
+        if(userService.countUserByRoleIds(idlist) > 0) {
+            result = "角色下面存在用户禁止删除";
+        }else {
+            if (roleMapper.deleteRole(idlist) < 1) {
+                result = "操作失败";
+            }
         }
         return AppUtil.returnObj(result);
     }

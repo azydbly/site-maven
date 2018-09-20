@@ -95,22 +95,12 @@ public class IdCard {
         return sGender;
     }
 
-    public static void main(String[] a) {
-        String idcard = "131102199606012014";
-        String sex = getGenderByIdCard(idcard);
-        System.out.println("性别:" + sex);
-        int age = getAgeByIdCard(idcard);
-        System.out.println("年龄:" + age);
-        Short nian = getYearByIdCard(idcard);
-        Short yue = getMonthByIdCard(idcard);
-        Short ri = getDateByIdCard(idcard);
-        System.out.print(nian + "年" + yue + "月" + ri + "日");
 
-        String sr = getBirthByIdCard(idcard);
-        System.out.println("生日:" + sr);
-    }
-
-
+    /**
+     * 15位省份证号装换 18位
+     * @param input
+     * @return
+     */
     public static String[] trans15bitTo18bit(String[] input) {
         String[] result = new String[18];
         for (int i = 0; i < input.length; i++) {
@@ -173,6 +163,45 @@ public class IdCard {
             result = string;
         }
         return result;
+    }
+
+    //根据18位省份证号获取性别
+    public String Sex(String IdCard) {
+        String sex = getGenderByIdCard(IdCard);
+        return sex;
+    }
+
+    //根据18位省份证号获取年龄
+    public int Age(String IdCard) {
+        int age = getAgeByIdCard(IdCard);
+        return age;
+    }
+
+    //根据18位省份证号获取出生年月
+    public String DateOfBirth(String IdCard) {
+        Short nian = getYearByIdCard(IdCard);
+        Short yue = getMonthByIdCard(IdCard);
+        Short ri = getDateByIdCard(IdCard);
+        String date = nian + "-" + yue + "-" + ri;
+        return date;
+    }
+
+    //根据18位省份证号获取生日
+    public String Birthday(String IdCard) {
+        String birthday = getBirthByIdCard(IdCard);
+        return birthday;
+    }
+
+
+    public static void main(String[] args){
+        String code = "131102960601201";
+        String reg = "^(.{6})(.{4})(.{2}).*$";
+        String a = code.replaceAll(reg, "$1");
+        String y = code.replaceAll(reg, "$2");
+        String m = code.replaceAll(reg, "$3");
+        System.out.println("所在地区代码：" + a);
+        System.out.println("出生年月: " + y + ", " + m);
+
     }
 
 

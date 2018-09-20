@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.xst.common.annotation.ControllerLog;
 import com.xst.common.pojo.AjaxResult;
 import com.xst.common.util.DataTables;
+import com.xst.model.Roles;
+import com.xst.model.User;
 import com.xst.server.UserService;
 import com.xst.server.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +59,13 @@ public class UserContrller extends BaseController {
     @RequestMapping("add")
     public String addUser(){
         return "system/user/add";
+    }
+
+    @ResponseBody
+    @ControllerLog("添加用户")
+    @RequestMapping("addUpdate")
+    public AjaxResult addUpdate(User user){
+        return userService.addUpdate(user);
     }
 
 }

@@ -100,8 +100,16 @@
         #{roleid},#{political},#{suniversity},#{smajor},#{insertdatetime},#{operatordatetime},#{state})
     </insert>
 
-
+    <!--根据角色id 查询用户数量（停用角色时使用）-->
     <select id="countUserByRoleId" resultType="int">
-          select count(1) count from edu_user where roleid = #{roleid}
+        select count(1) count from edu_user where flag= 1 and roleid = #{roleid}
+    </select>
+
+    <!--根据角色id 查询用户数量（批量删除角色时使用）-->
+    <select id="countUserByRoleIds" resultType="int">
+        select count(1) count from edu_user where flag= 1 and roleid in
+        <foreach collection="idlist" item="id" index="index" open="(" close=")" separator=",">
+          #{id,jdbcType=INTEGER}
+        </foreach>
     </select>
 </mapper>

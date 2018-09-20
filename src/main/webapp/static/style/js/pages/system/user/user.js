@@ -106,15 +106,12 @@ function reloadTable() {
 }
 
 function getDTSelect() {
+    idList = [];
     var lines = datatable.rows('.selected').data();
-    if(lines.length > 0){
-        for (var i = 0; i < lines.length; i++) {
-            idList.push(lines[i].id);
-        }
-        return idList;
-    }else{
-        return 0;
+    for (var i = 0; i < lines.length; i++) {
+        idList.push(lines[i].id);
     }
+    return idList;
 }
 
 

@@ -58,7 +58,7 @@
                 <tr class="text-c">
                     <th>序号</th>
                     <th class="col-md-list-1">
-                        <input id="input-0" type="checkbox" name="all"><label for="input-0"></label>
+                        <input id="input-1" type="checkbox" name="all"><label for="input-1"></label>
                     </th>
                     <th class="col-md-list-5">角色名称</th>
                     <th>角色描述</th>

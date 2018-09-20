@@ -6,7 +6,7 @@ $(function() {
     });
 });
 $("#form-member-add").validate({
-    rules:{
+   /* rules:{
         rolename:{
             required:true,
             remote:{
@@ -27,7 +27,7 @@ $("#form-member-add").validate({
                 }
             }
         },
-    },
+    },*/
     onkeyup:false,
     focusCleanup:true,
     success:"valid",

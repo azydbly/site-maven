@@ -38,7 +38,10 @@ public interface UserService {
     //添加用户
     AjaxResult addUpdate(User user);
 
-    //根据角色id 查询用户数量
+    //根据角色id 查询用户数量（停用角色时使用）
     int countUserByRoleId(int roleid);
+
+    //根据角色id 查询用户数量（批量删除角色时使用）
+    int countUserByRoleIds(List<Integer> idlist);
 
 }
