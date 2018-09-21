@@ -34,11 +34,11 @@
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>角色等级：</label>
 			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
 				<div class="radio-box" data-toggle="tooltip" data-placement="bottom" title="超级管理员">
-					<input type="radio" id="level-1" name="level" value="0" checked />
+					<input type="radio" id="level-1" name="level" value="0" />
 					<label for="level-1">超级管理员</label>
 				</div>
 				<div class="radio-box" data-toggle="tooltip" data-placement="bottom" title="需要配置菜单和功能">
-					<input type="radio" id="level-2" name="level" value="1" />
+					<input type="radio" id="level-2" name="level" value="1" checked />
 					<label for="level-2">管理员</label>
 				</div>
                 <div class="radio-box" data-toggle="tooltip" data-placement="bottom" title="省市区县单位的管理员">

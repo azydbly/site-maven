@@ -226,6 +226,11 @@ public class UserServiceImpl implements UserService {
         String id = params.getString("id");
         String state = params.getString("state");
         String result = null;
+        User user = userMapper.selectUserByIdNumber(null,id);
+        if(user.getState() == 2){
+            Lock lock = lockService.queryByUserId(user.getIdnumber());
+            lockService.updateFlagById(lock.getId());
+        }
         int returnResult = userMapper.changeUserState(StrUtil.getInteger(id),StrUtil.getInteger(state));
         if(returnResult < 1){
             result = "操作失败";

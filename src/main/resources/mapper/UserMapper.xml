@@ -132,7 +132,7 @@
         select
         <include refid="selectColumn"/>
         from edu_user
-        where 1 = 1
+        where flag = 1
         <if test="idnumber != null and idnumber != '' ">
             and idnumber = #{idnumber}
         </if>

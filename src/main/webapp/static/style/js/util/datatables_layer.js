@@ -15,7 +15,6 @@ function getQueryString(name) {
  * 添加
  */
 function add(title, url,h,type) {
-    var w = 880;
 	if(h == 1){
 		h = 700;
 	}
@@ -26,7 +25,7 @@ function add(title, url,h,type) {
         shadeClose: false,
         shade: false, // 允许进行下面的幢楼进行操作
         maxmin: true, //开启最大化最小化按钮
-        area: [w,h],
+        area: ['880',h],
         btn: ['提交', '取消'],
         content: [url,type],
         yes: function(index, layero){
@@ -42,7 +41,6 @@ function add(title, url,h,type) {
  * 编辑-查看 
  */
 function edit_show(title, url, id,h,type) {
-    var w = 880;
     if(h == 1){
         h = 700;
     }
@@ -53,7 +51,7 @@ function edit_show(title, url, id,h,type) {
 		shadeClose: false,
 		maxmin: true, //开启最大化最小化按钮
 		shade: false, // 允许进行下面的幢楼进行操作
-		area: [w, h],
+		area: ['880', h],
         btn: ['提交', '取消'],
 		content: [url + '?id=' + id,type],
         yes: function(index, layero){
