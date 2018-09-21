@@ -19,7 +19,7 @@ public interface RoleMapper {
     List<Roles> getPageRoleList(@Param("search") String search, @Param("subSQL") String subSQL);
 
     //验证角色名称是否重复
-    Roles selectRoleByRoleName(@Param("rolename") String menuname,@Param("id") String id);
+    Roles selectRoleByRoleName(@Param("rolename") String rolename,@Param("id") String id);
 
     //添加角色
     int insertRoles(Roles roles);
@@ -35,5 +35,9 @@ public interface RoleMapper {
 
     //删除角色
     int deleteRole(@Param("idlist")List<Integer> idlist);
+
+    //查询所有角色
+    List<Roles> getRoleList();
+
 }
 

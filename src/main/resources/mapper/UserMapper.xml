@@ -37,6 +37,15 @@
             <result property="state" column="state" />
             <result property="flag" column="flag" />
         </association>
+
+        <association property="areas" javaType="com.xst.model.Areas">
+            <result property="id" column="id" />
+            <result property="number" column="number" />
+            <result property="name" column="name" />
+            <result property="level" column="level" />
+            <result property="state" column="state" />
+            <result property="flag" column="flag" />
+        </association>
     </resultMap>
 
 
@@ -71,9 +80,13 @@
         select
         u.id,fullname,u.idnumber,u.password,u.salt, DATE_FORMAT(u.birthday, '%Y-%m-%d') birthday,u.email,u.sex,u.nation,u.tel,u.province,u.city,u.county,u.birthplace,u.imagefile,
         u.roleid,u.political,u.suniversity,u.seducation,u.smajor, DATE_FORMAT(u.insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime,
-        DATE_FORMAT(u.operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime, DATE_FORMAT(u.loginTime, '%Y-%m-%d %H:%i:%s') loginTime,u.loginIp,u.state,u.flag,r.rolename,r.level
+        DATE_FORMAT(u.operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime, DATE_FORMAT(u.loginTime, '%Y-%m-%d %H:%i:%s') loginTime,u.loginIp,u.state,u.flag,r.rolename,r.level,
+        a1.name provinceName,a2.name cityName,a3.name countyName
         from edu_user u
         left join sys_roles r on u.roleid = r.id and r.flag = 1
+        left join edu_areas a1 on a1.number = u.province and a1.flag = 1 and a1.state = 1
+        left join edu_areas a2 on a2.number = u.city and a2.flag = 1 and a2.state = 1
+        left join edu_areas a3 on a3.number = u.county and a3.flag = 1 and a3.state = 1
         <where>
             u.flag = 1
             <if test="subSQL != null and subSQL != '' ">
@@ -93,11 +106,11 @@
     <!-- 插入用户 -->
     <insert id="insertUser" parameterType="com.xst.model.User">
         insert into edu_user
-        (fullname,idnumber,password,salt,birthday,email,sex,nation,tel,province,city,county,birthplace,imagefile,
-        roleid,political,suniversity,smajor,insertdatetime,operatordatetime,state)
+        (fullname,idnumber,password,salt,birthday,email,sex,nation,tel,province,city,county,birthplace,
+        roleid,political,suniversity,seducation,smajor,insertdatetime,operatordatetime,state)
         values
-        (#{fullname},#{idnumber},#{password},#{salt},${birthday},#{email,#{email},#{sex},#{tel},#{province},#{city},#{county},#{birthplace},#{imagefile},
-        #{roleid},#{political},#{suniversity},#{smajor},#{insertdatetime},#{operatordatetime},#{state})
+        (#{fullname},#{idnumber},#{password},#{salt},#{birthday},#{email},#{sex},#{nation},#{tel},#{province},#{city},#{county},#{birthplace},
+        #{roleid},#{political},#{suniversity},#{seducation},#{smajor},#{insertdatetime},#{operatordatetime},#{state})
     </insert>
 
     <!--根据角色id 查询用户数量（停用角色时使用）-->
@@ -111,5 +124,20 @@
         <foreach collection="idlist" item="id" index="index" open="(" close=")" separator=",">
           #{id,jdbcType=INTEGER}
         </foreach>
+    </select>
+
+
+    <!-- 根据身份证号查询 -->
+    <select id="selectUserByIdNumber" resultType="com.xst.model.User">
+        select
+        <include refid="selectColumn"/>
+        from edu_user
+        where 1 = 1
+        <if test="idnumber != null and idnumber != '' ">
+            and idnumber = #{idnumber}
+        </if>
+        <if test="id != null and id != '' ">
+            and id != #{id}
+        </if>
     </select>
 </mapper>

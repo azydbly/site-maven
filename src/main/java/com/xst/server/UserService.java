@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -36,12 +37,15 @@ public interface UserService {
     AjaxResult changeUserState(HttpServletRequest request, HttpServletResponse response);
 
     //添加用户
-    AjaxResult addUpdate(User user);
+    AjaxResult addUpdate(User user) throws Exception;
 
     //根据角色id 查询用户数量（停用角色时使用）
     int countUserByRoleId(int roleid);
 
     //根据角色id 查询用户数量（批量删除角色时使用）
     int countUserByRoleIds(List<Integer> idlist);
+
+    //省份证号重复验证
+    void idNumberValidate(HttpServletRequest request, HttpServletResponse response) throws IOException;
 
 }

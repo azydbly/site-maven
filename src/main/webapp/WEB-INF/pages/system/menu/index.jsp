@@ -18,7 +18,7 @@
             <a href="javascript:;" onclick="delAll(getDTSelect(), '/menu/delete', reloadTable)" class="btn btn-danger radius">
                 <i class="Hui-iconfont">&#xe6e2;</i> 批量删除
             </a>
-            <a href="javascript:;" onclick="add('添加菜单','/menu/add','880','360','no')" class="btn btn-primary radius">
+            <a href="javascript:;" onclick="add('添加菜单','/menu/add','360','no')" class="btn btn-primary radius">
                 <i class="Hui-iconfont">&#xe600;</i> 添加菜单
             </a>
         </span>

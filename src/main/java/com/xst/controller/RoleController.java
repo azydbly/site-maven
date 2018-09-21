@@ -65,7 +65,7 @@ public class RoleController  extends BaseController{
     }
 
     @ResponseBody
-    @ControllerLog("添加菜单")
+    @ControllerLog("添加角色")
     @RequestMapping("addUpdate")
     public AjaxResult addUpdate(Roles role){
         return roleService.addUpdate(role);

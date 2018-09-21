@@ -39,4 +39,7 @@ public interface RoleService {
 
     //删除角色
     AjaxResult deleteRole(List<Integer> idlist);
+
+    //查询所有角色
+    List<Roles> getRoleList();
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xst.mapper.DictitemMapper">
+
+    <resultMap type="com.xst.model.Dictitem" id="dictiemAll">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="description" column="description"/>
+        <result property="dictionary" column="dictionary"/>
+        <result property="flag" column="flag"/>
+
+        <association property="dictionar" javaType="com.xst.model.Dictionary">
+            <result property="cnname" column="cnname"/>
+            <result property="description" column="description"/>
+            <result property="name" column="name"/>
+            <result property="flag" column="flag"/>
+        </association>
+    </resultMap>
+
+    <!-- 公众部分 -->
+    <sql id="selectColumn">
+        id,name,description,dictionary,flag
+    </sql>
+
+    <!--根据字典名称查询详情-->
+    <select id="getDistiemList" resultMap="dictiemAll">
+        select a.id,a.name,a.description,a.dictionary,a.flag from sys_dictitem a
+        left join sys_dictionary b on a.dictionary = b.id  and b.flag = 1
+        where a.flag = 1 and b.cnname = #{cnname}
+    </select>
+
+</mapper>

@@ -39,4 +39,7 @@ public interface UserMapper {
 
     //根据角色id 查询用户数量（批量删除角色时使用）
     int countUserByRoleIds(@Param("idlist") List<Integer> idlist);
+
+    //验证身份证号是否重复
+    User selectUserByIdNumber(@Param("idnumber") String idnumber,@Param("id") String id);
 }

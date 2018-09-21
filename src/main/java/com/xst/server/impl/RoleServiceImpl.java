@@ -127,4 +127,9 @@ public class RoleServiceImpl implements RoleService {
         }
         return AppUtil.returnObj(result);
     }
+
+    @Override
+    public List<Roles> getRoleList() {
+        return roleMapper.getRoleList();
+    }
 }

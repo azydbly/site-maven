@@ -2,6 +2,7 @@ package com.xst.server.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.xst.common.controller.ValidateRemoteController;
 import com.xst.common.pojo.AjaxResult;
 import com.xst.common.pojo.Identity;
 import com.xst.common.pojo.ParamData;
@@ -9,6 +10,7 @@ import com.xst.common.util.*;
 import com.xst.controller.BaseController;
 import com.xst.mapper.UserMapper;
 import com.xst.model.Lock;
+import com.xst.model.Roles;
 import com.xst.model.User;
 import com.xst.server.LockService;
 import com.xst.server.UserService;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,7 +48,16 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private LockService lockService = new LockServiceImpl();
 
+    @Autowired
+    private ValidateRemoteController validateRemoteController;
+
+    IdCard idCard = new IdCard();
+
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+    PasswordUtil passwordUtil = new PasswordUtil();
 
     @Autowired
     private DataCache dataCache;
@@ -65,7 +77,6 @@ public class UserServiceImpl implements UserService {
             Boolean flag = false;
             // 1 cookie 没有值或者cookie 中的password 用户自己更改过，0 是cookie 有值
             if("1".equals(type)){
-                PasswordUtil passwordUtil = new PasswordUtil();
                 flag = passwordUtil.LoginPassword(user.getPassword(),password,user.getSalt());
             }
             if ("0".equals(type)){
@@ -223,10 +234,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public AjaxResult addUpdate(User user) {
+    public AjaxResult addUpdate(User user) throws Exception {
         String result = null;
         user.setInsertdatetime(new Date());
         user.setOperatordatetime(new Date());
+        user.setBirthday(simpleDateFormat.parse(idCard.DateOfBirth(user.getIdnumber())));
+        String salt = passwordUtil.getStringRandom(6);
+        user.setSalt(salt);
+        user.setPassword(passwordUtil.Md5LoginPassword(idCard.getSixEndNumber(user.getIdnumber()),salt));
+        user.setSex(idCard.getGenderByIdCard(user.getIdnumber()).toCharArray()[0]);
         int returnResult = userMapper.insertUser(user);
         if(returnResult < 1){
             result = "添加失败";
@@ -242,6 +258,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public int countUserByRoleIds(List<Integer> idlist) {
         return userMapper.countUserByRoleIds(idlist);
+    }
+
+    @Override
+    public void idNumberValidate(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        ParamData params = new ParamData();
+        String idnumber = params.getString("idnumber");
+        String id = params.getString("id");
+        User user = userMapper.selectUserByIdNumber(idnumber,id);
+        validateRemoteController.validateReturn(request,response,user);
     }
 
     private String getSessionId(String userName, String ip) {

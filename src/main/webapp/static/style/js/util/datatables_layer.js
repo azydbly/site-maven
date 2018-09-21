@@ -14,7 +14,11 @@ function getQueryString(name) {
 /**
  * 添加
  */
-function add(title, url,w,h,type) {
+function add(title, url,h,type) {
+    var w = 880;
+	if(h == 1){
+		h = 700;
+	}
    var index = layer.open({
         type: 2,
         title: title,
@@ -37,7 +41,11 @@ function add(title, url,w,h,type) {
 /**
  * 编辑-查看 
  */
-function edit_show(title, url, id,w,h,type) {
+function edit_show(title, url, id,h,type) {
+    var w = 880;
+    if(h == 1){
+        h = 700;
+    }
 	var index = layer.open({
 		type: 2,
 		title: title,

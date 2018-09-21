@@ -6,7 +6,11 @@ import com.xst.common.pojo.AjaxResult;
 import com.xst.common.util.DataTables;
 import com.xst.model.Roles;
 import com.xst.model.User;
+import com.xst.server.DictitemService;
+import com.xst.server.RoleService;
 import com.xst.server.UserService;
+import com.xst.server.impl.DictitemServiceImpl;
+import com.xst.server.impl.RoleServiceImpl;
 import com.xst.server.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.lang.reflect.Array;
 
 /**
  * @ClassName: UserContrller
@@ -32,6 +38,15 @@ public class UserContrller extends BaseController {
 
     @Autowired
     private UserService userService = new UserServiceImpl();
+
+    @Autowired
+    private RoleService roleService = new RoleServiceImpl();
+
+    @Autowired
+    private DictitemService dictitemService = new DictitemServiceImpl();
+
+    @Autowired
+    private AreasContrller areasContrller;
 
 
     @ControllerLog("进入用户 list 页面")
@@ -57,15 +72,27 @@ public class UserContrller extends BaseController {
 
     @ControllerLog("进入用户 add 页面")
     @RequestMapping("add")
-    public String addUser(){
+    public String addUser(HttpServletRequest request, HttpServletResponse response){
+        String[] dictionary = {"nation","politics"};
+        for(String cnname : dictionary){
+            request.setAttribute(cnname + "List",dictitemService.getDistiemList(cnname));
+        }
+        request.setAttribute("provinceList",areasContrller.getAreasByProvince());
+        request.setAttribute("roleList",roleService.getRoleList());
         return "system/user/add";
     }
 
     @ResponseBody
     @ControllerLog("添加用户")
     @RequestMapping("addUpdate")
-    public AjaxResult addUpdate(User user){
+    public AjaxResult addUpdate(User user) throws Exception{
         return userService.addUpdate(user);
+    }
+
+    @ControllerLog("身份证号重复验证")
+    @RequestMapping("idnumber/validate")
+    public void idNumberValidate(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        userService.idNumberValidate(request,response);
     }
 
 }

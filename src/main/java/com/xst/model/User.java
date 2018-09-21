@@ -99,6 +99,8 @@ public class User {
     //角色实体类
     private Roles role;
 
+    //省市区县实体类
+    private Areas areas;
 
     public int getId() {
         return id;
@@ -314,5 +316,13 @@ public class User {
 
     public void setRole(Roles role) {
         this.role = role;
+    }
+
+    public Areas getAreas() {
+        return areas;
+    }
+
+    public void setAreas(Areas areas) {
+        this.areas = areas;
     }
 }

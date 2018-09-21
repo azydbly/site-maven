@@ -49,13 +49,7 @@ $(function() {
         }, {
             data: "roleid",
             render: function(data, type, row, meta) {
-                var a = "";
-                if(data > 0){
-                    a = row.role.rolename;
-                }else{
-                    a = "暂未分配角色";
-                }
-                return a;
+                return row.role.rolename;
             }
         }, {
             data: null,
@@ -85,7 +79,7 @@ $(function() {
                     a =  '<a class="btn disabled radius">暂无操作功能</a>';
                 }else{
                     a += '<a title="' + state[data] + '" style="text-decoration:none" onClick="changeStatus(' + "'" + state[data] + "'" + ',[' + "'" + row.fullname + "'" + '],\'/user/userState\',' + row.id + ', ' + flag[data] + ')" href="javascript:;"><i class="Hui-iconfont">' + icon[data] + '</i></a>';
-                    a += '<a title="编辑" href="javascript:;" onclick="edit_show([' + "'" + row.fullname + "'" + '],\'/user/edit\',' + row.id + ',\'893\',\'320\',\'yes\')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>';
+                    a += '<a title="编辑" href="javascript:;" onclick="edit_show([' + "'" + row.fullname + "'" + '],\'/user/edit\',' + row.id + ',\'320\',\'yes\')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>';
                     a += '<a title="删除" href="javascript:;" onclick="del([' + row.id + '],\'/user/delete\',[' + "'" + row.fullname + "'" + '],reloadTable)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>';
                 }
                 return a;

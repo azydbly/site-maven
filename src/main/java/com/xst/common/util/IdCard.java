@@ -77,6 +77,17 @@ public class IdCard {
         return Short.valueOf(idCard.substring(12, 14));
     }
 
+
+    /**
+     * 根据身份编号获取后6位
+     *
+     * @param idCard 身份编号
+     * @return 身份证号后6位
+     */
+    public static String getSixEndNumber(String idCard) {
+        return idCard.substring(12,18);
+    }
+
     /**
      * 根据身份编号获取性别
      *
@@ -88,9 +99,9 @@ public class IdCard {
 
         String sCardNum = idCard.substring(16, 17);
         if (Integer.parseInt(sCardNum) % 2 != 0) {
-            sGender = "1";//男
+            sGender = "男";//男
         } else {
-            sGender = "2";//女
+            sGender = "女";//女
         }
         return sGender;
     }
@@ -165,18 +176,6 @@ public class IdCard {
         return result;
     }
 
-    //根据18位省份证号获取性别
-    public String Sex(String IdCard) {
-        String sex = getGenderByIdCard(IdCard);
-        return sex;
-    }
-
-    //根据18位省份证号获取年龄
-    public int Age(String IdCard) {
-        int age = getAgeByIdCard(IdCard);
-        return age;
-    }
-
     //根据18位省份证号获取出生年月
     public String DateOfBirth(String IdCard) {
         Short nian = getYearByIdCard(IdCard);
@@ -186,15 +185,9 @@ public class IdCard {
         return date;
     }
 
-    //根据18位省份证号获取生日
-    public String Birthday(String IdCard) {
-        String birthday = getBirthByIdCard(IdCard);
-        return birthday;
-    }
 
-
-    public static void main(String[] args){
-        String code = "131102960601201";
+     /*public static void main(String[] args){
+       String code = "131102960601201";
         String reg = "^(.{6})(.{4})(.{2}).*$";
         String a = code.replaceAll(reg, "$1");
         String y = code.replaceAll(reg, "$2");
@@ -202,7 +195,7 @@ public class IdCard {
         System.out.println("所在地区代码：" + a);
         System.out.println("出生年月: " + y + ", " + m);
 
-    }
+    }*/
 
 
 }

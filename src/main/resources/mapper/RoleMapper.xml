@@ -72,5 +72,13 @@
         </foreach>
     </update>
 
+    <!--查询所有的角色-->
+    <select id="getRoleList" resultType="com.xst.model.Roles">
+        select
+        <include refid="selectColumn"/>
+        from sys_roles
+        where state = 1 and flag = 1
+    </select>
+
 
 </mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xst.mapper.AreasMapper">
+
+    <!-- 公众部分 -->
+    <sql id="selectColumn">
+        id,number,name,pid,areaCode,zipCode,level,state,flag
+    </sql>
+
+    <!--查询下级的省市区县-->
+    <select id="getAreasByPid" resultType="com.xst.model.Areas">
+        select
+        <include refid="selectColumn" />
+        from edu_areas
+        where flag = 1 and state = 1 and level = #{level} and pid = #{pid}
+    </select>
+
+    <!--查询全部省-->
+    <select id="getAreasByProvince" resultType="com.xst.model.Areas">
+        select
+        <include refid="selectColumn" />
+        from edu_areas
+        where flag = 1 and state = 1 and level = 1
+    </select>
+
+
+</mapper>
