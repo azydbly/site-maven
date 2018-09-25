@@ -127,4 +127,11 @@ public class UserContrller extends BaseController {
     }
 
 
+    @ControllerLog("配置用户数据权限页面")
+    @RequestMapping("configure")
+    public String Configure(HttpServletRequest request, HttpServletResponse response){
+        return "system/user/configure";
+    }
+
+
 }

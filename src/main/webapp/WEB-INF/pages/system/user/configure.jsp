@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/layouts/ztree.jsp" %>
 <html>
 <head>
-    <title>角色配置权限</title>
+    <title>用户配置数据</title>
     <script>
         var setting = {
             check: {
@@ -16,13 +16,11 @@
         };
 
         $(document).ready(function(){
-            var zNodes;
             $.ajax({
                 type: "post",
                 url: baselocation + "/areas/getAreas",
                 success: function (msg) {
-                    zNodes = msg;
-                    $.fn.zTree.init($("#treeJurisdiction"), setting, zNodes);
+                    $.fn.zTree.init($("#treeRegion"), setting, msg);
                 }
             });
         });
@@ -32,7 +30,7 @@
 <div class="content_wrap">
     <form class="form form-horizontal" id="form-member-add">
         <div class="zTreeDemoBackground left">
-            <ul id="treeJurisdiction" class="ztree"></ul>
+            <ul id="treeRegion" class="ztree"></ul>
         </div>
         <div class="hide-ztree">
             <input type="submit" value="提交">

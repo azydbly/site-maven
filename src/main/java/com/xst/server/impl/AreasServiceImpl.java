@@ -44,7 +44,7 @@ public class AreasServiceImpl implements AreasService {
     }
 
     @Override
-    public List<Areas> getAreas() {
-        return areasMapper.getAreas();
+    public List<Areas> getAreas(List<Integer> idlist) {
+        return areasMapper.getAreas(idlist);
     }
 }

@@ -44,7 +44,11 @@
         select
         <include refid="selectColumn" />
         from edu_areas
-        where flag = 1 and state = 1 and level in (1) order by number
+        where flag = 1 and state = 1 and level in
+        <foreach collection="idlist" item="level" index ="index" open="(" close=")" separator=",">
+            #{level,jdbcType=INTEGER}
+        </foreach>
+        order by number
     </select>
 
 

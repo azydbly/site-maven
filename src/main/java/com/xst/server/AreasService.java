@@ -28,5 +28,5 @@ public interface AreasService {
     List<Areas> getAreasByCountyByCity(int pid);
 
     //根据全部省市区县
-    List<Areas> getAreas();
+    List<Areas> getAreas(List<Integer> idlist);
 }

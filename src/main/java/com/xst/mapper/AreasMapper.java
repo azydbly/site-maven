@@ -28,5 +28,5 @@ public interface AreasMapper {
     List<Areas> getAreasByCountyByCity(@Param("pid") int pid);
 
     //根据全部省市区县
-    List<Areas> getAreas();
+    List<Areas> getAreas(@Param("idlist") List<Integer> idlist);
 }

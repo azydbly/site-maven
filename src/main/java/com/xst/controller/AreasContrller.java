@@ -66,7 +66,11 @@ public class AreasContrller extends BaseController {
     @ControllerLog("根据全部省市区县")
     @RequestMapping(value = "getAreas", produces = "application/json; charset=utf-8")
     public String getAreas(){
-        List<Areas> list = areasService.getAreas();
+        List<Integer> listObject = new ArrayList<Integer>();
+        for(int i = 1; i <= 3; i++){
+            listObject.add(i);
+        }
+        List<Areas> list = areasService.getAreas(listObject);
         List<ZtreeNode> l = new ArrayList<ZtreeNode>();
         for(int i = 0; i < list.size(); i++){
             ZtreeNode ztreeNode = new ZtreeNode();
@@ -78,7 +82,6 @@ public class AreasContrller extends BaseController {
         }
         Gson gson = new Gson();
         String json = gson.toJson(l);
-        System.out.println("-=------" + json);
         return json;
     }
 

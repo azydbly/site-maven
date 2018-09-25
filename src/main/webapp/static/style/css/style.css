@@ -124,3 +124,9 @@
     width:200px;
     margin-left: 5px;
 }
+
+
+/* ztree 隐藏提交按钮 */
+.hide-ztree {
+    display: none
+}
