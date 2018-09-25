@@ -43,4 +43,7 @@ public interface UserMapper {
     //根据用户id查询用户
     User selectUserById(@Param("id") int id);
 
+    //更改用户锁定状态
+    int updateStateById(@Param("state") int state,@Param("lockid") int lockid,@Param("id") int id);
+
 }

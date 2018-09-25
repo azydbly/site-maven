@@ -60,7 +60,7 @@ $(function() {
             render: function(data, type, row, meta) {
                 var a = "";
                 a += '<a title="' + state[data] + '" style="text-decoration:none" onClick="changeStatus(' + "'" +  state[data] + "'" + ',[' + "'" + row.menuname + "'" + '],\'/menu/menuState\',' + row.id + ', '+ flag[data] + ')" href="javascript:;"><i class="Hui-iconfont">' + icon[data] + '</i></a>';
-                a += '<a title="编辑" href="javascript:;" onclick="edit_show([' + "'" + row.menuname + "'" + '],\'/menu/edit\',' + row.id + ',\'360\',\'no\')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>';
+                a += '<a title="编辑" href="javascript:;" onclick="edit_show([' + "'" + row.menuname + "'" + '],\'/menu/edit\',' + row.id + ',\'1\',\'360\',\'no\')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>';
                 a += '<a title="删除" href="javascript:;" onclick="del([' + row.id + '],\'/menu/delete\',[' + "'" + row.menuname + "'" + '],reloadTable)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>';
                 return a;
             }

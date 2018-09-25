@@ -18,7 +18,7 @@
             <a href="javascript:;" onclick="delAll(getDTSelect(), '/roles/delete', reloadTable)" class="btn btn-danger radius">
                 <i class="Hui-iconfont">&#xe6e2;</i> 批量删除
             </a>
-            <a href="javascript:;" onclick="add('添加角色','/roles/add','310','no')" class="btn btn-primary radius">
+            <a href="javascript:;" onclick="add('添加角色','/roles/add','1','310','no')" class="btn btn-primary radius">
                 <i class="Hui-iconfont">&#xe600;</i> 添加角色
             </a>
         </span>

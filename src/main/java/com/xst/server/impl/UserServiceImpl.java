@@ -101,7 +101,7 @@ public class UserServiceImpl implements UserService {
                             Date dt2 = sdf.parse(lock.getOperatordatetime());
                             if (dt2.getTime() <= dt1.getTime()) {
                                 lockService.updateFlagById(lock.getId());
-                                userMapper.changeUserState(user.getId(),1,lock.getId());
+                                userMapper.updateStateById(1,lock.getId(),user.getId());
                                 userResult = true;
                             } else {
                                 long time = dt1.getTime() - dt2.getTime();
@@ -229,11 +229,18 @@ public class UserServiceImpl implements UserService {
         User user = selectUserById(StrUtil.getInteger(id));
         if(user.getState() == 2){
             Lock lock = lockService.queryByUserId(user.getIdnumber());
-            lockService.updateFlagById(lock.getId());
-        }
-        int returnResult = userMapper.changeUserState(StrUtil.getInteger(id),StrUtil.getInteger(state),0);
-        if(returnResult < 1){
-            result = "操作失败";
+            int a = lockService.updateFlagById(lock.getId());
+            if(a > 0){
+                int resultFlag = userMapper.updateStateById(1,lock.getId(),user.getId());
+                if(resultFlag < 1){
+                    result = "操作失败";
+                }
+            }
+        }else {
+            int returnResult = userMapper.changeUserState(StrUtil.getInteger(id), StrUtil.getInteger(state), 0);
+            if(returnResult < 1){
+                result = "操作失败";
+            }
         }
         return AppUtil.returnObj(result);
     }

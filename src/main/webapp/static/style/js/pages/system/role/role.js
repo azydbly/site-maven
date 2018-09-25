@@ -74,7 +74,7 @@ $(function() {
                     a =  '<a class="btn disabled radius">暂无操作功能</a>';
                 }else{
                     a += '<a title="' + state[data] + '" style="text-decoration:none" onClick="changeStatus(' + "'" + state[data] + "'" + ',[' + "'" + row.rolename + "'" + '],\'/roles/roleState\',' + row.id + ', ' + flag[data] + ')" href="javascript:;"><i class="Hui-iconfont">' + icon[data] + '</i></a>';
-                    a += '<a title="编辑" href="javascript:;" onclick="edit_show([' + "'" + row.rolename + "'" + '],\'/roles/edit\',' + row.id + ',\'310\',\'no\')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>';
+                    a += '<a title="编辑" href="javascript:;" onclick="edit_show([' + "'" + row.rolename + "'" + '],\'/roles/edit\',' + row.id + ',\'1\',\'310\',\'no\')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>';
                     a += '<a title="删除" href="javascript:;" onclick="del([' + row.id + '],\'/roles/delete\',[' + "'" + row.rolename + "'" + '],reloadTable)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>';
                 }
                 return a;
