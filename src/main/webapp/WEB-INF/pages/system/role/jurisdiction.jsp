@@ -2,33 +2,10 @@
 <%@ include file="/WEB-INF/layouts/ztree.jsp" %>
 <html>
 <head>
-    <title>角色配置权限</title>
-    <script>
-        var setting = {
-            check: {
-                enable: true
-            },
-            data: {
-                simpleData: {
-                    enable: true
-                }
-            }
-        };
-
-        $(document).ready(function(){
-            var zNodes;
-            $.ajax({
-                type: "post",
-                url: baselocation + "/areas/getAreas",
-                success: function (msg) {
-                    zNodes = msg;
-                    $.fn.zTree.init($("#treeJurisdiction"), setting, zNodes);
-                }
-            });
-        });
-    </script>
+<title>角色配置权限</title>
 </head>
 <body>
+<script src="${ctxstc}/style/js/pages/system/user/jurisdiction.js"></script>
 <div class="content_wrap">
     <form class="form form-horizontal" id="form-member-add">
         <div class="zTreeDemoBackground left">
