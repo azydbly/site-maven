@@ -49,5 +49,11 @@ public interface UserService {
     void idNumberValidate(HttpServletRequest request, HttpServletResponse response) throws IOException;
 
     //根据用户id查询用户
-    User selectUserById(int id);
+    User selectUserById(HttpServletRequest request, HttpServletResponse response);
+
+    //更新用户
+    AjaxResult editUpdate(User user);
+
+    //删除用户
+    AjaxResult deleteUser(List<Integer> idlist);
 }

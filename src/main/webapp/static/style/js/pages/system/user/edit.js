@@ -6,31 +6,10 @@ $(function () {
     });
 });
 
-$("#form-member-add").validate({
+$("#form-member-edit").validate({
     rules: {
         fullname: {
             required: true,
-        },
-        idnumber: {
-            required: true,
-            isIdCardNo: true,
-            remote: {
-                url: baselocation + "/user/idnumber/validate",
-                type: "post",
-                data: {
-                    idnumber: function () {
-                        return $("#idnumber").val();
-                    },
-                },
-                dataType: "html",
-                dataFilter: function (data, type) {
-                    if (data == "true") {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-            },
         },
         email: {
             required: true,
@@ -65,7 +44,7 @@ $("#form-member-add").validate({
     submitHandler: function (form) {
         $(form).ajaxSubmit({
             type: "post",
-            url: baselocation + "/user/addUpdate",
+            url: baselocation + "/user/editUpdate",
             data: $(form).serialize(),
             dataType: "json",
             success: function (data) {
@@ -77,7 +56,7 @@ $("#form-member-add").validate({
                     parent.$('#layui-layer' + index).css({'display': 'none'});
                     parent.$('#layui-layer-shade' + index).css({'display': 'none'});
                     parent.reloadTable(); //再刷新DT
-                    parent.showSuccessMessage("添加成功", null, function () {
+                    parent.showSuccessMessage("修改成功", null, function () {
                         parent.layer.close(index); //然后执行关闭
                     });
                 }

@@ -1,5 +1,6 @@
 package com.xst.server;
 
+import com.xst.mapper.ZtreeNode;
 import com.xst.model.Areas;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,4 +20,13 @@ public interface AreasService {
 
     //查询全部省
     List<Areas> getAreasByProvince();
+
+    //根据省份id查询全部市
+    List<Areas> getAreasByCityByProvince(int pid);
+
+    //根据市id查询全部区县
+    List<Areas> getAreasByCountyByCity(int pid);
+
+    //根据全部省市区县
+    List<Areas> getAreas();
 }

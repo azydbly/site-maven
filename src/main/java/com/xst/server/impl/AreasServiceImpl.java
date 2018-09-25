@@ -1,6 +1,7 @@
 package com.xst.server.impl;
 
 import com.xst.mapper.AreasMapper;
+import com.xst.mapper.ZtreeNode;
 import com.xst.model.Areas;
 import com.xst.server.AreasService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,20 @@ public class AreasServiceImpl implements AreasService {
     @Override
     public List<Areas> getAreasByProvince() {
         return areasMapper.getAreasByProvince();
+    }
+
+    @Override
+    public List<Areas> getAreasByCityByProvince(int pid) {
+        return areasMapper.getAreasByCityByProvince(pid);
+    }
+
+    @Override
+    public List<Areas> getAreasByCountyByCity(int pid) {
+        return areasMapper.getAreasByCountyByCity(pid);
+    }
+
+    @Override
+    public List<Areas> getAreas() {
+        return areasMapper.getAreas();
     }
 }

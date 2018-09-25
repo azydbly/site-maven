@@ -12,7 +12,7 @@
         select
         <include refid="selectColumn" />
         from edu_areas
-        where flag = 1 and state = 1 and level = #{level} and pid = #{pid}
+        where flag = 1 and state = 1 and level = #{level} and pid = #{pid} order by number
     </select>
 
     <!--查询全部省-->
@@ -20,7 +20,31 @@
         select
         <include refid="selectColumn" />
         from edu_areas
-        where flag = 1 and state = 1 and level = 1
+        where flag = 1 and state = 1 and level = 1 order by number
+    </select>
+
+    <!--查询全部省-->
+    <select id="getAreasByCityByProvince" resultType="com.xst.model.Areas">
+        select
+        <include refid="selectColumn" />
+        from edu_areas
+        where flag = 1 and state = 1 and level = 2 and pid = #{pid} order by number
+    </select>
+
+    <!--查询全部省-->
+    <select id="getAreasByCountyByCity" resultType="com.xst.model.Areas">
+        select
+        <include refid="selectColumn" />
+        from edu_areas
+        where flag = 1 and state = 1 and level = 3 and pid = #{pid} order by number
+    </select>
+
+    <!--查询全部省市区县-->
+    <select id="getAreas" resultType="com.xst.model.Areas">
+        select
+        <include refid="selectColumn" />
+        from edu_areas
+        where flag = 1 and state = 1 and level in (1) order by number
     </select>
 
 

@@ -53,7 +53,7 @@ $(function() {
                 if(data == 0){
                     a =  '<a class="btn disabled radius">无需配置</a>';
                 }else{
-                    a =  '<a class="btn btn-link" onclick="distribute_action_Fun(' + row.number + ')">配置</a>';
+                    a =  '<a class="btn btn-link" onclick="add([' + "'" + row.rolename + "'" + '] + \' - 配置功能\',\'/roles/jurisdiction\',\'350\',\'450\',\'no\')">配置</a>';
                 }
                 return a;
             },

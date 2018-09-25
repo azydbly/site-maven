@@ -38,7 +38,7 @@
         </if>
     </select>
 
-    <!-- 插入菜单 -->
+    <!-- 插入角色 -->
     <insert id="insertRoles" parameterType="com.xst.model.Roles">
         insert into sys_roles
         (rolename,description,insertdatetime,operatordatetime,level,state)

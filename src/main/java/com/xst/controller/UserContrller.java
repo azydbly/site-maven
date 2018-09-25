@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.util.List;
 
 /**
  * @ClassName: UserContrller
@@ -94,5 +95,36 @@ public class UserContrller extends BaseController {
     public void idNumberValidate(HttpServletRequest request, HttpServletResponse response) throws IOException {
         userService.idNumberValidate(request,response);
     }
+
+    @ControllerLog("进入修用户页面")
+    @RequestMapping("edit")
+    public String edit(HttpServletRequest request, HttpServletResponse response){
+        String[] dictionary = {"nation","politics"};
+        for(String cnname : dictionary){
+            request.setAttribute(cnname + "List",dictitemService.getDistiemList(cnname));
+        }
+        User user = userService.selectUserById(request,response);
+        request.setAttribute("provinceList",areasContrller.getAreasByProvince());
+        request.setAttribute("cityList",areasContrller.getAreasByCityByProvince(user.getProvince()));
+        request.setAttribute("countyList",areasContrller.getAreasByCountyByCity(user.getCity()));
+        request.setAttribute("roleList",roleService.getRoleList());
+        request.setAttribute("user",user);
+        return "system/user/edit";
+    }
+
+    @ResponseBody
+    @ControllerLog("修改用户")
+    @RequestMapping("editUpdate")
+    public AjaxResult editUpdate(User user){
+        return userService.editUpdate(user);
+    }
+
+    @ResponseBody
+    @ControllerLog("删除用户")
+    @RequestMapping("/delete")
+    public AjaxResult deleteUsers(@RequestParam("idlist[]") List<Integer> idlist){
+        return userService.deleteUser(idlist);
+    }
+
 
 }

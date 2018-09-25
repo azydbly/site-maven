@@ -226,7 +226,7 @@ public class UserServiceImpl implements UserService {
         String id = params.getString("id");
         String state = params.getString("state");
         String result = null;
-        User user = selectUserById(StrUtil.getInteger(id));
+        User user = userMapper.selectUserById(StrUtil.getInteger(id));
         if(user.getState() == 2){
             Lock lock = lockService.queryByUserId(user.getIdnumber());
             int a = lockService.updateFlagById(lock.getId());
@@ -282,8 +282,30 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User selectUserById(int id) {
-        return userMapper.selectUserById(id);
+    public User selectUserById(HttpServletRequest request, HttpServletResponse response) {
+        ParamData params = new ParamData();
+        String id = params.getString("id");
+        return userMapper.selectUserById(StrUtil.getInteger(id));
+    }
+
+    @Override
+    public AjaxResult editUpdate(User user) {
+        String result = null;
+        user.setOperatordatetime(new Date());
+        int returnResult = userMapper.updateUser(user);
+        if(returnResult < 1){
+            result = "更新失败";
+        }
+        return AppUtil.returnObj(result);
+    }
+
+    @Override
+    public AjaxResult deleteUser(List<Integer> idlist) {
+        String result = null;
+        if (userMapper.deleteUser(idlist) < 1) {
+            result = "操作失败";
+        }
+        return AppUtil.returnObj(result);
     }
 
     private String getSessionId(String userName, String ip) {

@@ -46,4 +46,10 @@ public interface UserMapper {
     //更改用户锁定状态
     int updateStateById(@Param("state") int state,@Param("lockid") int lockid,@Param("id") int id);
 
+    //更新用户
+    int updateUser(User user);
+
+    //删除用户
+    int deleteUser(@Param("idlist")List<Integer> idlist);
+
 }

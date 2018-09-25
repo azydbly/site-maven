@@ -154,4 +154,19 @@
         where flag = 1 and id = #{id}
     </select>
 
+    <!-- 更新用户 -->
+    <update id="updateUser" parameterType="com.xst.model.User">
+        update edu_user set fullname = #{fullname},idnumber = #{idnumber},email = #{email},nation = #{nation},political = #{political},tel = #{tel},province = #{province},
+        city = #{city},county = #{county},birthplace = #{birthplace},suniversity = #{suniversity},seducation = #{seducation},smajor = #{smajor},roleid = #{roleid},
+        operatordatetime = #{operatordatetime},state = #{state} where id = #{id}
+    </update>
+
+    <!-- 删除用户 -->
+    <update id="deleteUser" parameterType="com.xst.model.User">
+        update edu_user set flag = 0 where flag = 1 and id in
+        <foreach collection="idlist" item="id" index="index" open="(" close=")" separator=",">
+            #{id,jdbcType=INTEGER}
+        </foreach>
+    </update>
+
 </mapper>

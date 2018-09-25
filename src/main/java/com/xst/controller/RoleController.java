@@ -99,4 +99,11 @@ public class RoleController  extends BaseController{
         return roleService.deleteRole(idlist);
     }
 
+    @ControllerLog("配置角色权限页面")
+    @RequestMapping("jurisdiction")
+    public String Jurisdiction(HttpServletRequest request, HttpServletResponse response){
+        request.setAttribute("role",roleService.getRolesById(request,response));
+        return "system/role/jurisdiction";
+    }
+
 }
