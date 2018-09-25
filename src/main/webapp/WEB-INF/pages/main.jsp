@@ -105,7 +105,7 @@
                 <img border="0" src="http://wpa.qq.com/pa?p=2:614749555:51" alt="点击这里给我发消息" title="点击这里给我发消息"/>
             </a>
         </p> -->
-            <p>感谢jQuery、layer、Validform、iconfont、Datatables、icheck<br>
+            <p>感谢jQuery、layer、Validform、iconfont、Datatables、icheck、ztree<br>
                 Copyright &copy;2015-2017 H-ui.admin 3.0 All Rights Reserved.<br>
                 框架由<a href="http://www.h-ui.net/" target="_blank" title="H-ui前端框架">H-ui前端框架</a>提供前端技术支持</p>
     </div>
