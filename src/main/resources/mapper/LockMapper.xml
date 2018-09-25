@@ -10,7 +10,7 @@
 
 
     <!-- 插入用户锁定信息 -->
-    <insert id="insertByMal" parameterType="com.xst.model.Lock">
+    <insert id="insertByMal" useGeneratedKeys="true" keyProperty="id" parameterType="com.xst.model.Lock">
         insert into edu_lock (userid,locking,insertdatetime,operatordatetime)
         values(#{userid}, #{locking},#{insertdatetime},#{operatordatetime})
     </insert>

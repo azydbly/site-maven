@@ -27,6 +27,7 @@
         <result property="operatordatetime" column="operatordatetime"/>
         <result property="loginTime" column="loginTime"/>
         <result property="loginIp" column="loginIp"/>
+        <result property="lockid" column="lockid"/>
         <result property="state" column="state" />
         <result property="flag" column="flag" />
 
@@ -53,7 +54,7 @@
     <sql id="selectColumn">
         id,fullname,idnumber,password,salt, DATE_FORMAT(birthday, '%Y-%m-%d') birthday,email,sex,nation,tel,province,city,county,birthplace,imagefile,
         roleid,political,suniversity,seducation,smajor, DATE_FORMAT(insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime,
-        DATE_FORMAT(operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime, DATE_FORMAT(loginTime, '%Y-%m-%d %H:%i:%s') loginTime,loginIp,state,flag
+        DATE_FORMAT(operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime, DATE_FORMAT(loginTime, '%Y-%m-%d %H:%i:%s') loginTime,loginIp,lockid,state,flag
     </sql>
 
 
@@ -70,16 +71,20 @@
         update edu_user set loginTime = #{loginTime},loginIp = #{loginIp} where id = #{id} and flag = 1
     </update>
 
-    <!-- 更改用户状态 -->
+    <!-- 更改用户锁定状态 -->
     <update id="updateStateById" parameterType="com.xst.model.User">
-         update edu_user set state = #{state} where id = #{id} and flag = 1
+         update edu_user set state = #{state}
+         <if test="lockid != null and lockid != ''">
+             ,lockid = #{lockid}
+         </if>
+         where id = #{id} and flag = 1
     </update>
 
     <!-- DataTabables 分页，搜索  -->
     <select id="getPageUserList" resultMap="userAll">
         select
         u.id,fullname,u.idnumber,u.password,u.salt, DATE_FORMAT(u.birthday, '%Y-%m-%d') birthday,u.email,u.sex,u.nation,u.tel,u.province,u.city,u.county,u.birthplace,u.imagefile,
-        u.roleid,u.political,u.suniversity,u.seducation,u.smajor, DATE_FORMAT(u.insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime,
+        u.roleid,u.political,u.suniversity,u.seducation,u.smajor, DATE_FORMAT(u.insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime,u.lockid,
         DATE_FORMAT(u.operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime, DATE_FORMAT(u.loginTime, '%Y-%m-%d %H:%i:%s') loginTime,u.loginIp,u.state,u.flag,r.rolename,r.level,
         a1.name provinceName,a2.name cityName,a3.name countyName
         from edu_user u
@@ -100,7 +105,8 @@
 
     <!-- 改变用户状态 -->
     <update id="changeUserState" parameterType="com.xst.model.User">
-        update edu_user set state = #{state} where id = #{id} and flag = 1
+        update edu_user set state = #{state} ,lockid = #{lockid}
+         where id = #{id} and flag = 1
     </update>
 
     <!-- 插入用户 -->
@@ -140,4 +146,13 @@
             and id != #{id}
         </if>
     </select>
+
+    <!--根据用户id查询用户-->
+    <select id="selectUserById" resultType="com.xst.model.User">
+        select
+        <include refid="selectColumn"/>
+        from edu_user
+        where flag = 1 and id = #{id}
+    </select>
+
 </mapper>

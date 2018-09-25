@@ -77,7 +77,7 @@ function changeStatus(title,name, url, id,state,sureFn, cancelFn) {
 			},
 			success: function(data) {
 				if(data.retcode == 0) {
-					showFailMessage(data.retmsg);
+                    showFailMessage(data.retmsg);
 				}else{
                     showSuccessMessage(data.retmsg);
                     var index =layer.getFrameIndex(window.name); //先得到当前iframe层的索引,隐藏layer层和shade

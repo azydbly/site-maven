@@ -90,6 +90,9 @@ public class User {
     //最后登录IP
     private String loginIp;
 
+    //锁定id
+    private int lockid;
+
     //是否停用标识   0 停用 1启用（默认） 2 锁定
     private int state;
 
@@ -324,5 +327,13 @@ public class User {
 
     public void setAreas(Areas areas) {
         this.areas = areas;
+    }
+
+    public int getLockid() {
+        return lockid;
+    }
+
+    public void setLockid(int lockid) {
+        this.lockid = lockid;
     }
 }

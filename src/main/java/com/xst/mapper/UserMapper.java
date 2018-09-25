@@ -22,14 +22,11 @@ public interface UserMapper {
     //登录成功之后更新最后登录时间和最后登录Ip
     int updateLastByIdnumber(User user);
 
-    //更改用户状态
-    int updateStateById(@Param("id")int id,@Param("state")int state);
-
     //用户分页显示
     List<User> getPageUserList(@Param("search") String search, @Param("subSQL") String subSQL);
 
     //改变用户状态
-    int changeUserState(@Param("id") int id,@Param("state") int state);
+    int changeUserState(@Param("id") int id,@Param("state") int state,@Param("lockid") int lockid);
 
     //添加用户
     int insertUser(User user);
@@ -42,4 +39,8 @@ public interface UserMapper {
 
     //验证身份证号是否重复
     User selectUserByIdNumber(@Param("idnumber") String idnumber,@Param("id") String id);
+
+    //根据用户id查询用户
+    User selectUserById(@Param("id") int id);
+
 }

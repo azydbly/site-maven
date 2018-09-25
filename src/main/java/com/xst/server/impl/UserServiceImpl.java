@@ -101,7 +101,7 @@ public class UserServiceImpl implements UserService {
                             Date dt2 = sdf.parse(lock.getOperatordatetime());
                             if (dt2.getTime() <= dt1.getTime()) {
                                 lockService.updateFlagById(lock.getId());
-                                userMapper.updateStateById(user.getId(),1);
+                                userMapper.changeUserState(user.getId(),1,lock.getId());
                                 userResult = true;
                             } else {
                                 long time = dt1.getTime() - dt2.getTime();
@@ -175,7 +175,6 @@ public class UserServiceImpl implements UserService {
         ParamData params = new ParamData();
         String userId = params.getString("userId");
         Date now = new Date();
-        userMapper.updateStateById(StrUtil.getInteger(userId),2);
         Lock lock = new Lock();
         Date afterDate = new Date(now.getTime() + 600000);
 
@@ -184,6 +183,7 @@ public class UserServiceImpl implements UserService {
         lock.setInsertdatetime(sdf.format(now));
         lock.setOperatordatetime(sdf.format(afterDate));
         lockService.insertByMal(lock);
+        userMapper.changeUserState(StrUtil.getInteger(userId),2,lock.getId());
 
         return AppUtil.returnObj(null);
     }
@@ -226,12 +226,12 @@ public class UserServiceImpl implements UserService {
         String id = params.getString("id");
         String state = params.getString("state");
         String result = null;
-        User user = userMapper.selectUserByIdNumber(null,id);
+        User user = selectUserById(StrUtil.getInteger(id));
         if(user.getState() == 2){
             Lock lock = lockService.queryByUserId(user.getIdnumber());
             lockService.updateFlagById(lock.getId());
         }
-        int returnResult = userMapper.changeUserState(StrUtil.getInteger(id),StrUtil.getInteger(state));
+        int returnResult = userMapper.changeUserState(StrUtil.getInteger(id),StrUtil.getInteger(state),0);
         if(returnResult < 1){
             result = "操作失败";
         }
@@ -272,6 +272,11 @@ public class UserServiceImpl implements UserService {
         String id = params.getString("id");
         User user = userMapper.selectUserByIdNumber(idnumber,id);
         validateRemoteController.validateReturn(request,response,user);
+    }
+
+    @Override
+    public User selectUserById(int id) {
+        return userMapper.selectUserById(id);
     }
 
     private String getSessionId(String userName, String ip) {

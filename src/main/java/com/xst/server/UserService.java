@@ -48,4 +48,6 @@ public interface UserService {
     //省份证号重复验证
     void idNumberValidate(HttpServletRequest request, HttpServletResponse response) throws IOException;
 
+    //根据用户id查询用户
+    User selectUserById(int id);
 }
