@@ -1,9 +1,10 @@
 package com.xst.server;
 
-import com.xst.mapper.ZtreeNode;
+import com.xst.common.pojo.AjaxResult;
 import com.xst.model.Areas;
-import org.apache.ibatis.annotations.Param;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -29,4 +30,7 @@ public interface AreasService {
 
     //根据全部省市区县
     List<Areas> getAreas(List<Integer> idlist);
+
+    //保存用户地区数据
+    AjaxResult saveAreasZtree(HttpServletRequest request, HttpServletResponse response);
 }

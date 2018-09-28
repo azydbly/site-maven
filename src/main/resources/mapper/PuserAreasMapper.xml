@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xst.mapper.PuserAreasMapper">
+
+    <!-- 公众部分 -->
+    <sql id="selectColumn">
+        puserid,areasid
+    </sql>
+
+    <!--根据用户id  删除数据权限-->
+    <delete id="deleteByUserid">
+        delete from edu_puser_areas where puserid = #{puserid}
+    </delete>
+
+    <!--插入数据-->
+    <insert id="insertPuserAndAreas" parameterType="com.xst.model.PuserAreas">
+        insert into edu_puser_areas (puserid,areasid)
+        values(#{puserid}, #{areasid})
+    </insert>
+
+    <!--根据用户id  查询全部授权id-->
+    <select id="quertListByPuserid" resultType="com.xst.model.PuserAreas">
+        SELECT
+        <include refid="selectColumn" />
+        from edu_puser_areas
+        where puserid = #{puserid}
+    </select>
+
+</mapper>

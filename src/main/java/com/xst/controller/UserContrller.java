@@ -3,6 +3,7 @@ package com.xst.controller;
 import com.alibaba.fastjson.JSON;
 import com.xst.common.annotation.ControllerLog;
 import com.xst.common.pojo.AjaxResult;
+import com.xst.common.pojo.ParamData;
 import com.xst.common.util.DataTables;
 import com.xst.model.Roles;
 import com.xst.model.User;
@@ -130,8 +131,10 @@ public class UserContrller extends BaseController {
     @ControllerLog("配置用户数据权限页面")
     @RequestMapping("configure")
     public String Configure(HttpServletRequest request, HttpServletResponse response){
+        ParamData params = new ParamData();
+        String puserid = params.getString("id");
+        request.setAttribute("puserid",puserid);
         return "system/user/configure";
     }
-
 
 }

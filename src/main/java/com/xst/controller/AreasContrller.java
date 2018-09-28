@@ -2,16 +2,23 @@ package com.xst.controller;
 
 import com.google.gson.Gson;
 import com.xst.common.annotation.ControllerLog;
+import com.xst.common.pojo.AjaxResult;
+import com.xst.common.pojo.ParamData;
 import com.xst.common.util.StrUtil;
-import com.xst.mapper.ZtreeNode;
+import com.xst.model.PuserAreas;
+import com.xst.model.ZtreeNode;
 import com.xst.model.Areas;
 import com.xst.server.AreasService;
+import com.xst.server.PuserAreasService;
 import com.xst.server.impl.AreasServiceImpl;
+import com.xst.server.impl.PuserAreasServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +36,9 @@ public class AreasContrller extends BaseController {
 
     @Autowired
     private AreasService areasService = new AreasServiceImpl();
+
+    @Autowired
+    private PuserAreasService puserAreasService = new PuserAreasServiceImpl();
 
 
     @ResponseBody
@@ -66,23 +76,38 @@ public class AreasContrller extends BaseController {
     @ControllerLog("根据全部省市区县")
     @RequestMapping(value = "getAreas", produces = "application/json; charset=utf-8")
     public String getAreas(){
+        ParamData params = new ParamData();
+        String puserid = params.getString("id");
         List<Integer> listObject = new ArrayList<Integer>();
         for(int i = 1; i <= 3; i++){
             listObject.add(i);
         }
         List<Areas> list = areasService.getAreas(listObject);
-        List<ZtreeNode> l = new ArrayList<ZtreeNode>();
+        List<PuserAreas> listPuserAreas = puserAreasService.quertListByPuserid(StrUtil.getInteger(puserid));
+        List<ZtreeNode> ztreeNodeJson = new ArrayList<ZtreeNode>();
         for(int i = 0; i < list.size(); i++){
             ZtreeNode ztreeNode = new ZtreeNode();
             ztreeNode.setId(list.get(i).getNumber());
             ztreeNode.setName(list.get(i).getName());
             ztreeNode.setpId(list.get(i).getPid());
-            l.add(ztreeNode);
-
+            for(int j = 0; j < listPuserAreas.size(); j++){
+                if(listPuserAreas.get(j).getAreasid() == list.get(i).getNumber()){
+                    ztreeNode.setChecked(true);
+                }
+            }
+            ztreeNodeJson.add(ztreeNode);
         }
         Gson gson = new Gson();
-        String json = gson.toJson(l);
+        String json = gson.toJson(ztreeNodeJson);
         return json;
+    }
+
+
+    @ResponseBody
+    @ControllerLog("保存用户地区数据")
+    @RequestMapping("saveAreasZtree")
+    public AjaxResult saveAreasZtree(HttpServletRequest request, HttpServletResponse response){
+        return areasService.saveAreasZtree(request,response);
     }
 
 }

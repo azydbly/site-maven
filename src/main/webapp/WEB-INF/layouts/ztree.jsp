@@ -8,3 +8,5 @@
 
 <script src="${ctxstc}/styles/ztree/js/jquery.ztree.core.js"></script>
 <script src="${ctxstc}/styles/ztree/js/jquery.ztree.excheck.js"></script>
+
+<script src="${ctxstc}/style/js/util/datatables_layer.js"></script>

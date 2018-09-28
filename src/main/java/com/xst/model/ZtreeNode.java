@@ -1,4 +1,4 @@
-package com.xst.mapper;
+package com.xst.model;
 
 public class ZtreeNode {
 
@@ -14,6 +14,9 @@ public class ZtreeNode {
     //是否开启
     private boolean open;
 
+    //是否选中
+    private boolean checked;
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -23,6 +26,8 @@ public class ZtreeNode {
         sb.append(pId);
         sb.append("\",name:\"");
         sb.append(name);
+        sb.append("\",checked:\"");
+        sb.append(checked);
         sb.append("\",open:\"");
         sb.append(open);
         sb.append("\"}");
@@ -60,6 +65,12 @@ public class ZtreeNode {
 	public void setpId(Object pId) {
 		this.pId = pId;
 	}
-	
-	
+
+	public boolean isChecked() {
+		return checked;
+	}
+
+	public void setChecked(boolean checked) {
+		this.checked = checked;
+	}
 }
