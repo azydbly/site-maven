@@ -1,5 +1,3 @@
-/*self.opener.location.reload();*/
-
 function logout() {
     layer.confirm('确认要退出吗？',function(index){
         $.ajax({
