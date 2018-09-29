@@ -73,21 +73,42 @@ function login(){
         type = 1;
     }
     data = "idnumber=" + idnumber + "&password=" + password + "&type=" + type;
+    var vcode = $("#vcode").val();
+    if(undefined != vcode){
+        if("" == vcode){
+            $("input[name='vcode']").attr("placeholder", "请输入验证码");
+            return false;
+        }
+        data += "&vcode=" + vcode;
+    }
     $(".z-loading-wrap").show();
     $.ajax({
-        url: baselocation + "/admin/login",
+        url: baselocation + "/xst/admin/login",
         data: data,
         type: "post",
         dataType: "json",
         beforeSend: function(xhr){
             xhr.setRequestHeader("vcode","1");
         },
-
         success: function(req){
             if(req.retcode == 0){
                 $(".z-loading-wrap").hide();
+                $("#vcode").select();
+                $("#vimg").attr("src", baselocation + "/getVcode?random=" + Math.random());
+                var msg = req.retmsg;
+                var end = msg.lastIndexOf("|");
+                if(end > 0){
+                    var errTimes = msg.substring(end + 1, msg.length);
+                    if(3 <= errTimes && undefined == vcode){
+                        var html = [];
+                        html.push('<input type="text" name="vcode" id="vcode" maxlength="4" class="form-control" placeholder="验证码">');
+                        html.push('<img class="z-code" id="vimg" src="/getVcode" onclick="vcodeclick()" title="验证码" alt="验证码">');
+                        $("#showVcode").append(html.join(''));
+                    }
+                    msg = msg.substring(0, end);
+                }
                 //$.Modalalert(req.retmsg,1000);
-                layer.msg(req.retmsg, {time: 2000, icon:5});
+                layer.msg(msg, {time: 2000, icon:5});
             }else{
                 var remenber = $("#setcheck").is(":checked");
                 var cookieName = idnumber + ":userinfo";
@@ -102,17 +123,24 @@ function login(){
                     $.cookie("idnumber", "");
                     $.cookie("password", "");
                 }
-                window.location.href = baselocation + "/admin/welcome"
+                window.location.href = baselocation + "/xst/admin/welcome"
             }
         },
         error: function(req){
             $(".z-loading-wrap").hide();
-           /* $("#vcode").select();
-            $("#vimg").attr("src", baselocation + "/getVcode?random=" + Math.random());*/
+            $("#vcode").select();
+            $("#vimg").attr("src", "/getVcode?random=" + Math.random());
             //$.Modalalert('系统异常！',1000);
             layer.msg('系统异常！', {time: 2000, icon:5});
         }
     });
+}
+
+
+//点击图片刷新验证码
+function vcodeclick() {
+    $("#vcode").select();
+    $("#vimg").attr("src", "/getVcode?random=" + Math.random());
 }
 // 回车登录实现
 $(function (){

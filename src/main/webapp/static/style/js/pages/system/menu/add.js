@@ -3,7 +3,7 @@ $("#form-member-add").validate({
         menuname:{
             required:true,
             remote:{
-                url: baselocation + "/menu/menuname/validate",
+                url: baselocation + "/xst/menu/menuname/validate",
                 type:"post",
                 data: {
                     menuname: function(){
@@ -22,7 +22,7 @@ $("#form-member-add").validate({
         },
         url:{
             remote:{
-                url: baselocation + "/menu/url/validate",
+                url: baselocation + "/xst/menu/url/validate",
                 type:"post",
                 data: {
                     url: function(){
@@ -46,7 +46,7 @@ $("#form-member-add").validate({
     submitHandler:function(form){
         $(form).ajaxSubmit({
             type: "post",
-            url: baselocation + "/menu/addUpdate",
+            url: baselocation + "/xst/menu/addUpdate",
             data: $(form).serialize(),
             dataType: "json",
             success: function(data) {

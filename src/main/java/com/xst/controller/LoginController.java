@@ -35,7 +35,7 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping("/admin/")
+@RequestMapping("/xst/admin/")
 public class LoginController extends BaseController {
 
     private Logger logger = LoggerFactory.getLogger(LoginController.class);
@@ -76,7 +76,7 @@ public class LoginController extends BaseController {
 
     @ResponseBody
     @ControllerLog("退出")
-    @RequestMapping("logout")
+    @RequestMapping("admin/logout")
     public AjaxResult logout(HttpServletRequest request,HttpServletResponse response) {
         return userService.logout(request,response);
     }

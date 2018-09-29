@@ -23,13 +23,13 @@
                 <form id="loginForm">
                     <label class="form-item z-clearfix">
                         <input type="text" name="idnumber" id="idnumber" class="form-control" placeholder="请输入身份证号" value="" />
-                        <i class="ace-icon fa fa-user"></i>
                     </label>
                     <label class="form-item z-clearfix">
                         <input type="password" name="password" id="password" class="form-control" placeholder="请输入密码" value="" />
-                        <i class="ace-icon fa fa-user"></i>
                     </label>
-                    <label class="form-item z-clearfix z-code-box" style="margin-bottom: 0px;" id="showVcode"></label>
+                    <label class="form-item z-clearfix z-code-box" id="showVcode">
+
+                    </label>
                     <button type="button" class="z-login-btn" onclick="javascript:login();">登录</button>
                     <label class="inline z-inline">
                         <input type="checkbox" id="setcheck" name="remenber" class="z-switch" style="position: absolute;opacity: 0;" checked="checked">

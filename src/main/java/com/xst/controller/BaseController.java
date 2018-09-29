@@ -50,8 +50,9 @@ public class BaseController {
 	}
 
 	/** 普通登录异常处理 **/
-	@ExceptionHandler({ LoginException.class })
+	@ExceptionHandler({LoginException.class })
 	public String loginExceptionHandler(LoginException e, HttpServletRequest request) {
+        System.out.println("============dasddasdsadasd=");
 		logger.error("登录请求发生异常:", e);
 		request.setAttribute("message", e.getMessage());
 		return "forward:/";

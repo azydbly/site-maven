@@ -33,7 +33,7 @@ $(window).load(function(){
         $(".error-description").html("不好意思，您的访问访问过于频繁~~已被管理员进行拦截，账户锁定，请于10分钟后登录！");
         var data = "idnumber=" + loginUser + "&userId=" + userId;
         $.ajax({
-            url : baselocation + '/admin/lock',
+            url : baselocation + '/xst/admin/lock',
             type : "post",
             dataType : "json",
             data: data,

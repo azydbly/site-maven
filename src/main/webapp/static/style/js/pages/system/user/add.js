@@ -15,7 +15,7 @@ $("#form-member-add").validate({
             required: true,
             isIdCardNo: true,
             remote: {
-                url: baselocation + "/user/idnumber/validate",
+                url: baselocation + "/xst/user/idnumber/validate",
                 type: "post",
                 data: {
                     idnumber: function () {
@@ -65,7 +65,7 @@ $("#form-member-add").validate({
     submitHandler: function (form) {
         $(form).ajaxSubmit({
             type: "post",
-            url: baselocation + "/user/addUpdate",
+            url: baselocation + "/xst/user/addUpdate",
             data: $(form).serialize(),
             dataType: "json",
             success: function (data) {
@@ -102,7 +102,7 @@ function getProvince(a) {
     level = parseInt(level) + 1;
     $.ajax({
         type: "post",
-        url: baselocation + "/areas/getAreasByPid",
+        url: baselocation + "/xst/areas/getAreasByPid",
         data: "pid=" + province + "&level=" + level,
         success: function (msg) {
             //存到文本域方便职位的级联操作
@@ -124,7 +124,7 @@ function getCity(a) {
     level = parseInt(level) + 1;
     $.ajax({
         type: "post",
-        url: baselocation + "/areas/getAreasByPid",
+        url: baselocation + "/xst/areas/getAreasByPid",
         data: "pid=" + city + "&level=" + level,
         success: function (msg) {
             //存到文本域方便职位的级联操作

@@ -13,7 +13,7 @@ $(document).ready(function(){
     var zNodes;
     $.ajax({
         type: "post",
-        url: baselocation + "/areas/getAreas",
+        url: baselocation + "/xst/areas/getAreas",
         success: function (msg) {
             zNodes = msg;
             $.fn.zTree.init($("#treeJurisdiction"), setting, zNodes);

@@ -51,6 +51,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private ValidateRemoteController validateRemoteController;
 
+    @Autowired
+    private DataCache dataCache;
+
     IdCard idCard = new IdCard();
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -59,111 +62,119 @@ public class UserServiceImpl implements UserService {
 
     PasswordUtil passwordUtil = new PasswordUtil();
 
-    @Autowired
-    private DataCache dataCache;
-
     @Override
     public AjaxResult selectUserByIdnumber(HttpServletRequest request, HttpServletResponse response) {
-        ParamData params = new ParamData();
-        String idnumber = params.getString("idnumber");
-        String password = params.getString("password");
-        String type = params.getString("type");
+        String verifyCode = (String) request.getSession().getAttribute(Constant.VERIFY_CODE);
         String result = null;
         String data = null;
-        User user = userMapper.queryByUsername(idnumber);
-        if(user == null){
-            result = "用户名不存在！";
-        }else{
-            Boolean flag = false;
-            // 1 cookie 没有值或者cookie 中的password 用户自己更改过，0 是cookie 有值
-            if("1".equals(type)){
-                flag = passwordUtil.LoginPassword(user.getPassword(),password,user.getSalt());
-            }
-            if ("0".equals(type)){
-                if(user.getPassword().equals(password)){
-                    flag = true;
-                }else{
-                    flag = false;
+        ParamData params = new ParamData();
+        String vcode = params.getString("vcode");
+        if (params.containsKey("vcode") && (StringUtils.isEmpty(verifyCode) || !verifyCode.equalsIgnoreCase(vcode))) {
+            result = "验证码错误";
+        }else {
+            String idnumber = params.getString("idnumber");
+            String password = params.getString("password");
+            String type = params.getString("type");
+            String loginIp = params.getString("loginIp");
+            String key = idnumber + loginIp + Constant.LOGIN_ERROR_TIMES;
+            User user = userMapper.queryByUsername(idnumber);
+            if (user == null) {
+                result = "用户名不存在！";
+            } else {
+                Boolean flag = false;
+                // 1 cookie 没有值或者cookie 中的password 用户自己更改过，0 是cookie 有值
+                if ("1".equals(type)) {
+                    flag = passwordUtil.LoginPassword(user.getPassword(), password, user.getSalt());
                 }
-            }
-            if(flag){
-                boolean userResult = false;
-                if(user.getState() == 0){
-                    result = "账户已停用，禁止登陆！";
-                }else if(user.getState() == 1){
-                    userResult = true;
-                }else if(user.getState() == 2){
-                    Lock lock = lockService.queryByUserId(idnumber);
-                    if(lock != null){
-                        Date now = new Date();
-                        try {
-                            Date dt1 = sdf.parse(sdf.format(now));
-                            Date dt2 = sdf.parse(lock.getOperatordatetime());
-                            if (dt2.getTime() <= dt1.getTime()) {
-                                lockService.updateFlagById(lock.getId());
-                                userMapper.updateStateById(1,lock.getId(),user.getId());
-                                userResult = true;
-                            } else {
-                                long time = dt1.getTime() - dt2.getTime();
-                                long nd = 1000 * 24 * 60 * 60;
-                                long nh = 1000 * 60 * 60;
-                                long nm = 1000 * 60;
-                                long ss = 1000;
-                                // 计算差多少天
-                                long day = time / nd;
-                                // 计算差多少小时
-                                long hour = time % nd / nh;
-                                // 计算差多少分钟
-                                long min = time % nd % nh / nm;
-                                // 计算差多少秒
-                                long mins = time % nd % nh % nm / ss;
-                                // 计算差多少秒//输出结果
-                                String message = "";
-                                if(day != 0){
-                                    message += day + "天";
-                                }
-                                if(hour != 0){
-                                    message += hour + "小时";
-                                }
-                                if(min != 0){
-                                    message += min + "分";
-                                }
-                                if(mins != 0){
-                                    message += mins + "秒";
-                                }
-                                result = "账户已经锁定，剩余锁定时间" + message;
-                            }
-                        }catch(Exception e){
-                            logger.error("比较锁定时间转换出错：" + e);
-                        }
-                    }else{
-                        result = "未查询到锁定时间，请联系管理员！";
+                if ("0".equals(type)) {
+                    if (user.getPassword().equals(password)) {
+                        flag = true;
+                    } else {
+                        flag = false;
                     }
-                }else{
-                    result = "登录发生未知错误，请联系管理员！";
                 }
-                if(userResult){
-                    String loginIp = params.getString("loginIp");
-                    // 更新登录IP和登录时间
-                    user.setLoginIp(loginIp);
-                    user.setLoginTime(DateUtil.getCurDateTime());
-                    userMapper.updateLastByIdnumber(user);
+                if (flag) {
+                    boolean userResult = false;
+                    if (user.getState() == 0) {
+                        result = "账户已停用，禁止登陆！";
+                    } else if (user.getState() == 1) {
+                        userResult = true;
+                    } else if (user.getState() == 2) {
+                        Lock lock = lockService.queryByUserId(idnumber);
+                        if (lock != null) {
+                            Date now = new Date();
+                            try {
+                                Date dt1 = sdf.parse(sdf.format(now));
+                                Date dt2 = sdf.parse(lock.getOperatordatetime());
+                                if (dt2.getTime() <= dt1.getTime()) {
+                                    lockService.updateFlagById(lock.getId());
+                                    userMapper.updateStateById(1, lock.getId(), user.getId());
+                                    userResult = true;
+                                } else {
+                                    long time = dt1.getTime() - dt2.getTime();
+                                    long nd = 1000 * 24 * 60 * 60;
+                                    long nh = 1000 * 60 * 60;
+                                    long nm = 1000 * 60;
+                                    long ss = 1000;
+                                    // 计算差多少天
+                                    long day = time / nd;
+                                    // 计算差多少小时
+                                    long hour = time % nd / nh;
+                                    // 计算差多少分钟
+                                    long min = time % nd % nh / nm;
+                                    // 计算差多少秒
+                                    long mins = time % nd % nh % nm / ss;
+                                    // 计算差多少秒//输出结果
+                                    String message = "";
+                                    if (day != 0) {
+                                        message += day + "天";
+                                    }
+                                    if (hour != 0) {
+                                        message += hour + "小时";
+                                    }
+                                    if (min != 0) {
+                                        message += min + "分";
+                                    }
+                                    if (mins != 0) {
+                                        message += mins + "秒";
+                                    }
+                                    result = "账户已经锁定，剩余锁定时间" + message;
+                                }
+                            } catch (Exception e) {
+                                logger.error("比较锁定时间转换出错：" + e);
+                            }
+                        } else {
+                            result = "未查询到锁定时间，请联系管理员！";
+                        }
+                    } else {
+                        result = "登录发生未知错误，请联系管理员！";
+                    }
+                    if (userResult) {
+                        // 更新登录IP和登录时间
+                        user.setLoginIp(loginIp);
+                        user.setLoginTime(DateUtil.getCurDateTime());
+                        userMapper.updateLastByIdnumber(user);
 
-                    Identity identity = new Identity();
-                    identity.setLoginUser(user);
-                    identity.setLoginIp(loginIp);
-                    String sessionId = getSessionId(idnumber, identity.getLoginIp());
-                    identity.setSessionId(sessionId);
+                        Identity identity = new Identity();
+                        identity.setLoginUser(user);
+                        identity.setLoginIp(loginIp);
+                        String sessionId = getSessionId(idnumber, identity.getLoginIp());
+                        identity.setSessionId(sessionId);
 
-                    dataCache.setValue(idnumber + loginIp, identity);
-                    dataCache.setValue(sessionId, idnumber);
-                    CookieUtil.set(Constant.SESSION_IDENTITY_KEY, sessionId, response);
+                        dataCache.setValue(idnumber + loginIp, identity);
+                        dataCache.setValue(sessionId, idnumber);
+                        dataCache.remove(key);
+                        CookieUtil.set(Constant.SESSION_IDENTITY_KEY, sessionId, response);
 
-                    //登录成功，把用户密码传入前台，存入 cookie
-                    data = user.getPassword();
+                        //登录成功，把用户密码传入前台，存入 cookie
+                        data = user.getPassword();
+                    }
+                } else {
+                    int errTimes = dataCache.getInt(key);
+                    //记录密码错误次数,达到3次则需要输出验证码
+                    dataCache.setValue(key, errTimes += 1);
+                    result = "密码错误！|" + errTimes;
                 }
-            }else{
-                result = "密码错误！";
             }
         }
         return AppUtil.returnObj(result,data);

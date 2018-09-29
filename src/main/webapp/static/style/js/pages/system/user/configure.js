@@ -13,7 +13,7 @@ $(document).ready(function(){
     var puserid = document.getElementById("puserid").value;
     $.ajax({
         type: "post",
-        url: baselocation + "/areas/getAreas?id=" + puserid,
+        url: baselocation + "/xst/areas/getAreas?id=" + puserid,
         success: function (msg) {
             $.fn.zTree.init($("#treeRegion"), setting, msg);
         }
@@ -43,7 +43,7 @@ function zTreeOnClick(event, treeId, treeNode) {       //第二步
     }else{
         var puserid = document.getElementById("puserid").value;
         $.ajax({
-            url:baselocation + "/areas/saveAreasZtree?puserid=" + puserid +"&data=" + v,
+            url:baselocation + "/xst/areas/saveAreasZtree?puserid=" + puserid +"&data=" + v,
             dataType:'json',
             type:'post',
             success:function(data){

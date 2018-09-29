@@ -31,7 +31,7 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping("/areas/")
+@RequestMapping("/xst/areas/")
 public class AreasContrller extends BaseController {
 
     @Autowired

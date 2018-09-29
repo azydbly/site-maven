@@ -5,7 +5,7 @@ $(function() {
             {"bVisible": false, "aTargets": [0],} //控制列的隐藏显示
         ],
         ajax: {
-            url: baselocation + "/menu/showPageMenu",
+            url: baselocation + "/xst/menu/showPageMenu",
             type: 'post',
             data: function(d) {
                 d.search = $('#search').val();
@@ -59,9 +59,9 @@ $(function() {
             responsivePriority: 1,
             render: function(data, type, row, meta) {
                 var a = "";
-                a += '<a title="' + state[data] + '" style="text-decoration:none" onClick="changeStatus(' + "'" +  state[data] + "'" + ',[' + "'" + row.menuname + "'" + '],\'/menu/menuState\',' + row.id + ', '+ flag[data] + ')" href="javascript:;"><i class="Hui-iconfont">' + icon[data] + '</i></a>';
-                a += '<a title="编辑" href="javascript:;" onclick="edit_show([' + "'" + row.menuname + "'" + '],\'/menu/edit\',' + row.id + ',\'1\',\'360\',\'no\')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>';
-                a += '<a title="删除" href="javascript:;" onclick="del([' + row.id + '],\'/menu/delete\',[' + "'" + row.menuname + "'" + '],reloadTable)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>';
+                a += '<a title="' + state[data] + '" style="text-decoration:none" onClick="changeStatus(' + "'" +  state[data] + "'" + ',[' + "'" + row.menuname + "'" + '],\'/xst/menu/menuState\',' + row.id + ', '+ flag[data] + ')" href="javascript:;"><i class="Hui-iconfont">' + icon[data] + '</i></a>';
+                a += '<a title="编辑" href="javascript:;" onclick="edit_show([' + "'" + row.menuname + "'" + '],\'/xst/menu/edit\',' + row.id + ',\'1\',\'360\',\'no\')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>';
+                a += '<a title="删除" href="javascript:;" onclick="del([' + row.id + '],\'/xst/menu/delete\',[' + "'" + row.menuname + "'" + '],reloadTable)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>';
                 return a;
             }
         }],

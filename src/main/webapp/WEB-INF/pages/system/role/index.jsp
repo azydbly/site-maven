@@ -15,10 +15,10 @@
 <div class="page-container wrapper wrapper-content animated fadeInUp">
     <div class="cl pd-5 bg-1 bk-gray mt-20">
         <span class="l">
-            <a href="javascript:;" onclick="delAll(getDTSelect(), '/roles/delete', reloadTable)" class="btn btn-danger radius">
+            <a href="javascript:;" onclick="delAll(getDTSelect(), '/xst/roles/delete', reloadTable)" class="btn btn-danger radius">
                 <i class="Hui-iconfont">&#xe6e2;</i> 批量删除
             </a>
-            <a href="javascript:;" onclick="add('添加角色','/roles/add','1','310','no')" class="btn btn-primary radius">
+            <a href="javascript:;" onclick="add('添加角色','/xst/roles/add','1','310','no')" class="btn btn-primary radius">
                 <i class="Hui-iconfont">&#xe600;</i> 添加角色
             </a>
         </span>

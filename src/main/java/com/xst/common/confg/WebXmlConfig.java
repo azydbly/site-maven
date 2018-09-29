@@ -2,6 +2,7 @@ package com.xst.common.confg;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import com.xst.common.filter.XssFilter;
 import com.xst.common.interceptor.LoginRequestInterceptor;
 import com.xst.common.interceptor.MaliciousRequestInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +38,21 @@ public class WebXmlConfig extends WebMvcConfigurerAdapter{
 	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new LoginRequestInterceptor()).addPathPatterns("/admin/**").excludePathPatterns("/admin/login").excludePathPatterns("/admin/logout");
+		registry.addInterceptor(new LoginRequestInterceptor()).addPathPatterns("/xst/**").excludePathPatterns("/xst/user/login").excludePathPatterns("/xst/user/logout");
 		registry.addInterceptor(new MaliciousRequestInterceptor()).addPathPatterns("/**");
 		super.addInterceptors(registry);
+	}
+
+	/**
+	 * 过滤器
+	 * @return
+	 */
+	@Bean
+	public FilterRegistrationBean filterRegistration() {
+		FilterRegistrationBean registration = new FilterRegistrationBean(new XssFilter());
+		// filter只能配置"/*","/**"无法识别
+		registration.addUrlPatterns("/xst/user/*");
+		return registration;
 	}
 
 

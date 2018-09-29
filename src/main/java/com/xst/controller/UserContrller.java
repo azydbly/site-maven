@@ -35,7 +35,7 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping("/user/")
+@RequestMapping("/xst/user/")
 public class UserContrller extends BaseController {
 
     @Autowired

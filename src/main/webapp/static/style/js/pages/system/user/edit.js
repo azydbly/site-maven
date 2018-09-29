@@ -44,7 +44,7 @@ $("#form-member-edit").validate({
     submitHandler: function (form) {
         $(form).ajaxSubmit({
             type: "post",
-            url: baselocation + "/user/editUpdate",
+            url: baselocation + "/xst/user/editUpdate",
             data: $(form).serialize(),
             dataType: "json",
             success: function (data) {
@@ -81,7 +81,7 @@ function getProvince(a) {
     level = parseInt(level) + 1;
     $.ajax({
         type: "post",
-        url: baselocation + "/areas/getAreasByPid",
+        url: baselocation + "/xst/areas/getAreasByPid",
         data: "pid=" + province + "&level=" + level,
         success: function (msg) {
             //存到文本域方便职位的级联操作
@@ -103,7 +103,7 @@ function getCity(a) {
     level = parseInt(level) + 1;
     $.ajax({
         type: "post",
-        url: baselocation + "/areas/getAreasByPid",
+        url: baselocation + "/xst/areas/getAreasByPid",
         data: "pid=" + city + "&level=" + level,
         success: function (msg) {
             //存到文本域方便职位的级联操作

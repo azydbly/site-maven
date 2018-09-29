@@ -12,7 +12,7 @@ $("#form-member-edit").validate({
         rolename:{
             required:true,
             remote:{
-                url: baselocation + "/roles/rolename/validate?id=" + id,
+                url: baselocation + "/xst/roles/rolename/validate?id=" + id,
                 type:"post",
                 data: {
                     rolename: function(){
@@ -36,7 +36,7 @@ $("#form-member-edit").validate({
     submitHandler:function(form){
         $(form).ajaxSubmit({
             type: "post",
-            url: baselocation + "/roles/editUpdate",
+            url: baselocation + "/xst/roles/editUpdate",
             data: $(form).serialize(),
             dataType: "json",
             success: function(data) {

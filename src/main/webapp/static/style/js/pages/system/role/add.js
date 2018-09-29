@@ -10,7 +10,7 @@ $("#form-member-add").validate({
         rolename:{
             required:true,
             remote:{
-                url: baselocation + "/roles/rolename/validate",
+                url: baselocation + "/xst/roles/rolename/validate",
                 type:"post",
                 data: {
                     rolename: function(){
@@ -34,7 +34,7 @@ $("#form-member-add").validate({
     submitHandler:function(form){
         $(form).ajaxSubmit({
             type: "post",
-            url: baselocation + "/roles/addUpdate",
+            url: baselocation + "/xst/roles/addUpdate",
             data: $(form).serialize(),
             dataType: "json",
             success: function(data) {

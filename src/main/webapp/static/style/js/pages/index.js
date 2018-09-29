@@ -1,7 +1,7 @@
 function logout() {
     layer.confirm('确认要退出吗？',function(index){
         $.ajax({
-            url : baselocation + '/admin/logout',
+            url : baselocation + '/xst/admin/logout',
             type : "post",
             dataType : "json",
             success : function(req) {

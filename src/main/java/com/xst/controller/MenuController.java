@@ -29,7 +29,7 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping("/menu/")
+@RequestMapping("/xst/menu/")
 public class MenuController extends BaseController {
 
     @Autowired

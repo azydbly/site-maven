@@ -31,7 +31,7 @@ import static java.awt.SystemColor.menu;
  */
 
 @Controller
-@RequestMapping("/roles/")
+@RequestMapping("/xst/roles/")
 public class RoleController  extends BaseController{
 
     @Autowired

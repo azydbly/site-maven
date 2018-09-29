@@ -5,7 +5,7 @@ $(function() {
             {"bVisible": false, "aTargets": [0],} //控制列的隐藏显示
         ],
         ajax: {
-            url: baselocation + "/roles/showPageRole",
+            url: baselocation + "/xst/roles/showPageRole",
             type: 'post',
             data: function(d) {
                 d.search = $('#search').val();
@@ -53,7 +53,7 @@ $(function() {
                 if(data == 0){
                     a =  '<a class="btn disabled radius">无需配置</a>';
                 }else{
-                    a =  '<a class="btn btn-link" onclick="add([' + "'" + row.rolename + "'" + '] + \' - 配置功能\',\'/roles/jurisdiction\',\'380\',\'500\',\'no\')">配置</a>';
+                    a =  '<a class="btn btn-link" onclick="add([' + "'" + row.rolename + "'" + '] + \' - 配置功能\',\'/xst/roles/jurisdiction\',\'380\',\'500\',\'no\')">配置</a>';
                 }
                 return a;
             },
@@ -73,9 +73,9 @@ $(function() {
                 if(row.level == 0) {
                     a =  '<a class="btn disabled radius">暂无操作功能</a>';
                 }else{
-                    a += '<a title="' + state[data] + '" style="text-decoration:none" onClick="changeStatus(' + "'" + state[data] + "'" + ',[' + "'" + row.rolename + "'" + '],\'/roles/roleState\',' + row.id + ', ' + flag[data] + ')" href="javascript:;"><i class="Hui-iconfont">' + icon[data] + '</i></a>';
-                    a += '<a title="编辑" href="javascript:;" onclick="edit_show([' + "'" + row.rolename + "'" + '],\'/roles/edit\',' + row.id + ',\'1\',\'310\',\'no\')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>';
-                    a += '<a title="删除" href="javascript:;" onclick="del([' + row.id + '],\'/roles/delete\',[' + "'" + row.rolename + "'" + '],reloadTable)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>';
+                    a += '<a title="' + state[data] + '" style="text-decoration:none" onClick="changeStatus(' + "'" + state[data] + "'" + ',[' + "'" + row.rolename + "'" + '],\'/xst/roles/roleState\',' + row.id + ', ' + flag[data] + ')" href="javascript:;"><i class="Hui-iconfont">' + icon[data] + '</i></a>';
+                    a += '<a title="编辑" href="javascript:;" onclick="edit_show([' + "'" + row.rolename + "'" + '],\'/xst/roles/edit\',' + row.id + ',\'1\',\'310\',\'no\')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>';
+                    a += '<a title="删除" href="javascript:;" onclick="del([' + row.id + '],\'/xst/roles/delete\',[' + "'" + row.rolename + "'" + '],reloadTable)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>';
                 }
                 return a;
             }
