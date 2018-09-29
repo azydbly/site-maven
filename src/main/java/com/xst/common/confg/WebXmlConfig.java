@@ -38,7 +38,7 @@ public class WebXmlConfig extends WebMvcConfigurerAdapter{
 	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new LoginRequestInterceptor()).addPathPatterns("/xst/**").excludePathPatterns("/xst/user/login").excludePathPatterns("/xst/user/logout");
+		registry.addInterceptor(new LoginRequestInterceptor()).addPathPatterns("/xst/**").excludePathPatterns("/xst/admin/login").excludePathPatterns("/xst/admin/logout");
 		registry.addInterceptor(new MaliciousRequestInterceptor()).addPathPatterns("/**");
 		super.addInterceptors(registry);
 	}
@@ -51,7 +51,7 @@ public class WebXmlConfig extends WebMvcConfigurerAdapter{
 	public FilterRegistrationBean filterRegistration() {
 		FilterRegistrationBean registration = new FilterRegistrationBean(new XssFilter());
 		// filter只能配置"/*","/**"无法识别
-		registration.addUrlPatterns("/xst/user/*");
+		registration.addUrlPatterns("/xst/admin/*");
 		return registration;
 	}
 

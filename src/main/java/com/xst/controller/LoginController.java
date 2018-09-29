@@ -76,7 +76,7 @@ public class LoginController extends BaseController {
 
     @ResponseBody
     @ControllerLog("退出")
-    @RequestMapping("admin/logout")
+    @RequestMapping("logout")
     public AjaxResult logout(HttpServletRequest request,HttpServletResponse response) {
         return userService.logout(request,response);
     }

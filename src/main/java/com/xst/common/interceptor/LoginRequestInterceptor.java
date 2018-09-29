@@ -72,7 +72,7 @@ public class LoginRequestInterceptor extends HandlerInterceptorAdapter {
         }
 
         // 设置登录用户
-       // request.setAttribute("loginUser", identity.getLoginUser());
+        request.setAttribute("loginUser", identity.getLoginUser());
         return null;
     }
 
