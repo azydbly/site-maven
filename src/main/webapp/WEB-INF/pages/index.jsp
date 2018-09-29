@@ -63,7 +63,7 @@
                     <li>超级管理员&nbsp;&nbsp;</li>
                     <li class="dropDown dropDown_hover">
                         <img width="40px;" height="40px;" class="round" src="${ctxstc}/style/images/index/welcome.gif">
-                        <a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
+                        <a href="#" class="dropDown_A">${loginUser.fullname } <i class="Hui-iconfont">&#xe6d5;</i></a>
                         <ul class="dropDown-menu menu radius box-shadow">
                             <li>
 

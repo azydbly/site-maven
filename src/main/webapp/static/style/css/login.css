@@ -358,3 +358,49 @@ input::-moz-placeholder {
     -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
     box-shadow: 0 3px 9px rgba(0, 0, 0, .5)
 }
+
+
+
+/* 设置滚动条样式  */
+/* chrome、safari私有属性样式  */
+::-webkit-scrollbar-track {
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #999;
+}
+
+/* 火狐浏览器私有属性样式 */
+::-moz-scrollbar-track {
+    background-color: #F5F5F5;
+}
+
+::-moz-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+::-moz-scrollbar-thumb {
+    background-color: #999;
+}
+
+/* IE浏览器私有属性样式  */
+::-ms-scrollbar-track {
+    background-color: #F5F5F5;
+}
+
+::-ms-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+::-ms-scrollbar-thumb {
+    background-color: #999;
+}
+

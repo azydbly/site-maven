@@ -54,7 +54,7 @@ public class BaseController {
 	public String loginExceptionHandler(LoginException e, HttpServletRequest request) {
 		logger.error("登录请求发生异常:", e);
 		request.setAttribute("message", e.getMessage());
-		return "forward:/";
+		return "forward:/"; //转发
 	}
 
 	/** 普通权限异常处理 **/
