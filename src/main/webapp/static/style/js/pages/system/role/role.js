@@ -49,13 +49,7 @@ $(function() {
         }, {
             data: "level",
             render: function(data, type, row, meta) {
-                var a = "";
-                if(data == 0){
-                    a =  '<a class="btn disabled radius">无需配置</a>';
-                }else{
-                    a =  '<a class="btn btn-link" onclick="add([' + "'" + row.rolename + "'" + '] + \' - 配置功能\',\'/xst/roles/jurisdiction\',\'380\',\'500\',\'no\')">配置</a>';
-                }
-                return a;
+                return '<a class="btn btn-link" onclick="edit_show_shade([' + "'" + row.rolename + "'" + '] + \' - 配置功能\',\'/xst/roles/jurisdiction\',' + row.id + ',\'380\',\'500\',\'yes\')">配置</a>';
             },
         }, {
             data: "state",

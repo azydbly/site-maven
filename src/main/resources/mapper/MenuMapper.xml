@@ -14,7 +14,7 @@
         select
         <include refid="selectColumn"/>
         from sys_menu
-        where flag = 1
+        where flag = 1 and state = 1
     </select>
 
     <!-- DataTabables 分页，搜索  -->

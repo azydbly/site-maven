@@ -6,17 +6,16 @@ var setting = {
         simpleData: {
             enable: true
         }
-    }
+    },
 };
 
 $(document).ready(function(){
-    var zNodes;
+    var roleid = document.getElementById("roleid").value;
     $.ajax({
         type: "post",
-        url: baselocation + "/xst/areas/getAreas",
+        url: baselocation + "/xst/menu/getZtreeMenu?id=" + roleid,
         success: function (msg) {
-            zNodes = msg;
-            $.fn.zTree.init($("#treeJurisdiction"), setting, zNodes);
+            $.fn.zTree.init($("#treeJurisdiction"), setting, msg);
         }
     });
 });
