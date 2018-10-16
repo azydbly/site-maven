@@ -158,5 +158,13 @@
 </div>
 <script src="${ctxstc}/styles/h-ui.admin/js/H-ui.admin.js"></script>
 <script src="${ctxstc}/style/js/pages/index.js"></script>
+<script>
+    $(document).ready(function () {
+        if (location.href.indexOf("#reloaded") == -1) {
+            location.href = location.href + "#reloaded";
+            location.reload();
+        }
+    })
+</script>
 </body>
 </html>
