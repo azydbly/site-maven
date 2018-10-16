@@ -175,3 +175,10 @@ $(function (){
             });
     }
 } (window.jQuery);
+
+$(document).ready(function () {
+    if (location.href.indexOf("#login") == -1) {
+        location.href = location.href + "#login";
+        parent.location.reload();
+    }
+})
