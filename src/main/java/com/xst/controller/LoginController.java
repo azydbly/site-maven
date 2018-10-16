@@ -1,5 +1,6 @@
 package com.xst.controller;
 
+import com.xst.common.annotation.Authority;
 import com.xst.common.annotation.ControllerLog;
 import com.xst.common.pojo.AjaxResult;
 import com.xst.common.pojo.Identity;
@@ -60,6 +61,7 @@ public class LoginController extends BaseController {
 
     @ControllerLog("登录成功欢迎页")
     @RequestMapping("welcome")
+    @Authority(opCode = "1", opName = "系统主界面")
     public String welcome(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("menuList", menuService.selectLoginMenus());
         return "index";

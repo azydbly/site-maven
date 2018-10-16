@@ -103,9 +103,9 @@
 <aside class="Hui-aside">
     <div class="menu_dropdown bk_2">
         <dl id="menu-article">
-            <c:if test="${not empty menuList}">
-                <c:forEach items="${menuList }" var="menu">
-                    <c:if test="${menu.pid == 0 }">
+            <c:if test="${not empty operations}">
+                <c:forEach items="${operations }" var="menu">
+                    <c:if test="${menu.pid == 1 }">
                         <dt>
                             <i class="Hui-iconfont">${menu.iconfont }</i> ${menu.menuname }<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
                         </dt>
@@ -113,7 +113,7 @@
                             <ul>
                                 <li>
                                     <c:forEach items="${menuList }" var="submenu">
-                                        <c:if test="${submenu.pid == menu.id }">
+                                        <c:if test="${submenu.pid == menu.opcode }">
                                             <a data-href="${ctx }${submenu.url }" data-title="${submenu.menuname }" href="javascript:void(0)">${submenu.menuname }</a>
                                         </c:if>
                                     </c:forEach>

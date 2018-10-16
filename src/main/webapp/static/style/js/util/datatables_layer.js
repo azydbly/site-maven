@@ -41,7 +41,7 @@ function add(title, url,w,h,type) {
 
 
 /**
- * 编辑-查看 
+ * 编辑-查看-shade-false
  */
 function edit_show(title, url, id,w,h,type) {
     if(w == 1){
@@ -67,6 +67,35 @@ function edit_show(title, url, id,w,h,type) {
         }
 	});
 }
+
+
+/**
+ * 编辑-查看-shade-true
+ */
+function edit_show_shade(title, url, id,w,h,type) {
+    if(w == 1){
+        w = 880;
+    }
+    if(h == 1){
+        h = 700;
+    }
+    var index = layer.open({
+        type: 2,
+        title: title,
+        anim : 1, //0-6的动画形式，-1不开启
+        shadeClose: false,
+        maxmin: true, //开启最大化最小化按钮
+        area: [w, h],
+        btn: ['提交', '取消'],
+        content: [url + '?id=' + id,type],
+        yes: function(index, layero){
+            //点击确认触发 iframe 内容中的按钮提交
+            var submit = layero.find('iframe').contents().find("input[type='submit']");
+            submit.click();
+        }
+    });
+}
+
 
 
 /**

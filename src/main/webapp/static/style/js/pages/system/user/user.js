@@ -56,7 +56,7 @@ $(function() {
             render: function(data, type, row, meta) {
                 var a = "";
                 if(row.role.level == 3){
-                    a =  '<a class="btn btn-link" onclick="edit_show([' + "'" + row.fullname + "'" + '] + \' - 配置数据\',\'/xst/user/configure\',' + row.id + ',\'380\',\'500\',\'yes\')">配置</a>';
+                    a =  '<a class="btn btn-link" onclick="edit_show_shade([' + "'" + row.fullname + "'" + '] + \' - 配置数据\',\'/xst/user/configure\',' + row.id + ',\'380\',\'500\',\'yes\')">配置</a>';
                 }else{
                     a =  '<a class="btn disabled radius">无需配置</a>';
                 }

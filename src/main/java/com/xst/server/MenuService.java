@@ -3,6 +3,7 @@ package com.xst.server;
 import com.xst.common.pojo.AjaxResult;
 import com.xst.common.util.DataTables;
 import com.xst.model.Menu;
+import org.apache.ibatis.annotations.Param;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,5 +52,11 @@ public interface MenuService {
 
     //更新菜单
     AjaxResult editUpdate(Menu menu);
+
+    //根据角色id 获取菜单权限
+    List<Menu> getMenuListByRoleId(int roleid);
+
+    //根据菜单获取菜单 主页
+    List<Menu> getMenuListByRoleIdByIndex(int roleid);
 
 }

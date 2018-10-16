@@ -69,13 +69,15 @@ public class AreasServiceImpl implements AreasService {
         puserAreasService.deleteByUserid(StrUtil.getInteger(puserid));
         String[] a = data.split(",");
         for(int i = 0;i < a.length; i++){
-            PuserAreas puserAreas = new PuserAreas();
-            puserAreas.setPuserid(puserid);
-            puserAreas.setAreasid(StrUtil.getInteger(a[i]));
-            int resultMap = puserAreasService.insertPuserAndAreas(puserAreas);
-            if(resultMap < 1){
-                returnResult = true;
-                break;
+            if(!"".equals(a[i])){
+                PuserAreas puserAreas = new PuserAreas();
+                puserAreas.setPuserid(puserid);
+                puserAreas.setAreasid(StrUtil.getInteger(a[i]));
+                int resultMap = puserAreasService.insertPuserAndAreas(puserAreas);
+                if(resultMap < 1){
+                    returnResult = true;
+                    break;
+                }
             }
         }
         if(returnResult){

@@ -31,37 +31,26 @@ function zTreeOnClick(event, treeId, treeNode) {       //第二步
         v += nodes[i].id + ",";
         //console.log("节点id:" + nodes[i].id + "节点名称" + v); //获取选中节点的值
     }
-    if(v == ""){
-        layer.alert('请选择分配的地区！', {
-            icon: 5,
-            title: '失败',
-            time: 2000,
-            shade: 0,
-            btn: 0,
-            offset: ['40px', ($(window).width() - 300) + 'px']
-        });
-    }else{
-        var puserid = document.getElementById("puserid").value;
-        $.ajax({
-            url:baselocation + "/xst/areas/saveAreasZtree?puserid=" + puserid +"&data=" + v,
-            dataType:'json',
-            type:'post',
-            success:function(data){
-                if(data.retcode == 0) {
-                    layer.alert(data.retmsg, {
-                        icon: 5,
-                        title: '失败',
-                        time: 2000,
-                        shade: 0,
-                        btn: 0,
-                        offset: ['40px', ($(window).width() - 300) + 'px']
-                    });
-                }else{
-                    parent.showSuccessMessage("授权成功！");
-                    var index = parent.layer.getFrameIndex(window.name);
-                    parent.layer.close(index);
-                }
+    var puserid = document.getElementById("puserid").value;
+    $.ajax({
+        url:baselocation + "/xst/areas/saveAreasZtree?puserid=" + puserid +"&data=" + v,
+        dataType:'json',
+        type:'post',
+        success:function(data){
+            if(data.retcode == 0) {
+                layer.alert(data.retmsg, {
+                    icon: 5,
+                    title: '失败',
+                    time: 2000,
+                    shade: 0,
+                    btn: 0,
+                    offset: ['40px', ($(window).width() - 300) + 'px']
+                });
+            }else{
+                parent.showSuccessMessage("授权成功！");
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(index);
             }
-        })
-    }
+        }
+    })
 }
