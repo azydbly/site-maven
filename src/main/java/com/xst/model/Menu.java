@@ -24,6 +24,9 @@ public class Menu {
     //菜单名称
     private String menuname;
 
+    //菜单opcode
+    private int opcode;
+
     //上级 id
     private int pid;
 
@@ -51,7 +54,6 @@ public class Menu {
     //虚拟字段
     private String pname;
 
-
     public int getId() {
         return id;
     }
@@ -66,14 +68,6 @@ public class Menu {
 
     public void setMenuname(String menuname) {
         this.menuname = menuname;
-    }
-
-    public int getPid() {
-        return pid;
-    }
-
-    public void setPid(int pid) {
-        this.pid = pid;
     }
 
     public String getUrl() {
@@ -138,5 +132,21 @@ public class Menu {
 
     public void setPname(String pname) {
         this.pname = pname;
+    }
+
+    public int getOpcode() {
+        return opcode;
+    }
+
+    public void setOpcode(int opcode) {
+        this.opcode = opcode;
+    }
+
+    public int getPid() {
+        return pid;
+    }
+
+    public void setPid(int pid) {
+        this.pid = pid;
     }
 }

@@ -101,7 +101,7 @@ function creatIframe(href,titleName){
 		$("#min_title_list li").contextMenu('Huiadminmenu', {
 			bindings: {
 				'closethis': function(t) {
-					var $t = $(t);				
+					var $t = $(t);
 					if($t.find("i")){
 						$t.find("i").trigger("click");
 					}
@@ -109,6 +109,11 @@ function creatIframe(href,titleName){
 				'closeall': function(t) {
 					$("#min_title_list li i").trigger("click");
 				},
+                'closeother': function(t) {
+                    var $t = $(t);
+                    var i = $t.index();
+                    $("#min_title_list li:not(li:eq("+i+")) i").trigger("click");
+                },
 			}
 		});
 	}else {

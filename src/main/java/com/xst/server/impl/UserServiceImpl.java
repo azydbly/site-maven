@@ -10,9 +10,10 @@ import com.xst.common.util.*;
 import com.xst.controller.BaseController;
 import com.xst.mapper.UserMapper;
 import com.xst.model.Lock;
-import com.xst.model.Roles;
+import com.xst.model.Menu;
 import com.xst.model.User;
 import com.xst.server.LockService;
+import com.xst.server.MenuService;
 import com.xst.server.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -53,6 +54,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private DataCache dataCache;
+
+    @Autowired
+    private MenuService menuService = new MenuServiceImpl();
 
     IdCard idCard = new IdCard();
 
@@ -154,10 +158,11 @@ public class UserServiceImpl implements UserService {
                         user.setLoginIp(loginIp);
                         user.setLoginTime(DateUtil.getCurDateTime());
                         userMapper.updateLastByIdnumber(user);
-
                         Identity identity = new Identity();
                         identity.setLoginUser(user);
                         identity.setLoginIp(loginIp);
+                        identity.setOperationList(menuService.getMenuListByRoleId(user.getRoleid()));
+                        identity.setOperationListByIndex(menuService.getMenuListByRoleIdByIndex(user.getRoleid()));
                         String sessionId = getSessionId(idnumber, identity.getLoginIp());
                         identity.setSessionId(sessionId);
 

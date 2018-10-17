@@ -146,5 +146,15 @@ public class MenuServiceImpl implements MenuService {
         return AppUtil.returnObj(result);
     }
 
+    @Override
+    public List<Menu> getMenuListByRoleId(int roleid) {
+        return menuMapper.getMenuListByRoleId(roleid);
+    }
+
+    @Override
+    public List<Menu> getMenuListByRoleIdByIndex(int roleid) {
+        return menuMapper.getMenuListByRoleIdByIndex(roleid);
+    }
+
 
 }

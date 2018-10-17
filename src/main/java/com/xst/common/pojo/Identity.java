@@ -1,5 +1,6 @@
 package com.xst.common.pojo;
 
+import com.xst.model.Menu;
 import com.xst.model.User;
 
 import java.util.List;
@@ -17,6 +18,25 @@ public class Identity {
 
 	private User loginUser;
 
+    private List<Menu> operationList;
+
+    private List<Menu> operationListByIndex;
+
+    public List<Menu> getOperationListByIndex() {
+        return operationListByIndex;
+    }
+
+    public void setOperationListByIndex(List<Menu> operationListByIndex) {
+        this.operationListByIndex = operationListByIndex;
+    }
+
+    public List<Menu> getOperationList() {
+        return operationList;
+    }
+
+    public void setOperationList(List<Menu> operationList) {
+        this.operationList = operationList;
+    }
 
     public String getSessionId() {
         return sessionId;

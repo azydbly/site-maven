@@ -130,3 +130,10 @@
 .hide-ztree {
     display: none
 }
+
+.alert.alert-danger {
+    background: #f2dede;
+    border-color: #ebccd1;
+    color: #b94a48;
+    background-size: 20px 20px
+}

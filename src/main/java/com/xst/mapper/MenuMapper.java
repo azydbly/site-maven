@@ -43,4 +43,10 @@ public interface MenuMapper {
 
     //更新菜单
     int updateMenu(Menu menu);
+
+    //根据角色id 获取菜单权限
+    List<Menu> getMenuListByRoleId(@Param("roleid") int roleid);
+
+    //根据菜单获取菜单 主页
+    List<Menu> getMenuListByRoleIdByIndex(@Param("roleid") int roleid);
 }

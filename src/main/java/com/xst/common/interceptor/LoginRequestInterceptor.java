@@ -9,6 +9,8 @@ import com.xst.common.util.Constant;
 import com.xst.common.util.CookieUtil;
 import com.xst.common.util.DataCache;
 import com.xst.common.util.IPUtil;
+import com.xst.model.Menu;
+import com.xst.model.User;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * 权限拦截器
@@ -31,6 +34,8 @@ public class LoginRequestInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //启动支持@Autowired注解
         WebApplicationContextUtils.getRequiredWebApplicationContext(request.getServletContext()).getAutowireCapableBeanFactory().autowireBean(this);
+        //权限验证结果
+        boolean isOpera = true;
         //登录信息验证结果
         String loginResult = validateLogin(request, response);
 
@@ -43,10 +48,19 @@ public class LoginRequestInterceptor extends HandlerInterceptorAdapter {
                     throw new AjaxLoginException(401, loginResult);
                 }
             }
+            isOpera = validateOperation(request);
+            // 校验权限 true有权限， false 没有权限
+            if(!isOpera){
+                throw new AjaxPermissionException(402, "您没有此操作权限");
+            }
         }
 
         if (StringUtils.isNotEmpty(loginResult)) {
             throw new LoginException(401, loginResult);
+        }
+        isOpera = validateOperation(request);
+        if(!isOpera){
+            throw new PermissionException(402, "您没有此操作权限");
         }
         return super.preHandle(request, response, handler);
     }
@@ -73,6 +87,7 @@ public class LoginRequestInterceptor extends HandlerInterceptorAdapter {
 
         // 设置登录用户
         request.setAttribute("loginUser", identity.getLoginUser());
+        request.setAttribute("operations", identity.getOperationListByIndex());
         return null;
     }
 
@@ -81,13 +96,24 @@ public class LoginRequestInterceptor extends HandlerInterceptorAdapter {
         String sessionId = CookieUtil.get(Constant.SESSION_IDENTITY_KEY, request);
         String username = (String) dataCache.getValue(sessionId);
         Identity identity = (Identity) dataCache.getValue(username + IPUtil.getIpAdd(request));
+        List<Menu> list = identity.getOperationList();
         boolean isOper = false;
         String url = request.getServletPath();
         String href = null;
         //动态url过滤,如update/{id}
         String dyUrl = url.substring(url.lastIndexOf("/") + 1);
-        if (StringUtils.isNumeric(dyUrl)) {
+        if(StringUtils.isNumeric(dyUrl)){
             url = url.substring(0, url.lastIndexOf("/"));
+        }
+        for (Menu menu : list) {
+            href = menu.getUrl();
+            if(StringUtils.isNumeric(dyUrl) && href.contains("{")){
+                href = href.substring(0, href.lastIndexOf("/"));
+            }
+            if(url.equals(href)){
+                isOper = true;
+                break;
+            }
         }
         return isOper;
     }

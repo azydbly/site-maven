@@ -3,6 +3,7 @@ package com.xst.controller;
 import com.alibaba.fastjson.JSON;
 import com.xst.common.annotation.ControllerLog;
 import com.xst.common.pojo.AjaxResult;
+import com.xst.common.pojo.ParamData;
 import com.xst.common.util.DataTables;
 import com.xst.model.Menu;
 import com.xst.model.Roles;
@@ -102,6 +103,9 @@ public class RoleController  extends BaseController{
     @ControllerLog("配置角色权限页面")
     @RequestMapping("jurisdiction")
     public String Jurisdiction(HttpServletRequest request, HttpServletResponse response){
+        ParamData params = new ParamData();
+        String roleid = params.getString("id");
+        request.setAttribute("roleid",roleid);
         return "system/role/jurisdiction";
     }
 

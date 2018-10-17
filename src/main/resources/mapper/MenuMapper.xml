@@ -4,7 +4,7 @@
 
     <!-- 公众部分 -->
     <sql id="selectColumn">
-        id,menuname,pid,url,iconfont,DATE_FORMAT(insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime,
+        id,menuname,opcode,pid,url,iconfont,DATE_FORMAT(insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime,
         DATE_FORMAT(operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime,state,flag
     </sql>
 
@@ -14,12 +14,12 @@
         select
         <include refid="selectColumn"/>
         from sys_menu
-        where flag = 1
+        where flag = 1 and state = 1
     </select>
 
     <!-- DataTabables 分页，搜索  -->
     <select id="getPageMenuList" resultType="com.xst.model.Menu">
-        select a.id,a.menuname,a.pid,a.url,a.iconfont,DATE_FORMAT(a.insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime,
+        select a.id,a.menuname,a.opcode,a.pid,a.url,a.iconfont,DATE_FORMAT(a.insertdatetime, '%Y-%m-%d %H:%i:%s') insertdatetime,
         DATE_FORMAT(a.operatordatetime, '%Y-%m-%d %H:%i:%s') operatordatetime,a.state,a.flag,b.menuname pname
         from sys_menu a
         LEFT JOIN sys_menu b on a.pid = b.id
@@ -101,5 +101,18 @@
         update sys_menu set menuname = #{menuname},pid = #{pid},url = #{url},iconfont = #{iconfont},remark = #{remark},operatordatetime = #{operatordatetime},state = #{state} where id = #{id}
     </update>
 
+    <!--根据角色id 获取菜单权限-->
+    <select id="getMenuListByRoleId" resultType="com.xst.model.Menu">
+        select m.*,rm.roleid FROM sys_role_menu rm
+        left join sys_menu m on rm.menuid = m.id
+        where rm.roleid = #{roleid} and m.flag = 1 and m.state = 1
+    </select>
+
+    <!--根据菜单获取菜单 主页-->
+    <select id="getMenuListByRoleIdByIndex" resultType="com.xst.model.Menu">
+        select m.*,rm.roleid FROM sys_role_menu rm
+        left join sys_menu m on rm.menuid = m.id
+        where rm.roleid = #{roleid} and m.state = 1 and m.flag = 1 and m.opcode BETWEEN 2 AND 9999
+    </select>
 
 </mapper>
