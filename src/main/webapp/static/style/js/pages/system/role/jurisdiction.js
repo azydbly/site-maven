@@ -13,7 +13,7 @@ $(document).ready(function(){
     var roleid = document.getElementById("roleid").value;
     $.ajax({
         type: "post",
-        url: baselocation + "/xst/menu/getZtreeMenu?id=" + roleid,
+        url: baselocation + "/xst/menu/getZtreeMenu/" + roleid,
         success: function (msg) {
             $.fn.zTree.init($("#treeJurisdiction"), setting, msg);
         }

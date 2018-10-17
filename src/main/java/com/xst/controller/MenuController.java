@@ -16,10 +16,7 @@ import com.xst.server.impl.RoleMenuServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -127,12 +124,14 @@ public class MenuController extends BaseController {
 
     @ResponseBody
     @ControllerLog("拼接菜单的ztree")
-    @RequestMapping(value = "getZtreeMenu", produces = "application/json; charset=utf-8")
+    @RequestMapping("getZtreeMenu/1")
     public String getZtreeMenu() {
-        ParamData params = new ParamData();
-        String roleid = params.getString("id");
-        List<Menu> list = menuService.selectLoginMenus();
-        List<RoleMenu> listRoleMenu = roleMenuService.getMenuIdByRoleId(StrUtil.getInteger(roleid));
+        System.out.println("======================>>>>>>>>>>>>>>>>>>");
+        /*ParamData params = new ParamData();
+        String roleid = params.getString("id");*/
+       // System.out.println("=================" + id);
+       /* List<Menu> list = menuService.selectLoginMenus();
+        List<RoleMenu> listRoleMenu = roleMenuService.getMenuIdByRoleId(StrUtil.getInteger(id));
         List<ZtreeNode> ztreeNodeJson = new ArrayList<ZtreeNode>();
         for(int i = 0; i < list.size(); i++){
             ZtreeNode ztreeNode = new ZtreeNode();
@@ -149,8 +148,9 @@ public class MenuController extends BaseController {
             }
             ztreeNodeJson.add(ztreeNode);
         }
-        Gson gson = new Gson();
-        String json = gson.toJson(ztreeNodeJson);
-        return json;
+        Gson gson = new Gson();*/
+       // String json = gson.toJson(ztreeNodeJson);
+       // return json;
+        return "";
     }
 }
