@@ -112,7 +112,7 @@
                         <dd>
                             <ul>
                                 <li>
-                                    <c:forEach items="${menuList }" var="submenu">
+                                    <c:forEach items="${operations }" var="submenu">
                                         <c:if test="${submenu.pid == menu.opcode }">
                                             <a data-href="${ctx }${submenu.url }" data-title="${submenu.menuname }" href="javascript:void(0)">${submenu.menuname }</a>
                                         </c:if>

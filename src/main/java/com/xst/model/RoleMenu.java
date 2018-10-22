@@ -14,7 +14,7 @@ public class RoleMenu {
     private int roleid;
 
     //菜单id
-    private int menuid;
+    private int menucope;
 
     public int getRoleid() {
         return roleid;
@@ -24,11 +24,11 @@ public class RoleMenu {
         this.roleid = roleid;
     }
 
-    public int getMenuid() {
-        return menuid;
+    public int getMenucope() {
+        return menucope;
     }
 
-    public void setMenuid(int menuid) {
-        this.menuid = menuid;
+    public void setMenucope(int menucope) {
+        this.menucope = menucope;
     }
 }

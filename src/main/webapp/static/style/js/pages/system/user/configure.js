@@ -21,8 +21,6 @@ $(document).ready(function(){
 });
 
 
-
-
 function zTreeOnClick(event, treeId, treeNode) {       //第二步
     var treeObj = $.fn.zTree.getZTreeObj("treeRegion"),
         nodes = treeObj.getCheckedNodes(true),

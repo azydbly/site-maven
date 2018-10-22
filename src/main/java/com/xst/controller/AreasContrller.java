@@ -1,6 +1,7 @@
 package com.xst.controller;
 
 import com.google.gson.Gson;
+import com.xst.common.annotation.Authority;
 import com.xst.common.annotation.ControllerLog;
 import com.xst.common.pojo.AjaxResult;
 import com.xst.common.pojo.ParamData;
@@ -75,6 +76,7 @@ public class AreasContrller extends BaseController {
     @ResponseBody
     @ControllerLog("根据全部省市区县")
     @RequestMapping(value = "getAreas", produces = "application/json; charset=utf-8")
+    @Authority(opCode = "11030402", opName = "获取省市区县")
     public String getAreas(){
         ParamData params = new ParamData();
         String puserid = params.getString("id");
@@ -106,6 +108,7 @@ public class AreasContrller extends BaseController {
     @ResponseBody
     @ControllerLog("保存用户地区数据")
     @RequestMapping("saveAreasZtree")
+    @Authority(opCode = "11030602", opName = "保存用户菜单")
     public AjaxResult saveAreasZtree(HttpServletRequest request, HttpServletResponse response){
         return areasService.saveAreasZtree(request,response);
     }

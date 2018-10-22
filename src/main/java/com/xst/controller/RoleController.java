@@ -1,6 +1,7 @@
 package com.xst.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.xst.common.annotation.Authority;
 import com.xst.common.annotation.ControllerLog;
 import com.xst.common.pojo.AjaxResult;
 import com.xst.common.pojo.ParamData;
@@ -41,6 +42,7 @@ public class RoleController  extends BaseController{
 
     @ControllerLog("进入角色 list 页面")
     @RequestMapping("list")
+    @Authority(opCode = "1102", opName = "角色管理")
     public String roleList(){
         return "system/role/index";
     }
@@ -48,6 +50,7 @@ public class RoleController  extends BaseController{
     @ResponseBody
     @ControllerLog("角色 list 页面，分页显示角色")
     @RequestMapping("showPageRole")
+    @Authority(opCode = "110201", opName = "查询角色")
     public String showPageRole(@RequestParam(value="state",required=false)String state,HttpServletRequest request, HttpServletResponse response){
         state = StringUtils.isEmpty(state) ? "" : (" and state = " + state);
         return JSON.toJSONString(roleService.getPageRoleList(DataTables.getInstance(request,state)));
@@ -55,12 +58,14 @@ public class RoleController  extends BaseController{
 
     @ControllerLog("进入添加角色页面")
     @RequestMapping("add")
+    @Authority(opCode = "110204", opName = "添加角色页面")
     public String add(){
         return "system/role/add";
     }
 
     @ControllerLog("角色名重复验证")
     @RequestMapping("rolename/validate")
+    @Authority(opCode = "11020401", opName = "添加角色名称重复验证")
     public void roleNameValidate(HttpServletRequest request, HttpServletResponse response) throws IOException {
         roleService.roleNameValidate(request,response);
     }
@@ -68,12 +73,14 @@ public class RoleController  extends BaseController{
     @ResponseBody
     @ControllerLog("添加角色")
     @RequestMapping("addUpdate")
+    @Authority(opCode = "11020402", opName = "添加角色")
     public AjaxResult addUpdate(Roles role){
         return roleService.addUpdate(role);
     }
 
     @ControllerLog("进入修改角色页面")
     @RequestMapping("edit")
+    @Authority(opCode = "110205", opName = "修改角色页面")
     public String edit(HttpServletRequest request, HttpServletResponse response){
         request.setAttribute("role",roleService.getRolesById(request,response));
         return "system/role/edit";
@@ -82,6 +89,7 @@ public class RoleController  extends BaseController{
     @ResponseBody
     @ControllerLog("修改角色")
     @RequestMapping("editUpdate")
+    @Authority(opCode = "11020502", opName = "更新角色")
     public AjaxResult editUpdate(Roles role){
         return roleService.editUpdate(role);
     }
@@ -89,6 +97,7 @@ public class RoleController  extends BaseController{
     @ResponseBody
     @ControllerLog("改变角色状态")
     @RequestMapping("roleState")
+    @Authority(opCode = "110203", opName = "修改角色状态")
     public AjaxResult changeRoleState(HttpServletRequest request, HttpServletResponse response){
         return roleService.changeRoleState(request,response);
     }
@@ -96,12 +105,14 @@ public class RoleController  extends BaseController{
     @ResponseBody
     @ControllerLog("删除角色")
     @RequestMapping("/delete")
+    @Authority(opCode = "110202", opName = "删除")
     public AjaxResult deleteRoles(@RequestParam("idlist[]") List<Integer> idlist){
         return roleService.deleteRole(idlist);
     }
 
     @ControllerLog("配置角色权限页面")
     @RequestMapping("jurisdiction")
+    @Authority(opCode = "110206", opName = "配置角色权限页面")
     public String Jurisdiction(HttpServletRequest request, HttpServletResponse response){
         ParamData params = new ParamData();
         String roleid = params.getString("id");

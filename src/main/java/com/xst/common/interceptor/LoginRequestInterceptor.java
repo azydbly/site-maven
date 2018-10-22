@@ -101,18 +101,20 @@ public class LoginRequestInterceptor extends HandlerInterceptorAdapter {
         String url = request.getServletPath();
         String href = null;
         //动态url过滤,如update/{id}
-        String dyUrl = url.substring(url.lastIndexOf("/") + 1);
+        String dyUrl = url.substring(url.lastIndexOf("/") + 1,url.lastIndexOf("/") + 2);
         if(StringUtils.isNumeric(dyUrl)){
             url = url.substring(0, url.lastIndexOf("/"));
         }
         for (Menu menu : list) {
             href = menu.getUrl();
-            if(StringUtils.isNumeric(dyUrl) && href.contains("{")){
-                href = href.substring(0, href.lastIndexOf("/"));
-            }
-            if(url.equals(href)){
-                isOper = true;
-                break;
+            if(href != null) {
+                if (StringUtils.isNumeric(dyUrl) && href.contains("{")) {
+                    href = href.substring(0, href.lastIndexOf("/"));
+                }
+                if (url.equals(href)) {
+                    isOper = true;
+                    break;
+                }
             }
         }
         return isOper;

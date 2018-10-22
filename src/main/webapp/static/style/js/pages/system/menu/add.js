@@ -17,7 +17,7 @@ $("#form-member-add").validate({
                     }else{
                         return false;
                     }
-                }
+                },
             }
         },
         url:{

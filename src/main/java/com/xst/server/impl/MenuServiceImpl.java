@@ -120,6 +120,11 @@ public class MenuServiceImpl implements MenuService {
         String result = null;
         menu.setInsertdatetime(new Date());
         menu.setOperatordatetime(new Date());
+        if(selectMaxOpcopeByPid(menu.getPid()) == null){
+            menu.setOpcode(StrUtil.getInteger(StrUtil.getString(menu.getPid()) + "01"));
+        }else{
+            menu.setOpcode((StrUtil.getInteger(selectMaxOpcopeByPid(menu.getPid())) + 1));
+        }
         int returnResult = menuMapper.insertMenu(menu);
         if(returnResult < 1){
             result = "添加失败";
@@ -154,6 +159,11 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public List<Menu> getMenuListByRoleIdByIndex(int roleid) {
         return menuMapper.getMenuListByRoleIdByIndex(roleid);
+    }
+
+    @Override
+    public String selectMaxOpcopeByPid(int pid) {
+        return menuMapper.selectMaxOpcopeByPid(pid);
     }
 
 

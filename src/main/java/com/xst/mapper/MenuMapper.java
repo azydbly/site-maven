@@ -3,6 +3,7 @@ package com.xst.mapper;
 import com.xst.model.Menu;
 import org.apache.ibatis.annotations.Param;
 
+import javax.annotation.security.PermitAll;
 import java.util.List;
 
 /**
@@ -49,4 +50,7 @@ public interface MenuMapper {
 
     //根据菜单获取菜单 主页
     List<Menu> getMenuListByRoleIdByIndex(@Param("roleid") int roleid);
+
+    //根据上级编号查询最大编号
+    String selectMaxOpcopeByPid(@Param("pid") int pid);
 }

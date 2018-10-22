@@ -59,4 +59,7 @@ public interface MenuService {
     //根据菜单获取菜单 主页
     List<Menu> getMenuListByRoleIdByIndex(int roleid);
 
+    //根据上级编号查询最大编号
+    String selectMaxOpcopeByPid(int pid);
+
 }

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.annotation.Inherited;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,10 +39,6 @@ public class MenuController extends BaseController {
 
     @Autowired
     private MenuService menuService = new MenuServiceImpl();
-
-    @Autowired
-    private RoleMenuService roleMenuService = new RoleMenuServiceImpl();
-
 
     @ControllerLog("进入菜单 list 页面")
     @RequestMapping("list")
@@ -63,14 +60,14 @@ public class MenuController extends BaseController {
     @ResponseBody
     @ControllerLog("改变菜单状态")
     @RequestMapping("menuState")
-    @Authority(opCode = "110105", opName = "修改菜单状态")
+    @Authority(opCode = "110103", opName = "修改菜单状态")
     public AjaxResult changeMenuState(HttpServletRequest request, HttpServletResponse response){
         return menuService.changeMenuState(request,response);
     }
 
     @ControllerLog("进入菜单 add 页面")
     @RequestMapping("add")
-    @Authority(opCode = "110102", opName = "添加菜单页面")
+    @Authority(opCode = "110104", opName = "添加菜单页面")
     public String addMeun(HttpServletRequest request, HttpServletResponse response){
         request.setAttribute("menuList",menuService.selectOneMenu());
         return "system/menu/add";
@@ -104,13 +101,14 @@ public class MenuController extends BaseController {
     @ResponseBody
     @ControllerLog("删除菜单")
     @RequestMapping("/delete")
-    @Authority(opCode = "110104", opName = "删除菜单")
+    @Authority(opCode = "110102", opName = "删除菜单")
     public AjaxResult deleteMenu(@RequestParam("idlist[]") List<Integer> idlist){
         return menuService.deleteMenu(idlist);
     }
 
     @ControllerLog("菜单名重复验证")
     @RequestMapping("menuname/validate")
+    @Authority(opCode = "110401", opName = "添加菜单名称重复验证")
     public void menuNameValidate(HttpServletRequest request, HttpServletResponse response) throws IOException {
         menuService.menuNameValidate(request,response);
     }
@@ -118,39 +116,9 @@ public class MenuController extends BaseController {
     @ResponseBody
     @ControllerLog("菜单跳转地址重复验证")
     @RequestMapping("url/validate")
+    @Authority(opCode = "110402", opName = "添加菜单地址重复验证")
     public void urlValidate(HttpServletRequest request, HttpServletResponse response) throws IOException {
         menuService.urlValidate(request,response);
     }
 
-    @ResponseBody
-    @ControllerLog("拼接菜单的ztree")
-    @RequestMapping("getZtreeMenu/1")
-    public String getZtreeMenu() {
-        System.out.println("======================>>>>>>>>>>>>>>>>>>");
-        /*ParamData params = new ParamData();
-        String roleid = params.getString("id");*/
-       // System.out.println("=================" + id);
-       /* List<Menu> list = menuService.selectLoginMenus();
-        List<RoleMenu> listRoleMenu = roleMenuService.getMenuIdByRoleId(StrUtil.getInteger(id));
-        List<ZtreeNode> ztreeNodeJson = new ArrayList<ZtreeNode>();
-        for(int i = 0; i < list.size(); i++){
-            ZtreeNode ztreeNode = new ZtreeNode();
-            ztreeNode.setId(list.get(i).getOpcode());
-            ztreeNode.setName(list.get(i).getMenuname());
-            ztreeNode.setpId(list.get(i).getPid());
-            if(StrUtil.getInteger(list.get(i).getOpcode()) < 9999){
-                ztreeNode.setOpen(true);
-            }
-            for(int j = 0; j < listRoleMenu.size(); j++){
-                if(listRoleMenu.get(j).getMenuid() == list.get(i).getOpcode()){
-                    ztreeNode.setChecked(true);
-                }
-            }
-            ztreeNodeJson.add(ztreeNode);
-        }
-        Gson gson = new Gson();*/
-       // String json = gson.toJson(ztreeNodeJson);
-       // return json;
-        return "";
-    }
 }

@@ -18,9 +18,9 @@
             <div class="formControls col-xs-8 col-sm-9">
 				<span class="select-box">
 					<select class="select" size="1" id="pid" name="pid">
-						<option value="0">顶级菜单</option>
+						<option value="1">顶级菜单</option>
 						<c:forEach items="${menuList }" var="menu">
-                            <option value="${menu.getId() }">${menu.getMenuname() }</option>
+                            <option value="${menu.getOpcode() }">${menu.getMenuname() }</option>
                         </c:forEach>
 					</select>
 				</span>
