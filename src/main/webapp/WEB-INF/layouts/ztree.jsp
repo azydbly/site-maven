@@ -3,7 +3,11 @@
 
 <link rel="stylesheet" type="text/css" href="${ctxstc}/style/css/style.css" />
 
-<link rel="stylesheet" type="text/css" href="${ctxstc}/styles/ztree/css/zTreeStyle/zTreeStyle.css" />
+<%--默认风格--%>
+<%--<link rel="stylesheet" type="text/css" href="${ctxstc}/styles/ztree/css/zTreeStyle/zTreeStyle.css" />--%>
+
+<%--Metro风格--%>
+<link rel="stylesheet" type="text/css" href="${ctxstc}/styles/ztree/css/metroStyle/metroStyle.css" />
 
 
 <script src="${ctxstc}/styles/ztree/js/jquery.ztree.core.js"></script>
