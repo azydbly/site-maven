@@ -56,7 +56,7 @@ public class RoleMenuContrller extends BaseController {
             ztreeNode.setId(list.get(i).getOpcode());
             ztreeNode.setName(list.get(i).getMenuname());
             ztreeNode.setpId(list.get(i).getPid());
-            if(StrUtil.getInteger(list.get(i).getOpcode()) < 1000){
+            if(StrUtil.getInteger(list.get(i).getOpcode()) < 10){
                 ztreeNode.setOpen(true);
             }
             for(int j = 0; j < listRoleMenu.size(); j++){
