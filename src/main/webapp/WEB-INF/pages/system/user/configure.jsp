@@ -8,7 +8,7 @@
 <script src="${ctxstc}/style/js/pages/system/user/configure.js"></script>
 <div class="content_wrap">
     <input type="hidden" id="puserid" value="${puserid}" />
-    <div class="zTreeDemoBackground left">
+    <div>
         <ul id="treeRegion" class="ztree"></ul>
     </div>
     <div class="hide-ztree">

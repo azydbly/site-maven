@@ -8,7 +8,7 @@
 <script src="${ctxstc}/style/js/pages/system/role/jurisdiction.js"></script>
 <div class="content_wrap">
     <input type="hidden" id="roleid" value="${roleid}" />
-    <div class="zTreeDemoBackground left">
+    <div>
         <ul id="treeJurisdiction" class="ztree"></ul>
     </div>
     <div class="hide-ztree">
